@@ -26,3 +26,8 @@ function checkLogin(): bool
     }
     return false;
 }
+
+function setLoggedin(bool $loggedin)
+{
+    $_SESSION["loggedin"] = $loggedin;
+}

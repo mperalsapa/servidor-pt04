@@ -38,8 +38,13 @@
 					?>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="iniciar-sessio.php">Iniciar Sessió</a></li>
-					<li><a class="dropdown-item" href="registre.php">Registrarse</a></li>
+					<?php if (!checkLogin()) {
+						echo "<li><a class=\"dropdown-item\" href=\"iniciar-sessio.php\">Iniciar Sessió</a></li>";
+						echo "<li><a class=\"dropdown-item\" href=\"registre.php\">Registrarse</a></li>";
+					} else {
+						echo "<li><a class=\"dropdown-item\" href=\"logout.php\">Tancar sesió</a></li>";
+					} ?>
+
 				</ul>
 			</div>
 		</div>
