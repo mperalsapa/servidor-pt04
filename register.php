@@ -1,5 +1,5 @@
 <?php
-include_once("internal/registre/registre.php");
+// include_once("internal/register/register.php");
 include_once("internal/db/mysql.php");
 include_once("internal/db/session_manager.php");
 include_once("internal/vistes/browser.php");
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (checkLogin()) {
         redirectClient("index.php");
     }
-    include_once("vistes/registre.vista.php");
+    include_once("vistes/register.vista.php");
     die();
 }
 
@@ -49,23 +49,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!empty($missatgeForm)) {
-        include_once("vistes/registre.vista.php");
+        include_once("vistes/register.vista.php");
         die();
     }
 
     $pdo = getMysqlPDO();
     if (userExists($pdo, $email)) {
         $missatgeForm = "User already exists";
-        include_once("vistes/registre.vista.php");
+        include_once("vistes/register.vista.php");
         die();
     };
 
     $insertsuccess = addUser($pdo, $name, $lastname, $email, $password);
     if ($insertsuccess) {
-        include_once("vistes/registre.succ.vista.php");
+        include_once("vistes/register.succ.vista.php");
         setLoggedin(true);
     } else {
-        $missatgeForm = "S'ha produit un error a l'hora de realitzar el registre. Intenta-ho un altre cop.";
-        include_once("vistes/registre.vista.php");
+        $missatgeForm = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
+        include_once("vistes/register.vista.php");
     }
 }

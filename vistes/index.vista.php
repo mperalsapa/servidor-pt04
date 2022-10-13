@@ -39,8 +39,8 @@
 				</button>
 				<ul class="dropdown-menu">
 					<?php if (!checkLogin()) {
-						echo "<li><a class=\"dropdown-item\" href=\"iniciar-sessio.php\">Iniciar Sessió</a></li>";
-						echo "<li><a class=\"dropdown-item\" href=\"registre.php\">Registrarse</a></li>";
+						echo "<li><a class=\"dropdown-item\" href=\"login.php\">Iniciar Sessió</a></li>";
+						echo "<li><a class=\"dropdown-item\" href=\"register.php\">Registrarse</a></li>";
 					} else {
 						echo "<li><a class=\"dropdown-item\" href=\"logout.php\">Tancar sesió</a></li>";
 					} ?>
