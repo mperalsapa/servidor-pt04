@@ -10,65 +10,55 @@
 </head>
 
 <body>
-    <div class="container py-5 h-100">
-        <div class="row justify-content-center align-items-center h-100">
-            <div class="col-12 col-lg-9 col-xl-7">
-                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                    <div class="card-body p-4 p-md-5">
-                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-                        <form action="register.php" method="POST">
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input type="text" name="nom" class="form-control form-control-lg" value="<?php echo isset($name) ? $name : '' ?>" />
-                                        <label class="form-label" for="nom">Nom</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input type="text" name="cognom" class="form-control form-control-lg" value="<?php echo isset($lastname) ? $lastname : '' ?>" />
-                                        <label class="form-label" for="cognom">Cognoms</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="email" name="correu" class="form-control form-control-lg" value="<?php echo isset($email) ? $email : '' ?>" />
-                                        <label class="form-label" for="correu">Correu Electronic</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="email" name="correu-2" class="form-control form-control-lg" />
-                                        <label class="form-label" for="correu-2">Correu Electronic</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="password" name="contrasenya" class="form-control form-control-lg" />
-                                        <label class="form-label" for="contrasenya">Contrassenya</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="password" name="contrasenya-2" class="form-control form-control-lg" />
-                                        <label class="form-label" for="contrasenya">Contrassenya</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <p><?php echo isset($missatgeForm) ? $missatgeForm : '' ?></p>
-                            <div class="mt-4 pt-2">
-                                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
-                            </div>
-                        </form>
+    <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
+        <div class="bg-white rounded col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+            <form class="h-50 align-middle m-4" action="register.php" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <label for="">Nom</label>
+                        <input type="text" class="form-control" name="name" placeholder="Nom" value="<?php echo isset($name) ? $name : '' ?>">
+                    </div>
+                    <div class="col">
+                        <label for="">Cognoms</label>
+                        <input type="text" class="form-control" name="lastname" placeholder="Cognoms" value="<?php echo isset($lastname) ? $lastname : '' ?>">
                     </div>
                 </div>
-            </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label for="">Correu Electronic</label>
+                        <input type="email" class="form-control" name="email" placeholder="Correu Electronic" value="<?php echo isset($email) ? $email : '' ?>">
+                    </div>
+                    <div class="col">
+                        <label for="">Verificacio Correu Electronic</label>
+                        <input type="email" class="form-control" name="verify-email" placeholder="Correu Electronic">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label for="">Contrasenya</label>
+                        <input type="password" class="form-control" name="password" placeholder="Contrasenya">
+                    </div>
+                    <div class="col">
+                        <label for="">Verificacio Contrasenya</label>
+                        <input type="password" class="form-control" name="verify-password" placeholder="Contrasenya">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="d-flex">
+                        <?php if (!empty($formResult)) {
+                            echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
+                            echo $formResult;
+                            echo "</p>";
+                        }
+                        ?>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
+
     </div>
+
     <?php include_once("internal/vistes/body_end.php"); ?>
 </body>
 
