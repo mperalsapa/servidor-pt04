@@ -1,8 +1,8 @@
 <?php
-// include_once("internal/register/register.php");
 include_once("internal/db/mysql.php");
 include_once("internal/db/session_manager.php");
 include_once("internal/vistes/browser.php");
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (checkLogin()) {
@@ -12,50 +12,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     die();
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $name = isset($_POST["nom"]) ? $_POST["nom"] : '';
-    $lastname = isset($_POST["cognom"]) ? $_POST["cognom"] : '';
-    $email = isset($_POST["correu"]) ? $_POST["correu"] : '';
-    $email2 = isset($_POST["correu-2"]) ? $_POST["correu-2"] : '';
-    $password = isset($_POST["contrasenya"]) ? $_POST["contrasenya"] : '';
-    $password2 = isset($_POST["contrasenya-2"]) ? $_POST["contrasenya-2"] : '';
+    $name = isset($_POST["name"]) ? $_POST["name"] : '';
+    $lastname = isset($_POST["lastname"]) ? $_POST["lastname"] : '';
+    $email = isset($_POST["email"]) ? $_POST["email"] : '';
+    $email2 = isset($_POST["verify-email"]) ? $_POST["verify-email"] : '';
+    $password = isset($_POST["password"]) ? $_POST["password"] : '';
+    $password2 = isset($_POST["verify-password"]) ? $_POST["verify-password"] : '';
 
     if (empty($name)) {
-        $missatgeForm = "El camp Nom es buit";
+        $formResult = "El camp Nom es buit";
+        include_once("vistes/register.vista.php");
+        die();
     }
     if (empty($lastname)) {
-        $missatgeForm = "El camp Cognom es buit";
+        $formResult = "El camp Cognom es buit";
+        include_once("vistes/register.vista.php");
+        die();
     }
     if (empty($email)) {
-        $missatgeForm = "El camp Email es buit";
+        $formResult = "El camp Email es buit";
+        include_once("vistes/register.vista.php");
+        die();
     }
     if (empty($email2)) {
-        $missatgeForm = "La verificacio de correu es buida";
+        $formResult = "La verificacio de correu es buida";
+        include_once("vistes/register.vista.php");
+        die();
     }
     if (empty($password)) {
-        $missatgeForm = "El camp Contrassenya es buit";
+        $formResult = "El camp Contrassenya es buit";
+        include_once("vistes/register.vista.php");
+        die();
     }
     if (empty($password2)) {
-        $missatgeForm = "La verificacio de contrasenya es buida";
+        $formResult = "La verificacio de contrasenya es buida";
+        include_once("vistes/register.vista.php");
+        die();
     }
 
     if ($email != $email2) {
-        $missatgeForm = "El correu i la verificacio no coincideixen";
+        $formResult = "El correu i la verificacio no coincideixen";
+        include_once("vistes/register.vista.php");
+        die();
     }
     if ($password != $password2) {
-        $missatgeForm = "La contrasenya i la verificacio no coincideixen";
-    }
-
-    if (!empty($missatgeForm)) {
+        $formResult = "La contrasenya i la verificacio no coincideixen";
         include_once("vistes/register.vista.php");
         die();
     }
 
     $pdo = getMysqlPDO();
     if (userExists($pdo, $email)) {
-        $missatgeForm = "User already exists";
+        $formResult = "Aquest correu ja pertany a un compte. Si no recordes la contrasenya, fes una recuperació aqui: <a href=\"lost-password.php\">Recuperació de contrasenya</a>";
         include_once("vistes/register.vista.php");
         die();
     };
@@ -65,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include_once("vistes/register.succ.vista.php");
         setLoggedin(true);
     } else {
-        $missatgeForm = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
+        $formResult = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
         include_once("vistes/register.vista.php");
     }
 }
