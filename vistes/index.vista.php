@@ -12,13 +12,7 @@
 
 <body class="bg-dark">
 
-
-
-
-
-
 	<div class="contenidor container bg-white border border-dark rounded">
-
 		<div class="d-flex justify-content-between px-4 pt-4">
 			<h1 class=>Articles</h1>
 			<div class="btn-group dropstart">
