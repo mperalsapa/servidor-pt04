@@ -74,3 +74,27 @@ function addUser(PDO $conn, string $name, string $lastname, string $email, strin
     $pdo->bindParam(":contrasenya", $password);
     return $pdo->execute();
 }
+
+function checkUserPassword(PDO $conn, string $password, string $email): bool
+{
+    $password = hash("sha256", $password, false);
+    $pdo = $conn->prepare("SELECT usuari.contrasenya FROM usuari WHERE usuari.correu LIKE :correu ");
+    $pdo->bindParam(":correu", $email);
+    $pdo->execute();
+    $dbPassword = $pdo->fetch()["contrasenya"];
+    if ($password == $dbPassword) {
+        return true;
+    }
+    return false;
+}
+
+function getUserInitials(PDO $conn, string $email): string
+{
+    $pdo = $conn->prepare("SELECT usuari.nom, usuari.cognoms FROM usuari WHERE usuari.correu LIKE :correu");
+    $pdo->bindParam(":correu", $email);
+    $pdo->execute();
+    $row = $pdo->fetch();
+    $name = $row["nom"];
+    $surname = $row["cognoms"];
+    return $name . $surname;
+}
