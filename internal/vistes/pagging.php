@@ -113,8 +113,8 @@ function printFirstPage($page, $minPage)
         echo "<li class=\"page-item\">";
     }
     echo "<a class=\"page-link\" href=\"?p=$minPage\" aria-label=\"Next\">";
-    echo "      <i class=\"bi bi-chevron-double-left\"></i>
-                <span class=\"sr-only\">Primera</span>
+    echo "      <i class=\"fa-solid fa-angles-left\"></i>
+                <span>Primera</span>
 			</a>
 		</li>";
 }
@@ -127,8 +127,8 @@ function printLastPage($page, $maxPage)
         echo "<li class=\"page-item\">";
     }
     echo "<a class=\"page-link\" href=\"?p=$maxPage\" aria-label=\"Next\">";
-    echo "      <span class=\"sr-only\">Ultima</span>
-                <i class=\"bi bi-chevron-double-right\"></i>
+    echo "      <span>Ultima</span>
+                <i class=\"fa-solid fa-angles-right\"></i>
 			</a>
 		</li>";
 }
