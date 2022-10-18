@@ -52,7 +52,11 @@
                         }
                         ?>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex justify-content-between">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="index.php" class="btn btn-secondary"><i class="bi bi-house"></i> Tornar a l'inici</a>
+                    </div>
                 </div>
             </form>
         </div>
