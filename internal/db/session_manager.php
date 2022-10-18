@@ -25,3 +25,21 @@ function setInitials(string $initials)
     $_SESSION["name-initial"] = $name;
     $_SESSION["surname-initial"] = $surname;
 }
+
+function setUserID(string $userID)
+{
+    $_SESSION["id"] = $userID;
+}
+
+function getLoginAttempts(): int
+{
+    if (isset($_SESSION["login-attempts"])) {
+        return $_SESSION["login-attempts"];
+    }
+    return 0;
+}
+
+function setLoginAttempt(int $attempt)
+{
+    $_SESSION["login-attempts"] = $attempt;
+}

@@ -42,6 +42,18 @@ function getArticlePage(PDO $conn, int $page, int $maxArtPerPage): PDOStatement
     return $pdo;
 }
 
+function getArticlePageByUser(PDO $conn, int $page, int $maxArtPerPage, int $userId): PDOStatement
+{
+    $min = ($page * $maxArtPerPage) - $maxArtPerPage;
+    $max = $maxArtPerPage;
+    $pdo = $conn->prepare('SELECT * FROM article WHERE article.autor = :autorId LIMIT :minLimit, :maxLimit');
+    $pdo->bindParam(":autorId", $userId, PDO::PARAM_INT);
+    $pdo->bindParam(":minLimit", $min, PDO::PARAM_INT);
+    $pdo->bindParam(":maxLimit", $max, PDO::PARAM_INT);
+    $pdo->execute();
+
+    return $pdo;
+}
 
 // aquesta funcio ens retorna el numero de articles totals en la base de dades
 function getArticleCount(PDO $conn): int
@@ -51,7 +63,14 @@ function getArticleCount(PDO $conn): int
     $count = $pdo->fetch()["count"];
     return $count;
 }
-
+function getArticleCountByUser(PDO $conn, int $userId): int
+{
+    $pdo = $conn->prepare('SELECT count(*) as count FROM article WHERE article.autor = :autorId');
+    $pdo->bindParam(":autorId", $userId);
+    $pdo->execute();
+    $count = $pdo->fetch()["count"];
+    return $count;
+}
 function userExists(PDO $conn, string $email): bool
 {
     $pdo = $conn->prepare('SELECT count(*) as count FROM usuari WHERE correu = :correu');
@@ -97,4 +116,13 @@ function getUserInitials(PDO $conn, string $email): string
     $name = $row["nom"];
     $surname = $row["cognoms"];
     return $name . $surname;
+}
+
+function getUserID(PDO $conn, string $email): int
+{
+    $pdo = $conn->prepare("SELECT usuari.id FROM usuari WHERE usuari.correu LIKE :correu");
+    $pdo->bindParam(":correu", $email);
+    $pdo->execute();
+    $id = $pdo->fetch()["id"];
+    return $id;
 }

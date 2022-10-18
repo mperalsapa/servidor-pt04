@@ -47,19 +47,22 @@ function getPagNumber(int $maxPage): int
 
 function printPaginationButton($page, $maxPagination, $maxPage, $minPage)
 {
-
-
+    // si la pagina maxima es menor que el numero maxim de paginacio, fem que el maxim de paginacio sigui la pagina maxima -1
+    if ($maxPage < $maxPagination) {
+        $maxPagination = $maxPage - 1;
+    }
     // fem una comprovacio de si es parell. En cas de ser parell, li sumarem un per que no sigui parell
     // ja que volem que hi hagi un boto de paginacio en mig, per exemple: volem 3 4 5 en comptes de 3 4 5 6
     if (!fmod($maxPagination, 2)) {
         $maxPagination++;
     }
 
+
     // configurem un offset per fer servir a l'hora de comprovar si som al maxim o minim de la paginacio
     $offs = ($maxPagination - 1) / 2;
 
     // iniciem un bucle per mostrar els botons
-    for ($p = 1; $p <= min([$maxPage, $maxPagination]); $p++) {
+    for ($p = 1; $p <= min($maxPage, $maxPagination); $p++) {
 
         // uniciem un bucle anidat per fer les comprovacions de si som a prop del maxim o minim de la paginacio
         // el numero de iteracions depen del offset, que aquest depen del tamany de la paginacio. Si tenim 5 botons de pagina
@@ -99,6 +102,7 @@ function printPaginationButton($page, $maxPagination, $maxPage, $minPage)
         }
     }
 }
+
 
 function printFirstPage($page, $minPage)
 {

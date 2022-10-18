@@ -10,23 +10,29 @@ require_once("internal/vistes/browser.php");
 // Ens connectem a la base de dades	
 $pdo = getMysqlPDO();
 
-// comprovem el numero d'articles
-$artCount = getArticleCount($pdo);
+$itemsPerPage = 5;
+if (checkLogin()) {
+  $userid = $_SESSION["id"];
+  $artCount = getArticleCountByUser($pdo, $userid);
+  if (!$artCount == 0) {
+    $maxPage = ceil($artCount / $itemsPerPage);
+    $page = getPagNumber($maxPage);
+    $articles = getArticlePageByUser($pdo, $page, $itemsPerPage, $userid);
+  } else {
+    $articles = '';
+    $page = 1;
+    $maxPage = 1;
+  }
+} else {
+  $artCount = getArticleCount($pdo);
+  if ($artCount == 0) {
+    redirectClient("/");
+  }
+  $maxPage = ceil($artCount / $itemsPerPage);
+  $page = getPagNumber($maxPage);
 
-// si no hi ha articles, redirigim a l'arrel del domini
-if ($artCount == 0) {
-  redirectClient("/");
+  $articles = getArticlePage($pdo, $page, $itemsPerPage);
 }
 
-// definim les variables de la paginacio
-// definim el numero maxim d'articles per pagina
-$itemsPerPage = 5;
-$minPage = 1;
-$maxPage = checkMaxPage($pdo, $itemsPerPage);
-$page = getPagNumber($maxPage);
 
-// sol·licitem els articles paginats
-$articles = getArticlePage($pdo, $page, $itemsPerPage);
-
-// i finalment mostrem la vista
 require_once("vistes/index.vista.php");

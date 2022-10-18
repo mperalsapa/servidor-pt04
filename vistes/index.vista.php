@@ -52,7 +52,7 @@
 		</section>
 
 		<?php
-		printPagination($page, $minPage, $maxPage, 6)
+		printPagination($page, 1, $maxPage, 6)
 		?>
 	</div>
 	<?php include_once('internal/vistes/body_end.php'); ?>
