@@ -7,7 +7,7 @@ function printArticlesbyUserId($articles)
             echo "<p>";
             echo $row["article"];
             echo "</p>";
-            echo "<div>- Autor, 01/01/2000</div>";
+            echo "<div>" . $row["Nom"] . " - " . $row["data"] . "</div>";
             echo "</div>";
         }
     } else {
