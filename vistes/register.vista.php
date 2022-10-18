@@ -15,32 +15,64 @@
             <form class="h-50 align-middle m-4" action="register.php" method="POST">
                 <div class="row">
                     <div class="col">
-                        <label for="">Nom</label>
-                        <input type="text" class="form-control" name="name" placeholder="Nom" value="<?php echo isset($name) ? $name : '' ?>">
+                        <label>Nom
+
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?php echo isset($name) ? $name : '' ?>">
+                        </label>
                     </div>
                     <div class="col">
-                        <label for="">Cognoms</label>
-                        <input type="text" class="form-control" name="lastname" placeholder="Cognoms" value="<?php echo isset($lastname) ? $lastname : '' ?>">
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col">
-                        <label for="">Correu Electronic</label>
-                        <input type="email" class="form-control" name="email" placeholder="Correu Electronic" value="<?php echo isset($email) ? $email : '' ?>">
-                    </div>
-                    <div class="col">
-                        <label for="">Verificacio Correu Electronic</label>
-                        <input type="email" class="form-control" name="verify-email" placeholder="Correu Electronic">
+                        <label>Cognoms
+
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognoms" value="<?php echo isset($lastname) ? $lastname : '' ?>">
+                        </label>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col">
-                        <label for="">Contrasenya</label>
-                        <input type="password" class="form-control" name="password" placeholder="Contrasenya">
+                        <label>Correu Electronic
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Correu Electronic" value="<?php echo isset($email) ? $email : '' ?>">
+                            </div>
+                        </label>
                     </div>
                     <div class="col">
-                        <label for="">Verificacio Contrasenya</label>
-                        <input type="password" class="form-control" name="verify-password" placeholder="Contrasenya">
+                        <label>Verificacio Correu Electronic
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="bi bi-check-all"></i></span>
+                                </div>
+                                <input type="email" class="form-control" id="verify-email" name="verify-email" placeholder="Correu Electronic">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label>Contrasenya
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="bi bi-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya">
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label>Verificacio Contrasenya
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="bi bi-check-all"></i></span>
+                                </div>
+                                <input type="password" class="form-control" id="verify-password" name="verify-password" placeholder="Contrasenya">
+                            </div>
+                        </label>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -53,9 +85,8 @@
                         ?>
                     </div>
                     <div class="d-flex justify-content-between">
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="index.php" class="btn btn-secondary"><i class="bi bi-house"></i> Tornar a l'inici</a>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-pen"></i> Registrar</button>
+                        <a href="index.php" class="btn btn-secondary"><i class="bi bi-house"></i> Inici</a>
                     </div>
                 </div>
             </form>

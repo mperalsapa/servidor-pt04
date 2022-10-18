@@ -15,13 +15,23 @@
         <div class="bg-white rounded col-8 col-md-5 col-lg-4  col-xxl-3">
             <form class="h-50 align-middle m-4 <?php echo isset($invalidForm) ? 'was-validated' : '' ?>" action="login.php" method="POST">
                 <div class="form-group">
-                    <label for="">Correu Electronic</label>
-                    <input type="email" class="form-control" name="email" placeholder="Correu Electronic" required value="<?php echo isset($email) ? $email : '' ?>">
+                    <label for="email">Correu Electronic</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" name="email" placeholder="Correu Electronic" id="email" required value="<?php echo isset($email) ? $email : '' ?>">
+                    </div>
                     <div class="invalid-feedback">Introdueix un correu electronic valid</div>
                 </div>
                 <div class="form-group mt-4">
-                    <label for="">Contrasenya</label>
-                    <input type="password" class="form-control" name="password" placeholder="Contrasenya" required>
+                    <label for="password">Contrasenya</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bi bi-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" name="password" placeholder="Contrasenya" id="password" required>
+                    </div>
                     <div class="invalid-feedback">Introdueix una contrasenya</div>
                 </div>
                 <div class="mt-4">
@@ -36,13 +46,17 @@
                     <?php
                     if (isset($_SESSION["login-attempts"])) {
                         if ($_SESSION["login-attempts"] > 2) {
-
+                            echo "<label>Captcha</label>";
                             echo "<div class=\"h-captcha\" data-sitekey=\"4d7d3404-e41b-4616-8035-8fd9b72cca7b\"></div>";
                         }
                     }
 
                     ?>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Iniciar Sessió</button>
+                        <a class="btn btn-secondary" href="index.php"><i class="bi bi-house"></i> Inici</a>
+
+                    </div>
                 </div>
             </form>
         </div>
