@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar-se</title>
     <?php include_once("internal/vistes/header.php"); ?>
+    <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
 </head>
 
 <body>
@@ -32,6 +33,15 @@
                         }
                         ?>
                     </div>
+                    <?php
+                    if (isset($_SESSION["login-attempts"])) {
+                        if ($_SESSION["login-attempts"] > 2) {
+
+                            echo "<div class=\"h-captcha\" data-sitekey=\"4d7d3404-e41b-4616-8035-8fd9b72cca7b\"></div>";
+                        }
+                    }
+
+                    ?>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
