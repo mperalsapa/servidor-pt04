@@ -2,6 +2,7 @@
 include_once("internal/db/mysql.php");
 include_once("internal/db/session_manager.php");
 include_once("internal/vistes/browser.php");
+include_once("internal/vistes/formError.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -23,56 +24,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($name)) {
         $formResult = "El camp Nom es buit";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
     if (empty($lastname)) {
         $formResult = "El camp Cognom es buit";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
     if (empty($email)) {
         $formResult = "El camp Email es buit";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
     if (empty($email2)) {
         $formResult = "La verificacio de correu es buida";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
     if (empty($password)) {
         $formResult = "El camp Contrassenya es buit";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
     if (empty($password2)) {
         $formResult = "La verificacio de contrasenya es buida";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
 
     if ($email != $email2) {
         $formResult = "El correu i la verificacio no coincideixen";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
     if ($password != $password2) {
         $formResult = "La contrasenya i la verificacio no coincideixen";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     }
 
     $pdo = getMysqlPDO();
     if (userExists($pdo, $email)) {
         $formResult = "Aquest correu ja pertany a un compte. Si no recordes la contrasenya, fes una recuperació aqui: <a href=\"lost-password.php\">Recuperació de contrasenya</a>";
-        include_once("vistes/register.vista.php");
-        die();
+        retornarError($formResult, "vistes/register.vista.php");
     };
 
     $insertsuccess = addUser($pdo, $name, $lastname, $email, $password);
     if ($insertsuccess) {
-        include_once("vistes/register.succ.vista.php");
+        redirectClient("index.php");
         setLoggedin(true);
     } else {
         $formResult = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
