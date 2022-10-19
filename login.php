@@ -24,7 +24,6 @@ function checkCaptcha(string $captchaResponse): bool
     return false;
 }
 
-setInitials("Marc", "Peral");
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (checkLogin()) {
         redirectClient("index.php");
