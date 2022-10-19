@@ -148,6 +148,13 @@ function updateArticle(PDO $conn, int $articleId, string $article, string $date)
     $pdo->bindParam(":articleId", $articleId);
     $pdo->execute();
 }
+function deleteAricle(PDO $conn, int $articleId)
+{
+    $pdo = $conn->prepare("DELETE FROM article WHERE article.id = :articleId");
+    $pdo->bindParam(":articleId", $articleId);
+    $pdo->execute();
+}
+
 
 function getArticleById(PDO $conn, int $articleId): PDOStatement
 {
