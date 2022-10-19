@@ -12,7 +12,7 @@
 
 <body>
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
-        <div class="bg-white rounded col-8 col-md-5 col-lg-4  col-xxl-3">
+        <div class="bg-white rounded col-8 col-md-6 col-lg-5  col-xxl-3">
             <form class="h-50 align-middle m-4" action="login.php" method="POST">
                 <div class="form-group">
                     <label for="email">Correu Electronic</label>
@@ -53,7 +53,10 @@
 
                     ?>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Iniciar Sessió</button>
+                        <div>
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Iniciar Sessió</button>
+                            <a class="ms-3" href="register.php">Registre</a>
+                        </div>
                         <a class="btn btn-secondary" href="index.php"><i class="bi bi-house"></i> Inici</a>
 
                     </div>
