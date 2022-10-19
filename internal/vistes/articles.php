@@ -13,7 +13,10 @@ function printArticlesbyUserId($articles)
             echo "<div>" . $row["Nom"] . " - " . $row["data"] . "</div>";
             if (isset($userId)) {
                 if ($userId == $row["autor"]) {
-                    echo "<a class=\"btn btn-sm btn-outline-primary mt-3\" href=\"write.php?id=" . $row["id"] . "\"><i class=\"bi bi-pencil\"></i> Editar</a>";
+                    echo "<div class=\"container mt-3\">";
+                    echo "<a class=\"btn btn-sm btn-outline-primary me-3\" href=\"write.php?id=" . $row["id"] . "\"><i class=\"bi bi-pencil\"></i> Editar</a>";
+                    echo "<a class=\"btn btn-sm btn-outline-danger \" href=\"delete.php?id=" . $row["id"] . "\"><i class=\"bi bi-trash\"></i> Esborrar</a>";
+                    echo "</div>";
                 }
             }
             echo "</div>";
