@@ -33,20 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include_once("internal/vistes/formError.php");
     $email = isset($_POST["email"]) ? $_POST["email"] : '';
     $password = isset($_POST["password"]) ? $_POST["password"] : '';
 
     $pdo = getMysqlPDO();
     if (!userExists($pdo, $email)) {
         $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a href=\"register.php\">Registre</a>";
-        include_once("vistes/login.vista.php");
+
+        retornarError($formResult, "vistes/login.vista.php");
         die();
     }
 
     if (!checkUserPassword($pdo, $password, $email)) {
         $formResult = "La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"link-light\" href=\"lost-password.php\">Recuperació de contrasenya</a>";
         setLoginAttempt(getLoginAttempts() + 1);
-        include_once("vistes/login.vista.php");
+        retornarError($formResult, "vistes/login.vista.php");
         die();
     }
 
@@ -54,14 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!isset($_POST['h-captcha-response'])) {
             $formResult = "S'ha produit un error validant el captcha. Torna a probar.";
-            include_once("vistes/login.vista.php");
+            retornarError($formResult, "vistes/login.vista.php");
             die();
         }
 
         $validCaptcha = checkCaptcha($_POST['h-captcha-response']);
         if (!$validCaptcha) {
             $formResult = "No has omplert el captcha correctament. Torna a probar.";
-            include_once("vistes/login.vista.php");
+            retornarError($formResult, "vistes/login.vista.php");
             die();
         }
     }
