@@ -107,7 +107,7 @@ function checkUserPassword(PDO $conn, string $password, string $email): bool
     return false;
 }
 
-function getUserInitials(PDO $conn, string $email): string
+function getUserInitials(PDO $conn, string $email): array
 {
     $pdo = $conn->prepare("SELECT usuari.nom, usuari.cognoms FROM usuari WHERE usuari.correu LIKE :correu");
     $pdo->bindParam(":correu", $email);
@@ -115,7 +115,10 @@ function getUserInitials(PDO $conn, string $email): string
     $row = $pdo->fetch();
     $name = $row["nom"];
     $surname = $row["cognoms"];
-    return $name . $surname;
+    $initials[0] = $name[0];
+    $initials[1] = $surname[0];
+
+    return $initials;
 }
 
 function getUserID(PDO $conn, string $email): int

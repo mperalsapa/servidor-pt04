@@ -18,12 +18,10 @@ function setLoggedin(bool $loggedin)
     $_SESSION["loggedin"] = $loggedin;
 }
 
-function setInitials(string $initials)
+function setInitials(array $initials)
 {
-    $name = $initials[0];
-    $surname = $initials[1];
-    $_SESSION["name-initial"] = $name;
-    $_SESSION["surname-initial"] = $surname;
+    $_SESSION["name-initial"] = $initials[0];
+    $_SESSION["surname-initial"] = $initials[1];
 }
 
 function setUserID(string $userID)
