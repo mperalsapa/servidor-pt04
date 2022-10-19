@@ -45,18 +45,21 @@ function getPagNumber(int $maxPage): int
 }
 
 
-function printPaginationButton($page, $maxPagination, $maxPage, $minPage)
+function printStaticPagination(int $page, int $maxPage)
 {
-    // si la pagina maxima es menor que el numero maxim de paginacio, fem que el maxim de paginacio sigui la pagina maxima -1
-    if ($maxPage < $maxPagination) {
-        $maxPagination = $maxPage - 1;
+    for ($actualPage = 1; $actualPage <= $maxPage; $actualPage++) {
+        printPaginationButton($actualPage, $page);
     }
+}
+
+function printDynamicPagination(int $page, int $maxPagination, int $maxPage, int $minPage)
+{
+
     // fem una comprovacio de si es parell. En cas de ser parell, li sumarem un per que no sigui parell
     // ja que volem que hi hagi un boto de paginacio en mig, per exemple: volem 3 4 5 en comptes de 3 4 5 6
     if (!fmod($maxPagination, 2)) {
         $maxPagination++;
     }
-
 
     // configurem un offset per fer servir a l'hora de comprovar si som al maxim o minim de la paginacio
     $offs = ($maxPagination - 1) / 2;
@@ -95,11 +98,16 @@ function printPaginationButton($page, $maxPagination, $maxPage, $minPage)
         $actualPage = $page + $actualPage;
 
         // finalment mostrem el boto amb la pagina calculada anteriorment
-        if ($actualPage == $page) {
-            echo "<li class=\"page-item active\"><a class=\"page-link\" href=\"?p=$actualPage\">$actualPage</a></li>";
-        } else {
-            echo "<li class=\"page-item \"><a class=\"page-link\" href=\"?p=$actualPage\">$actualPage</a></li>";
-        }
+        printPaginationButton($actualPage, $page);
+    }
+}
+
+function printPaginationButton(int $actualPage, int $page)
+{
+    if ($actualPage == $page) {
+        echo "<li class=\"page-item active user-select-none\"><a class=\"page-link\" >$actualPage</a></li>";
+    } else {
+        echo "<li class=\"page-item \"><a class=\"page-link\" href=\"?p=$actualPage\">$actualPage</a></li>";
     }
 }
 
@@ -135,11 +143,13 @@ function printLastPage($page, $maxPage)
 
 function printPagination($page, $minPage, $maxPage, $maxPagination)
 {
-
-
     echo "<nav><ul class=\"pagination justify-content-center p-5 mt-5\">";
     printFirstPage($page, $minPage);
-    printPaginationButton($page, $maxPagination, $maxPage, $minPage);
+    if ($maxPage < $maxPagination) {
+        printStaticPagination($page, $maxPage);
+    } else {
+        printDynamicPagination($page, $maxPagination, $maxPage, $minPage);
+    }
     printLastPage($page, $maxPage);
     echo "</ul></nav>";
 }
