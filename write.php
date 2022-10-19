@@ -8,6 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (!isset($_GET["id"])) {
         $formTitle = "Nou Article";
         $formSubmitButton = "Crear";
+        $date = "";
+        $article = "";
+        $articleId = 0;
         include_once("vistes/write.vista.php");
         die();
     }
@@ -19,13 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $pdo = getMysqlPDO();
     $row = getArticleById($pdo, $articleId);
     $row = $row->fetch();
+    $articleId = $row["id"];
     $article = $row["article"];
     $date = $row["data"];
     $articleAuthor = $row["autor"];
     if ($articleAuthor != $_SESSION['id']) {
         redirectClient("index.php");
     }
-
+    $formCanDelete = 1;
     include_once("vistes/write.vista.php");
 }
 
@@ -50,7 +54,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         retornarError($formResult, "vistes/write.vista.php");
     }
 
+    $article = $_POST["article"];
+    $date = $_POST["article-date"];
+
     $pdo = getMysqlPDO();
-    addArticle($pdo, $_SESSION["id"], $_POST["article"], $_POST["article-date"]);
+    if (!isset($_GET["id"])) {
+        addArticle($pdo, $_SESSION["id"], $_POST["article"], $_POST["article-date"]);
+        redirectClient("index.php");
+        die();
+    }
+
+    $articleId = $_GET["id"];
+    if ($_POST["submit"] == "submit") {
+        updateArticle($pdo, $articleId, $article, $date);
+    } else {
+        deleteAricle($pdo, $articleId);
+    }
     redirectClient("index.php");
 }

@@ -13,7 +13,7 @@
 
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
         <div class="bg-white rounded col-10 col-md-8 col-lg-8 col-xxl-8">
-            <form class="h-50 align-middle m-4" action="write.php" method="POST">
+            <form class="h-50 align-middle m-4" action="write.php?id=<?= $articleId ?>" method="POST">
                 <h1><?= $formTitle ?></h1>
                 <div class="form-group">
                     <label for="article">Article</label>
@@ -35,9 +35,8 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <div>
-
-                            <button type="submit" name="submit" class="btn btn-primary"><i class="bi bi-send"></i> <?= $formSubmitButton ?> </button>
-                            <button type="submit" name="delete" class="btn btn-danger <?php echo isset($formCanDelete) ? "" : "visually-hidden" ?>"><i class="bi bi-delete"></i> Borrar </button>
+                            <button type="submit" name="submit" value="submit" class="btn btn-primary"><i class="bi bi-send"></i> <?= $formSubmitButton ?> </button>
+                            <button type="submit" name="submit" value="<?= $articleId ?>" class="btn btn-danger <?php echo isset($formCanDelete) ? "" : "visually-hidden" ?>"><i class="bi bi-delete"></i> Borrar </button>
                         </div>
                         <a class="btn btn-secondary" href="index.php"><i class="bi bi-house"></i> Inici</a>
                     </div>
