@@ -55,16 +55,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die();
     }
 
-    if (!isset($_POST['h-captcha-response'])) {
-        $formResult = "S'ha produit un error validant el captcha. Torna a probar.";
-        include_once("vistes/login.vista.php");
-        die();
-    }
-    $validCaptcha = checkCaptcha($_POST['h-captcha-response']);
-    if (!$validCaptcha) {
-        $formResult = "No has omplert el captcha correctament. Torna a probar.";
-        include_once("vistes/login.vista.php");
-        die();
+    if (getLoginAttempts() > 2) {
+
+        if (!isset($_POST['h-captcha-response'])) {
+            $formResult = "S'ha produit un error validant el captcha. Torna a probar.";
+            include_once("vistes/login.vista.php");
+            die();
+        }
+
+        $validCaptcha = checkCaptcha($_POST['h-captcha-response']);
+        if (!$validCaptcha) {
+            $formResult = "No has omplert el captcha correctament. Torna a probar.";
+            include_once("vistes/login.vista.php");
+            die();
+        }
     }
 
     setLoginAttempt(0);
