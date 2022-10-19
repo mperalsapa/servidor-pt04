@@ -80,5 +80,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $redirectLocation = "l'inici";
     $redirectLink = "index.php";
 
-    include_once("vistes/redirect.vista.php");
+    redirectClient("index.php");
 }
