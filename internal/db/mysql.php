@@ -34,7 +34,7 @@ function getArticlePage(PDO $conn, int $page, int $maxArtPerPage): PDOStatement
 {
     $minim = ($page * $maxArtPerPage) - $maxArtPerPage;
     $maxim = $maxArtPerPage;
-    $pdo = $conn->prepare("SELECT article, DATE_FORMAT(data, '%d/%m/%Y') as data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article LIMIT :minLimit, :maxLimit");
+    $pdo = $conn->prepare("SELECT article, DATE_FORMAT(data, '%d/%m/%Y') as data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article ORDER BY data DESC LIMIT :minLimit, :maxLimit");
     $pdo->bindParam(":minLimit", $minim, PDO::PARAM_INT);
     $pdo->bindParam(":maxLimit", $maxim, PDO::PARAM_INT);
     $pdo->execute();
@@ -46,7 +46,7 @@ function getArticlePageByUser(PDO $conn, int $page, int $maxArtPerPage, int $use
 {
     $min = ($page * $maxArtPerPage) - $maxArtPerPage;
     $max = $maxArtPerPage;
-    $pdo = $conn->prepare("SELECT id, article, autor, DATE_FORMAT(data, '%d/%m/%Y') as data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article WHERE autor = :autorId LIMIT :minLimit, :maxLimit");
+    $pdo = $conn->prepare("SELECT id, article, autor, DATE_FORMAT(data, '%d/%m/%Y') as data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article WHERE autor = :autorId ORDER BY data DESC LIMIT :minLimit, :maxLimit");
     $pdo->bindParam(":autorId", $userId, PDO::PARAM_INT);
     $pdo->bindParam(":minLimit", $min, PDO::PARAM_INT);
     $pdo->bindParam(":maxLimit", $max, PDO::PARAM_INT);
