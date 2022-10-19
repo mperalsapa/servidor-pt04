@@ -139,3 +139,12 @@ function addArticle(PDO $conn, string $userId, string $article, string $date)
     $pdo->bindParam(":articleDate", $date);
     $pdo->execute();
 }
+
+function getArticleById(PDO $conn, int $articleId): PDOStatement
+{
+    $pdo = $conn->prepare("SELECT * FROM article WHERE id = :articleId");
+    $pdo->bindParam("articleId", $articleId, PDO::PARAM_INT);
+    $pdo->execute();
+
+    return $pdo;
+}
