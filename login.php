@@ -36,10 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = isset($_POST["email"]) ? $_POST["email"] : '';
     $password = isset($_POST["password"]) ? $_POST["password"] : '';
 
-    if (empty($email)) {
-        $invalidForm = true;
-    }
-
     $pdo = getMysqlPDO();
     if (!userExists($pdo, $email)) {
         $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a href=\"register.php\">Registre</a>";

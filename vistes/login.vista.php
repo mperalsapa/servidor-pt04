@@ -13,7 +13,7 @@
 <body>
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
         <div class="bg-white rounded col-8 col-md-5 col-lg-4  col-xxl-3">
-            <form class="h-50 align-middle m-4 <?php echo isset($invalidForm) ? 'was-validated' : '' ?>" action="login.php" method="POST">
+            <form class="h-50 align-middle m-4" action="login.php" method="POST">
                 <div class="form-group">
                     <label for="email">Correu Electronic</label>
                     <div class="input-group">
