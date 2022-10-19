@@ -13,7 +13,7 @@
 
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
         <div class="bg-white rounded col-10 col-md-8 col-lg-8 col-xxl-8">
-            <form class="h-50 align-middle m-4" action="write.php?id=<?= $articleId ?>" method="POST">
+            <form class="h-50 align-middle m-4" action="write.php<?php echo $articleId != 0 ? "?id=$articleId" : "" ?>" method="POST">
                 <h1><?= $formTitle ?></h1>
                 <div class="form-group">
                     <label for="article">Article</label>
