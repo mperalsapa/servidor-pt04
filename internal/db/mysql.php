@@ -71,6 +71,18 @@ function getArticleCountByUser(PDO $conn, int $userId): int
     $count = $pdo->fetch()["count"];
     return $count;
 }
+
+function getArticleAuthor(PDO $conn, int $articleId): int
+{
+    $pdo = $conn->prepare("SELECT autor FROM article WHERE article.id = :articleId");
+    $pdo->bindParam(":articleId", $articleId);
+    $pdo->execute();
+    if ($pdo->rowCount() < 1) {
+        return -1;
+    }
+    return $pdo->fetch()["autor"];
+}
+
 function userExists(PDO $conn, string $email): bool
 {
     $pdo = $conn->prepare('SELECT count(*) as count FROM usuari WHERE correu = :correu');
