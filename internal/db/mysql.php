@@ -36,7 +36,7 @@ function getArticlePage(PDO $conn, int $page, int $maxArtPerPage): PDOStatement
     $maxim = $maxArtPerPage;
     $dateFormat = "%d/%m/%Y";
     // $pdo = $conn->prepare('SELECT * from article LIMIT :minLimit, :maxLimit');
-    $pdo = $conn->prepare("article, DATE_FORMAT(data, :dateFormat) as Data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article LIMIT :minLimit, :maxLimit");
+    $pdo = $conn->prepare("SELECT article, DATE_FORMAT(data, :dateFormat) as data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article LIMIT :minLimit, :maxLimit");
     $pdo->bindParam(":dateFormat", $dateFormat, PDO::PARAM_STR);
     $pdo->bindParam(":minLimit", $minim, PDO::PARAM_INT);
     $pdo->bindParam(":maxLimit", $maxim, PDO::PARAM_INT);
