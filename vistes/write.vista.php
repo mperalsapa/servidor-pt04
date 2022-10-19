@@ -35,8 +35,8 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <div>
-                            <button type="submit" name="submit" value="submit" class="btn btn-primary"><i class="bi bi-send"></i> <?= $formSubmitButton ?> </button>
-                            <button type="submit" name="submit" value="<?= $articleId ?>" class="btn btn-danger <?php echo isset($formCanDelete) ? "" : "visually-hidden" ?>"><i class="bi bi-delete"></i> Borrar </button>
+                            <button type="submit" name="submit" class="btn btn-primary"><i class="bi bi-send"></i> <?= $formSubmitButton ?> </button>
+                            <a class="btn btn-danger <?php echo isset($formCanDelete) ? "" : "visually-hidden" ?>" href="delete.php?id=<?= $articleId ?>"> <i class="bi bi-trash"></i> Esborrar</a>
                         </div>
                         <a class="btn btn-secondary" href="index.php"><i class="bi bi-house"></i> Inici</a>
                     </div>

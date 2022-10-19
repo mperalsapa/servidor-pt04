@@ -61,14 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_GET["id"])) {
         addArticle($pdo, $_SESSION["id"], $_POST["article"], $_POST["article-date"]);
         redirectClient("index.php");
-        die();
     }
 
     $articleId = $_GET["id"];
-    if ($_POST["submit"] == "submit") {
-        updateArticle($pdo, $articleId, $article, $date);
-    } else {
-        deleteAricle($pdo, $articleId);
-    }
+    updateArticle($pdo, $articleId, $article, $date);
     redirectClient("index.php");
 }
