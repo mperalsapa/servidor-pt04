@@ -85,7 +85,10 @@
                         ?>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-pen"></i> Registrar</button>
+                        <div>
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-pen"></i> Registrar</button>
+                            <a class="ms-3" href="login.php">Iniciar Sessió</a>
+                        </div>
                         <a href="index.php" class="btn btn-secondary"><i class="bi bi-house"></i> Inici</a>
                     </div>
                 </div>
