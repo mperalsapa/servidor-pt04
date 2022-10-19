@@ -12,7 +12,7 @@ function getMysqlPDO(): PDO
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     } catch (PDOException $e) {
-        print "<p>S'ha produit un error a l'hora de connectarse amb la base de dades. Contacta amb l'administrador.</p>";
+        echo "<p>S'ha produit un error a l'hora de connectarse amb la base de dades. Contacta amb l'administrador.</p>";
         die();
     }
 
@@ -46,7 +46,7 @@ function getArticlePageByUser(PDO $conn, int $page, int $maxArtPerPage, int $use
 {
     $min = ($page * $maxArtPerPage) - $maxArtPerPage;
     $max = $maxArtPerPage;
-    $pdo = $conn->prepare("SELECT article, DATE_FORMAT(data, '%d/%m/%Y') as data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article WHERE autor = :autorId LIMIT :minLimit, :maxLimit");
+    $pdo = $conn->prepare("SELECT id, article, autor, DATE_FORMAT(data, '%d/%m/%Y') as data, (SELECT CONCAT(usuari.nom,' ' , usuari.cognoms) FROM usuari WHERE usuari.id = autor) AS Nom FROM article WHERE autor = :autorId LIMIT :minLimit, :maxLimit");
     $pdo->bindParam(":autorId", $userId, PDO::PARAM_INT);
     $pdo->bindParam(":minLimit", $min, PDO::PARAM_INT);
     $pdo->bindParam(":maxLimit", $max, PDO::PARAM_INT);
