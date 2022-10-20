@@ -95,7 +95,7 @@ function userExists(PDO $conn, string $email): bool
     return false;
 }
 
-function addUser(PDO $conn, string $name, string $lastname, string $email, string $password): bool
+function addUser(PDO $conn, string $name, ?string $lastname, string $email, ?string $password): bool
 {
     $password = hash("sha256", $password, false);
     $pdo = $conn->prepare("INSERT INTO `usuari` (`nom`, `cognoms`, `correu`, `contrasenya`) VALUES (:nom, :cognoms, :correu, :contrasenya)");
