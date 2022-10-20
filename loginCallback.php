@@ -36,6 +36,4 @@ if (!empty($userInfo)) {
     socialLoginUser($userInfo);
 }
 
-print_r($userInfo, true);
-
-// redirectClient("login.php");
+redirectClient("login.php");
