@@ -1,13 +1,13 @@
 <?php
 
-include_once("hybridauth-3.8.2/src/autoload.php");
-
+include_once("hybridAuth/autoload.php");
+include_once("env.php");
 
 
 function googleLogin(string $googleClientID, string $googleClientSecret): \Hybridauth\Provider\Google
 {
     $config = [
-        'callback' => 'http://localhost/servidor/UF1/pt04/loginCallback.php?hauth.done=Google', // or Hybridauth\HttpClient\Util::getCurrentUrl()
+        'callback' => $callbackUrl . 'Google', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $googleClientID, 'secret' => $googleClientSecret], // Your Github application credentials
     ];
     $googleAuth = new \Hybridauth\Provider\Google($config);
@@ -45,7 +45,7 @@ function getGoogleProfile(string $googleClientID, string $googleClientSecret): a
 function githubLogin(string $githubClientID, string $githubClientSecret): \Hybridauth\Provider\GitHub
 {
     $config = [
-        'callback' => 'http://localhost/servidor/UF1/pt04/loginCallback.php?hauth.done=GitHub', // or Hybridauth\HttpClient\Util::getCurrentUrl()
+        'callback' => $callbackUrl . 'GitHub', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $githubClientID, 'secret' => $githubClientSecret], // Your Github application credentials
         'curl_options' => [
             CURLOPT_USERAGENT => 'mperalsapa'
