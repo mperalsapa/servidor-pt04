@@ -24,10 +24,10 @@ $authState = $_GET["state"];
 
 switch ($authProvider) {
     case 'Google':
-        $userInfo = getGoogleProfile($googleClientID, $googleClientSecret);
+        $userInfo = getGoogleProfile($googleClientID, $googleClientSecret, $callbackUrl);
         break;
     case 'GitHub':
-        $userInfo = getGithubProfile($githubClientID, $githubClientSecret);
+        $userInfo = getGithubProfile($githubClientID, $githubClientSecret, $callbackUrl);
         break;
 }
 
