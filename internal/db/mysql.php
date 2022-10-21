@@ -14,6 +14,7 @@ function getMysqlPDO(): PDO
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     } catch (PDOException $e) {
         echo "<p>S'ha produit un error a l'hora de connectarse amb la base de dades. Contacta amb l'administrador.</p>";
+        echo "<p>$e</p>";
         die();
     }
 
