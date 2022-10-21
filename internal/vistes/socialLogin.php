@@ -1,6 +1,6 @@
 <?php
 
-include_once("hybridauth-3.8.2/src/autoload.php");
+include_once("hybridAuth/autoload.php");
 include_once("env.php");
 
 
