@@ -4,7 +4,7 @@
 echo "callback site\n";
 include_once("internal/vistes/socialLogin.php");
 include_once("internal/vistes/browser.php");
-include_once("env.php");
+include("env.php");
 
 
 if (!isset($_GET["hauth_done"])) {

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         die();
     }
 
-    include_once("env.php");
+    include("env.php");
     include_once("internal/vistes/socialLogin.php");
     switch ($_GET["socialLogin"]) {
         case 'google':
