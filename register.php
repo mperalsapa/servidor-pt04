@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $insertsuccess = addUser($pdo, $name, $lastname, $email, $password);
     if ($insertsuccess) {
+        setUserLoggedinData($pdo, $email);
         redirectClient("index.php");
-        setLoggedin(true);
     } else {
         $formResult = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
         include_once("vistes/register.vista.php");

@@ -34,7 +34,7 @@
                     </div>
                     <div class="invalid-feedback">Introdueix una contrasenya</div>
                 </div>
-                <div class="mt-4">
+                <div class="mt-3">
                     <div class="d-flex">
                         <?php if (!empty($formResult)) {
                             echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
@@ -62,6 +62,20 @@
                     </div>
                 </div>
             </form>
+            <div class="mt-5 m-4 d-grid gap-3">
+                <a class="d-flex justify-content-center align-items-center border btn btn-primary py-3 " href="login.php?socialLogin=google">
+                    <i class="bi bi-google"></i>
+                    <p class="m-0 ms-3">Google</p>
+                </a>
+                <a class="d-flex justify-content-center align-items-center border btn btn-dark py-3 " href="login.php?socialLogin=github">
+                    <i class="bi bi-github"></i>
+                    <p class="m-0 ms-3">Github</p>
+                </a>
+                <a class="d-flex justify-content-center align-items-center border btn btn-info py-3 " href="login.php?socialLogin=twitter">
+                    <i class="bi bi-twitter"></i>
+                    <p class="m-0 ms-3">Twitter</p>
+                </a>
+            </div>
         </div>
 
     </div>

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == 1) {
+    session_start();
+}
 
 function checkLogin(): bool
 {
@@ -40,4 +42,14 @@ function getLoginAttempts(): int
 function setLoginAttempt(int $attempt)
 {
     $_SESSION["login-attempts"] = $attempt;
+}
+
+function setUserLoggedinData(PDO $pdo, string $email)
+{
+    setLoginAttempt(0);
+    $initials = getUserInitials($pdo, $email);
+    setInitials($initials);
+    $id = getUserID($pdo, $email);
+    setUserID($id);
+    setLoggedin(true);
 }

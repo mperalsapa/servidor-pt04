@@ -28,6 +28,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (checkLogin()) {
         redirectClient("index.php");
     }
+
+    if (!isset($_GET["socialLogin"])) {
+        include_once("vistes/login.vista.php");
+        die();
+    }
+
+    include_once("env.php");
+    include_once("internal/vistes/socialLogin.php");
+    switch ($_GET["socialLogin"]) {
+        case 'google':
+            googleLogin($googleClientID, $googleClientSecret);
+            break;
+        case 'github':
+            githubLogin($githubClientID, $githubClientSecret);
+            break;
+    }
+
     include_once("vistes/login.vista.php");
     die();
 }
@@ -68,17 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    setLoginAttempt(0);
 
-    $initials = getUserInitials($pdo, $email);
-    setInitials($initials);
-    $id = getUserID($pdo, $email);
-    setUserID($id);
-    setLoggedin(true);
-
-    $redirectTitle = "Inici de sessio completat";
-    $redirectLocation = "l'inici";
-    $redirectLink = "index.php";
-
+    setUserLoggedinData($pdo, $email);
     redirectClient("index.php");
 }

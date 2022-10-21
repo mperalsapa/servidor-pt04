@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-5 col-md-4 col-lg-3 col-xxl-2">
 
-                    <label for="article-date">Date</label>
+                    <label for="article-date">Data</label>
                     <input class="form-control" name="article-date" id="article-date" type="date" value=<?= $date ?>>
                 </div>
                 <div class="mt-4">
