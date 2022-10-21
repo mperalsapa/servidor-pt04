@@ -3,9 +3,8 @@
 include_once("hybridAuth/autoload.php");
 
 
-function googleLogin(string $googleClientID, string $googleClientSecret): \Hybridauth\Provider\Google
+function googleLogin(string $googleClientID, string $googleClientSecret, string $callbackUrl): \Hybridauth\Provider\Google
 {
-    include_once("env.php");
     $config = [
         'callback' => $callbackUrl . 'Google', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $googleClientID, 'secret' => $googleClientSecret], // Your Github application credentials
@@ -15,9 +14,9 @@ function googleLogin(string $googleClientID, string $googleClientSecret): \Hybri
     return $googleAuth;
 }
 
-function getGoogleProfile(string $googleClientID, string $googleClientSecret): array
+function getGoogleProfile(string $googleClientID, string $googleClientSecret, string $callbackUrl): array
 {
-    $googleAuth = googleLogin($googleClientID, $googleClientSecret);
+    $googleAuth = googleLogin($googleClientID, $googleClientSecret, $callbackUrl);
     $googleAuth->authenticate();
     try {
         if ($googleAuth->authenticate("Google")) {
@@ -42,9 +41,8 @@ function getGoogleProfile(string $googleClientID, string $googleClientSecret): a
     return $userInfo;
 }
 
-function githubLogin(string $githubClientID, string $githubClientSecret): \Hybridauth\Provider\GitHub
+function githubLogin(string $githubClientID, string $githubClientSecret, string $callbackUrl): \Hybridauth\Provider\GitHub
 {
-    include_once("env.php");
     $config = [
         'callback' => $callbackUrl . 'GitHub', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $githubClientID, 'secret' => $githubClientSecret], // Your Github application credentials
@@ -57,9 +55,9 @@ function githubLogin(string $githubClientID, string $githubClientSecret): \Hybri
     return $github;
 }
 
-function getGithubProfile(string $githubClientID, string $githubClientSecret): array
+function getGithubProfile(string $githubClientID, string $githubClientSecret, string $callbackUrl): array
 {
-    $github = githubLogin($githubClientID, $githubClientSecret);
+    $github = githubLogin($githubClientID, $githubClientSecret, $callbackUrl);
     try {
         if ($github->authenticate("GitHub")) {
             $userProfile = $github->getUserProfile();

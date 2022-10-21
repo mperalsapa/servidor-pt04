@@ -38,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     include_once("internal/vistes/socialLogin.php");
     switch ($_GET["socialLogin"]) {
         case 'google':
-            googleLogin($googleClientID, $googleClientSecret);
+            googleLogin($googleClientID, $googleClientSecret, $callbackUrl);
             break;
         case 'github':
-            githubLogin($githubClientID, $githubClientSecret);
+            githubLogin($githubClientID, $githubClientSecret, $callbackUrl);
             break;
     }
 
