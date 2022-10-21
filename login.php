@@ -2,6 +2,7 @@
 include_once("internal/db/mysql.php");
 include_once("internal/db/session_manager.php");
 include_once("internal/vistes/browser.php");
+include_once("internal/vistes/formError.php");
 
 function checkCaptcha(string $captchaResponse): bool
 {
@@ -52,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once("internal/vistes/formError.php");
     $email = isset($_POST["email"]) ? $_POST["email"] : '';
     $password = isset($_POST["password"]) ? $_POST["password"] : '';
 
