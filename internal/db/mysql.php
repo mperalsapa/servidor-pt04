@@ -5,10 +5,11 @@
 // si es produeix un error, indiquem a l'usuari que s'ha produit un error i que contacti amb l'administrador
 function getMysqlPDO(): PDO
 {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "Pt04_Marc_Peral";
+    include_once("env.php");
+    $servername = $mysqlHost;
+    $username = $mysqlUser;
+    $password = $mysqlPassword;
+    $dbname = $mysqlDB;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     } catch (PDOException $e) {

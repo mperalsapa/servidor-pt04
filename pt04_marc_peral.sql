@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pt04_marc_peral`
 --
-DROP DATABASE IF EXISTS Pt04_Marc_Peral;
-CREATE DATABASE Pt04_Marc_Peral;
-USE Pt04_Marc_Peral;
 -- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `article`
@@ -32,7 +29,7 @@ CREATE TABLE `article` (
   `id` int(11) NOT NULL,
   `article` varchar(1000) NOT NULL,
   `autor` int(11) NOT NULL,
-  `data` date NOT NULL DEFAULT current_timestamp()
+  `data` date NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 --
 -- Volcado de datos para la tabla `article`
