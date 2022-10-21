@@ -89,18 +89,15 @@ function socialLoginUser(array $userInfo)
     include_once("internal/vistes/browser.php");
     $pdo = getMysqlPDO();
     if (userExists($pdo, $userInfo["email"])) {
-        echo "User exists, logging in...";
         setUserLoggedinData($pdo, $userInfo["email"]);
         redirectClient("index.php");
         die();
     }
 
-    echo "User does not exist, registering user.";
     $register = addUser($pdo, $userInfo["name"], $userInfo["surname"], $userInfo["email"], "");
     if ($register) {
         setUserLoggedinData($pdo, $userInfo["email"]);
         redirectClient("index.php");
         die();
     }
-    echo "Error registering user";
 }
