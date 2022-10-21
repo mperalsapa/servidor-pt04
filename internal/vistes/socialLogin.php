@@ -98,7 +98,7 @@ function socialLoginUser(array $userInfo)
     echo "User does not exist, registering user.";
     $register = addUser($pdo, $userInfo["name"], $userInfo["surname"], $userInfo["email"], "");
     if ($register) {
-        setLoggedin(true);
+        setUserLoggedinData($pdo, $userInfo["email"]);
         redirectClient("index.php");
         die();
     }
