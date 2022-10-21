@@ -1,11 +1,11 @@
 <?php
 
 include_once("hybridAuth/autoload.php");
-include_once("env.php");
 
 
 function googleLogin(string $googleClientID, string $googleClientSecret): \Hybridauth\Provider\Google
 {
+    include_once("env.php");
     $config = [
         'callback' => $callbackUrl . 'Google', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $googleClientID, 'secret' => $googleClientSecret], // Your Github application credentials
@@ -44,6 +44,7 @@ function getGoogleProfile(string $googleClientID, string $googleClientSecret): a
 
 function githubLogin(string $githubClientID, string $githubClientSecret): \Hybridauth\Provider\GitHub
 {
+    include_once("env.php");
     $config = [
         'callback' => $callbackUrl . 'GitHub', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $githubClientID, 'secret' => $githubClientSecret], // Your Github application credentials
