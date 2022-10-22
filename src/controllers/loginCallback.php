@@ -7,11 +7,6 @@ include_once("src/internal/viewFunctions/browser.php");
 include("src/env.php");
 
 
-if (!isset($_GET["hauth_done"])) {
-    die();
-}
-$authProvider = $_GET["hauth_done"];
-
 if (!isset($_GET["code"])) {
     die();
 }
@@ -22,14 +17,15 @@ if (!isset($_GET["state"])) {
 }
 $authState = $_GET["state"];
 
+$authProvider = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 switch ($authProvider) {
-    case 'Google':
+    case 'googleLogin':
         $userInfo = getGoogleProfile($googleClientID, $googleClientSecret, $callbackUrl);
         break;
-    case 'GitHub':
+    case 'gitHubLogin':
         $userInfo = getGithubProfile($githubClientID, $githubClientSecret, $callbackUrl);
         break;
-    case 'Twitter':
+    case 'twitterLogin':
         $userinfo = getTwitterProfile($twitterClientID, $twitterClientSecret, $callbackUrl);
         print_r($userinfo);
         die();

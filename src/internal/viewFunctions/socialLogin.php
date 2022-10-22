@@ -6,7 +6,7 @@ include_once("src/internal/hybridAuth/autoload.php");
 function googleLogin(string $googleClientID, string $googleClientSecret, string $callbackUrl): \Hybridauth\Provider\Google
 {
     $config = [
-        'callback' => $callbackUrl . 'Google', // or Hybridauth\HttpClient\Util::getCurrentUrl()
+        'callback' => $callbackUrl . '/googleLogin', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $googleClientID, 'secret' => $googleClientSecret], // Your Github application credentials
     ];
     $googleAuth = new \Hybridauth\Provider\Google($config);
@@ -44,7 +44,7 @@ function getGoogleProfile(string $googleClientID, string $googleClientSecret, st
 function githubLogin(string $githubClientID, string $githubClientSecret, string $callbackUrl): \Hybridauth\Provider\GitHub
 {
     $config = [
-        'callback' => $callbackUrl . 'GitHub', // or Hybridauth\HttpClient\Util::getCurrentUrl()
+        'callback' => $callbackUrl . '/gitHubLogin', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $githubClientID, 'secret' => $githubClientSecret], // Your Github application credentials
         'curl_options' => [
             CURLOPT_USERAGENT => 'mperalsapa'
@@ -83,7 +83,7 @@ function getGithubProfile(string $githubClientID, string $githubClientSecret, st
 function twitterLogin(string $twitterClientID, string $twitterClientSecret, string $callbackUrl): \Hybridauth\Provider\Twitter
 {
     $config = [
-        'callback' => $callbackUrl . 'GitHub', // or Hybridauth\HttpClient\Util::getCurrentUrl()
+        'callback' => $callbackUrl . '/twitterLogin', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $twitterClientID, 'secret' => $twitterClientSecret], // Your Github application credentials
         'curl_options' => [
             CURLOPT_USERAGENT => 'mperalsapa'

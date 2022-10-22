@@ -12,6 +12,9 @@ $mux["/write"] = "src/controllers/write.php";
 $mux["/twittercallback"] = "src/controllers/write.php";
 $mux["/tos"] = "src/controllers/tos.php";
 $mux["/privacy"] = "src/controllers/privacy.php";
+$mux["/googleLogin"] = "src/controllers/loginCallback.php";
+$mux["/githubLogin"] = "src/controllers/loginCallback.php";
+$mux["/twitterLogin"] = "src/controllers/loginCallback.php";
 
 
 $parsedUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
