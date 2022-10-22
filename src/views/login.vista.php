@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar-se</title>
-    <?php include_once("internal/vistes/header.php"); ?>
+    <?php include_once("src/internal/viewFunctions/header.php"); ?>
     <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
 </head>
 
 <body>
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
         <div class="bg-white rounded col-8 col-md-6 col-lg-5  col-xxl-3">
-            <form class="h-50 align-middle m-4" action="login.php" method="POST">
+            <form class="h-50 align-middle m-4" action="login" method="POST">
                 <div class="form-group">
                     <label for="email">Correu Electronic</label>
                     <div class="input-group">
@@ -55,23 +55,23 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Iniciar Sessió</button>
-                            <a class="ms-3" href="register.php">Registre</a>
+                            <a class="ms-3" href="register">Registre</a>
                         </div>
-                        <a class="btn btn-secondary" href="index.php"><i class="bi bi-house"></i> Inici</a>
+                        <a class="btn btn-secondary" href="index"><i class="bi bi-house"></i> Inici</a>
 
                     </div>
                 </div>
             </form>
             <div class="mt-5 m-4 d-grid gap-3">
-                <a class="d-flex justify-content-center align-items-center border btn btn-primary py-3 " href="login.php?socialLogin=google">
+                <a class="d-flex justify-content-center align-items-center border btn btn-primary py-3 " href="login?socialLogin=google">
                     <i class="bi bi-google"></i>
                     <p class="m-0 ms-3">Google</p>
                 </a>
-                <a class="d-flex justify-content-center align-items-center border btn btn-dark py-3 " href="login.php?socialLogin=github">
+                <a class="d-flex justify-content-center align-items-center border btn btn-dark py-3 " href="login?socialLogin=github">
                     <i class="bi bi-github"></i>
                     <p class="m-0 ms-3">Github</p>
                 </a>
-                <a class="d-flex justify-content-center align-items-center border btn btn-info py-3 " href="login.php?socialLogin=twitter">
+                <a class="d-flex justify-content-center align-items-center border btn btn-info py-3 " href="login?socialLogin=twitter">
                     <i class="bi bi-twitter"></i>
                     <p class="m-0 ms-3">Twitter</p>
                 </a>
@@ -79,7 +79,7 @@
         </div>
 
     </div>
-    <?php include_once("internal/vistes/body_end.php"); ?>
+    <?php include_once("src/internal/viewFunctions/bodyEnd.php"); ?>
 </body>
 
 </html>

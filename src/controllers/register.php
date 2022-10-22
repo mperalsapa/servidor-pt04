@@ -1,13 +1,13 @@
 <?php
-include_once("internal/db/mysql.php");
-include_once("internal/db/session_manager.php");
-include_once("internal/vistes/browser.php");
-include_once("internal/vistes/formError.php");
+include_once("src/internal/db/mysql.php");
+include_once("src/internal/db/session_manager.php");
+include_once("src/internal/viewFunctions/browser.php");
+include_once("src/internal/viewFunctions/formError.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (checkLogin()) {
-        redirectClient("index.php");
+        redirectClient("/");
     }
     include_once("vistes/register.vista.php");
     die();
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insertsuccess = addUser($pdo, $name, $lastname, $email, $password);
     if ($insertsuccess) {
         setUserLoggedinData($pdo, $email);
-        redirectClient("index.php");
+        redirectClient("/");
     } else {
         $formResult = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
         include_once("vistes/register.vista.php");

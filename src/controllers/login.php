@@ -1,8 +1,8 @@
 <?php
-include_once("internal/db/mysql.php");
-include_once("internal/db/session_manager.php");
-include_once("internal/vistes/browser.php");
-include_once("internal/vistes/formError.php");
+include_once("src/internal/db/mysql.php");
+include_once("src/internal/db/session_manager.php");
+include_once("src/internal/viewFunctions/browser.php");
+include_once("src/internal/viewFunctions/formError.php");
 
 function checkCaptcha(string $captchaResponse): bool
 {
@@ -27,16 +27,16 @@ function checkCaptcha(string $captchaResponse): bool
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (checkLogin()) {
-        redirectClient("index.php");
+        redirectClient("/");
     }
 
     if (!isset($_GET["socialLogin"])) {
-        include_once("vistes/login.vista.php");
+        include_once("src/views/login.vista.php");
         die();
     }
 
-    include("env.php");
-    include_once("internal/vistes/socialLogin.php");
+    include("src/env.php");
+    include_once("src/internal/viewFunctions/socialLogin.php");
     switch ($_GET["socialLogin"]) {
         case 'google':
             googleLogin($googleClientID, $googleClientSecret, $callbackUrl);
@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             githubLogin($githubClientID, $githubClientSecret, $callbackUrl);
             break;
         default:
-            retornarError("Iniciar sessio amb Twitter no esta disponible.", "vistes/login.vista.php");
+            retornarError("Iniciar sessio amb Twitter no esta disponible.", "src/views/login.vista.php");
     }
 
-    include_once("vistes/login.vista.php");
+    include_once("src/views/login.vista.php");
     die();
 }
 
@@ -60,14 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!userExists($pdo, $email)) {
         $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a href=\"register.php\">Registre</a>";
 
-        retornarError($formResult, "vistes/login.vista.php");
+        retornarError($formResult, "src/views/login.vista.php");
         die();
     }
 
     if (!checkUserPassword($pdo, $password, $email)) {
         $formResult = "La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"link-light\" href=\"lost-password.php\">Recuperació de contrasenya</a>";
         setLoginAttempt(getLoginAttempts() + 1);
-        retornarError($formResult, "vistes/login.vista.php");
+        retornarError($formResult, "src/views/login.vista.php");
         die();
     }
 
@@ -75,19 +75,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!isset($_POST['h-captcha-response'])) {
             $formResult = "S'ha produit un error validant el captcha. Torna a probar.";
-            retornarError($formResult, "vistes/login.vista.php");
+            retornarError($formResult, "src/views/login.vista.php");
             die();
         }
 
         $validCaptcha = checkCaptcha($_POST['h-captcha-response']);
         if (!$validCaptcha) {
             $formResult = "No has omplert el captcha correctament. Torna a probar.";
-            retornarError($formResult, "vistes/login.vista.php");
+            retornarError($formResult, "src/views/login.vista.php");
             die();
         }
     }
 
 
     setUserLoggedinData($pdo, $email);
-    redirectClient("index.php");
+    redirectClient("/");
 }

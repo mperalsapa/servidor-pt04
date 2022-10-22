@@ -1,7 +1,7 @@
 <?php
-include_once("internal/db/mysql.php");
-include_once("internal/db/session_manager.php");
-include_once("internal/vistes/browser.php");
+include_once("src/internal/db/mysql.php");
+include_once("src/internal/db/session_manager.php");
+include_once("src/internal/viewFunctions/browser.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $date = $row["data"];
     $articleAuthor = $row["autor"];
     if ($articleAuthor != $_SESSION['id']) {
-        redirectClient("index.php");
+        redirectClient("/");
     }
     $formCanDelete = 1;
     include_once("vistes/write.vista.php");
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once("internal/vistes/formError.php");
+    include_once("src/internal/viewFunctions/formError.php");
 
     if (!isset($_POST["article"])) {
         echo "Error, Camp article no existeix.";
@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pdo = getMysqlPDO();
     if (!isset($_GET["id"])) {
         addArticle($pdo, $_SESSION["id"], $_POST["article"], $_POST["article-date"]);
-        redirectClient("index.php");
+        redirectClient("/");
     }
 
     $articleId = $_GET["id"];
     updateArticle($pdo, $articleId, $article, $date);
-    redirectClient("index.php");
+    redirectClient("/");
 }

@@ -1,38 +1,21 @@
 <?php
 
-require_once("internal/db/session_manager.php");
+$mux["/"] = "src/controllers/index.php";
+$mux["/index"] = "src/controllers/index.php";
+$mux["/login"] = "src/controllers/login.php";
+$mux["/loginCallback"] = "src/controllers/loginCallback.php";
+$mux["/logout"] = "src/controllers/logout.php";
+$mux["/profile"] = "src/controllers/profile.php";
+$mux["/register"] = "src/controllers/register.php";
+$mux["/webhook"] = "src/controllers/webhook.php";
+$mux["/write"] = "src/controllers/write.php";
 
-// importem les dependencies internes
-require_once("internal/db/mysql.php");
-require_once("internal/vistes/pagging.php");
-require_once("internal/vistes/browser.php");
 
-// Ens connectem a la base de dades	
-$pdo = getMysqlPDO();
-
-$itemsPerPage = 5;
-if (checkLogin()) {
-  $userid = $_SESSION["id"];
-  $artCount = getArticleCountByUser($pdo, $userid);
-  if (!$artCount == 0) {
-    $maxPage = ceil($artCount / $itemsPerPage);
-    $page = getPagNumber($maxPage);
-    $articles = getArticlePageByUser($pdo, $page, $itemsPerPage, $userid);
-  } else {
-    $articles = '';
-    $page = 1;
-    $maxPage = 1;
-  }
+$parsedUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+if (isset($mux[$parsedUri])) {
+        $controller = $mux[$parsedUri];
+        include_once($controller);
 } else {
-  $artCount = getArticleCount($pdo);
-  if ($artCount == 0) {
-    redirectClient("/");
-  }
-  $maxPage = ceil($artCount / $itemsPerPage);
-  $page = getPagNumber($maxPage);
-
-  $articles = getArticlePage($pdo, $page, $itemsPerPage);
+        include_once("src/internal/viewFunctions/browser.php");
+        redirectClient("/");
 }
-
-
-require_once("vistes/index.vista.php");

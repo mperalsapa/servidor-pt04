@@ -5,7 +5,7 @@
 // si es produeix un error, indiquem a l'usuari que s'ha produit un error i que contacti amb l'administrador
 function getMysqlPDO(): PDO
 {
-    include("env.php");
+    include("src/env.php");
     $servername = $mysqlHost;
     $username = $mysqlUser;
     $password = $mysqlPassword;
