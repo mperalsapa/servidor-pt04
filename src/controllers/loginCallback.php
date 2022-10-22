@@ -29,6 +29,11 @@ switch ($authProvider) {
     case 'GitHub':
         $userInfo = getGithubProfile($githubClientID, $githubClientSecret, $callbackUrl);
         break;
+    case 'Twitter':
+        $userinfo = getTwitterProfile($twitterClientID, $twitterClientSecret, $callbackUrl);
+        print_r($userinfo);
+        die();
+        break;
 }
 
 

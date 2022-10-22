@@ -44,8 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         case 'github':
             githubLogin($githubClientID, $githubClientSecret, $callbackUrl);
             break;
-        default:
-            retornarError("Iniciar sessio amb Twitter no esta disponible.", "src/views/login.vista.php");
+        case 'twitter':
+            twitterLogin($twitterClientId, $twitterClientSecret, $callbackUrl);
+            break;
     }
 
     include_once("src/views/login.vista.php");

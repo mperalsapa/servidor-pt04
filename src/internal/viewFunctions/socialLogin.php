@@ -80,6 +80,44 @@ function getGithubProfile(string $githubClientID, string $githubClientSecret, st
     return $userInfo;
 }
 
+function twitterLogin(string $twitterClientID, string $twitterClientSecret, string $callbackUrl): \Hybridauth\Provider\Twitter
+{
+    $config = [
+        'callback' => $callbackUrl . 'GitHub', // or Hybridauth\HttpClient\Util::getCurrentUrl()
+        'keys' => ['id' => $twitterClientID, 'secret' => $twitterClientSecret], // Your Github application credentials
+        'curl_options' => [
+            CURLOPT_USERAGENT => 'mperalsapa'
+        ]
+    ];
+    $twitter = new Hybridauth\Provider\Twitter($config);
+    $twitter->authenticate();
+    return $twitter;
+}
+
+function getTwitterProfile(string $twitterClientID, string $twitterClientSecret, string $callbackUrl): array
+{
+    $twitter = twitterLogin($twitterClientID, $twitterClientSecret, $callbackUrl);
+    try {
+        if ($twitter->authenticate("Twitter")) {
+            $userProfile = $twitter->getUserProfile();
+            $userInfo["email"] = $userProfile->email;
+            if (empty($userProfile->firstName)) {
+                $userInfo["name"] = $userProfile->displayName;
+            } else {
+                $userInfo["name"] = $userProfile->firstName;
+            }
+            $userInfo["surname"] = $userProfile->lastName;
+        } else {
+            die();
+        }
+    } catch (Hybridauth\Exception\HttpClientFailureException $e) {
+        echo 'Curl text error message : ' . $twitter->getHttpClient()->getResponseClientError();
+    } catch (\Exception $e) {
+        echo 'Oops! We ran into an unknown issue: ' . $e->getMessage();
+    }
+    $twitter->disconnect();
+    return $userInfo;
+}
 
 function socialLoginUser(array $userInfo)
 {
