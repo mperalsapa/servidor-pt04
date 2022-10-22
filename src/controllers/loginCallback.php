@@ -2,9 +2,9 @@
 
 
 echo "callback site\n";
-include_once("internal/vistes/socialLogin.php");
-include_once("internal/vistes/browser.php");
-include("env.php");
+include_once("src/internal/viewFunctions/socialLogin.php");
+include_once("src/internal/viewFunctions/browser.php");
+include("src/env.php");
 
 
 if (!isset($_GET["hauth_done"])) {
@@ -36,4 +36,4 @@ if (!empty($userInfo)) {
     socialLoginUser($userInfo);
 }
 
-redirectClient("login.php");
+redirectClient("login");

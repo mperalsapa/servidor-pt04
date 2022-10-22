@@ -1,6 +1,6 @@
 <?php
 
-include_once("hybridAuth/autoload.php");
+include_once("src/internal/hybridAuth/autoload.php");
 
 
 function googleLogin(string $googleClientID, string $googleClientSecret, string $callbackUrl): \Hybridauth\Provider\Google
@@ -83,20 +83,20 @@ function getGithubProfile(string $githubClientID, string $githubClientSecret, st
 
 function socialLoginUser(array $userInfo)
 {
-    include_once("internal/db/mysql.php");
-    include_once("internal/db/session_manager.php");
-    include_once("internal/vistes/browser.php");
+    include_once("src/internal/db/mysql.php");
+    include_once("src/internal/db/session_manager.php");
+    include_once("src/internal/viewFunctions/browser.php");
     $pdo = getMysqlPDO();
     if (userExists($pdo, $userInfo["email"])) {
         setUserLoggedinData($pdo, $userInfo["email"]);
-        redirectClient("index.php");
+        redirectClient("/");
         die();
     }
 
     $register = addUser($pdo, $userInfo["name"], $userInfo["surname"], $userInfo["email"], "");
     if ($register) {
         setUserLoggedinData($pdo, $userInfo["email"]);
-        redirectClient("index.php");
+        redirectClient("/");
         die();
     }
 }

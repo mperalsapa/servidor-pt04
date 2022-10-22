@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include_once("internal/vistes/header.php"); ?>
+    <?php include_once("src/internal/viewFunctions/header.php"); ?>
     <title>Registre</title>
 </head>
 
@@ -97,7 +97,7 @@
 
     </div>
 
-    <?php include_once("internal/vistes/body_end.php"); ?>
+    <?php include_once("src/internal/viewFunctions/bodyEnd.php"); ?>
 </body>
 
 </html>

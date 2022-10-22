@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
-	<?php include_once("internal/vistes/header.php"); ?>
+	<?php include_once("src/internal/viewFunctions/header.php"); ?>
 	<title>Paginació</title>
 </head>
 
@@ -36,10 +36,10 @@
 				</button>
 				<ul class="dropdown-menu">
 					<?php if (!checkLogin()) {
-						echo "<li><a class=\"dropdown-item\" href=\"login.php\"><i class=\"bi bi-box-arrow-in-right\"></i> Iniciar Sessió</a></li>";
-						echo "<li><a class=\"dropdown-item\" href=\"register.php\"><i class=\"bi bi-clipboard-minus\"></i> Registrarse</a></li>";
+						echo "<li><a class=\"dropdown-item\" href=\"login\"><i class=\"bi bi-box-arrow-in-right\"></i> Iniciar Sessió</a></li>";
+						echo "<li><a class=\"dropdown-item\" href=\"register\"><i class=\"bi bi-clipboard-minus\"></i> Registrarse</a></li>";
 					} else {
-						echo "<li><a class=\"dropdown-item\" href=\"logout.php\"><i class=\"bi bi-box-arrow-right\"></i> Tancar sesió</a></li>";
+						echo "<li><a class=\"dropdown-item\" href=\"logout\"><i class=\"bi bi-box-arrow-right\"></i> Tancar sesió</a></li>";
 					} ?>
 
 				</ul>
@@ -47,7 +47,7 @@
 		</div>
 		<section class="articles">
 			<?php
-			include_once('internal/vistes/articles.php');
+			include_once('src/internal/viewFunctions/articles.php');
 			printArticlesbyUserId($articles);
 			?>
 		</section>
@@ -56,7 +56,7 @@
 		printPagination($page, 1, $maxPage, 6)
 		?>
 	</div>
-	<?php include_once('internal/vistes/body_end.php'); ?>
+	<?php include_once('src/internal/viewFunctions/bodyEnd.php'); ?>
 </body>
 
 </html>
