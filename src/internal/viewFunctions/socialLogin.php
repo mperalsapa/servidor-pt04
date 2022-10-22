@@ -9,6 +9,7 @@ function googleLogin(string $googleClientID, string $googleClientSecret, string 
         'callback' => $callbackUrl . '/googleLogin', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $googleClientID, 'secret' => $googleClientSecret], // Your Github application credentials
     ];
+    var_dump($config);
     $googleAuth = new \Hybridauth\Provider\Google($config);
     $googleAuth->authenticate();
     return $googleAuth;
@@ -17,7 +18,6 @@ function googleLogin(string $googleClientID, string $googleClientSecret, string 
 function getGoogleProfile(string $googleClientID, string $googleClientSecret, string $callbackUrl): array
 {
     $googleAuth = googleLogin($googleClientID, $googleClientSecret, $callbackUrl);
-    $googleAuth->authenticate();
     try {
         if ($googleAuth->authenticate("Google")) {
             $userProfile = $googleAuth->getUserProfile();
@@ -44,7 +44,7 @@ function getGoogleProfile(string $googleClientID, string $googleClientSecret, st
 function githubLogin(string $githubClientID, string $githubClientSecret, string $callbackUrl): \Hybridauth\Provider\GitHub
 {
     $config = [
-        'callback' => $callbackUrl . '/gitHubLogin', // or Hybridauth\HttpClient\Util::getCurrentUrl()
+        'callback' => $callbackUrl . '/githubLogin', // or Hybridauth\HttpClient\Util::getCurrentUrl()
         'keys' => ['id' => $githubClientID, 'secret' => $githubClientSecret], // Your Github application credentials
         'curl_options' => [
             CURLOPT_USERAGENT => 'mperalsapa'
@@ -84,10 +84,8 @@ function twitterLogin(string $twitterClientID, string $twitterClientSecret, stri
 {
     $config = [
         'callback' => $callbackUrl . '/twitterLogin', // or Hybridauth\HttpClient\Util::getCurrentUrl()
-        'keys' => ['id' => $twitterClientID, 'secret' => $twitterClientSecret], // Your Github application credentials
-        'curl_options' => [
-            CURLOPT_USERAGENT => 'mperalsapa'
-        ]
+        "enabled" => true,
+        'keys' => ['key' => $twitterClientID, 'secret' => $twitterClientSecret] // Your Github application credentials
     ];
     $twitter = new Hybridauth\Provider\Twitter($config);
     $twitter->authenticate();

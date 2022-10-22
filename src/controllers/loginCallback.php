@@ -7,34 +7,29 @@ include_once("src/internal/viewFunctions/browser.php");
 include("src/env.php");
 
 
-if (!isset($_GET["code"])) {
-    die();
-}
-$authCode = $_GET["code"];
-
-if (!isset($_GET["state"])) {
-    die();
-}
-$authState = $_GET["state"];
-
 $authProvider = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+echo "<br>" . $authProvider . "<br>";
+echo "Login method:";
 switch ($authProvider) {
-    case 'googleLogin':
+    case '/googleLogin':
+        echo "google";
         $userInfo = getGoogleProfile($googleClientID, $googleClientSecret, $callbackUrl);
         break;
-    case 'gitHubLogin':
+    case '/githubLogin':
+        echo "github";
         $userInfo = getGithubProfile($githubClientID, $githubClientSecret, $callbackUrl);
         break;
-    case 'twitterLogin':
-        $userinfo = getTwitterProfile($twitterClientID, $twitterClientSecret, $callbackUrl);
-        print_r($userinfo);
-        die();
+    case '/twitterLogin':
+        echo "twitter";
+        $userInfo = getTwitterProfile($twitterClientID, $twitterClientSecret, $callbackUrl);
         break;
 }
 
+
+print_r($userInfo);
 
 if (!empty($userInfo)) {
     socialLoginUser($userInfo);
 }
 
-redirectClient("login");
+// redirectClient("login");
