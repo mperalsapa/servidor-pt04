@@ -9,6 +9,9 @@ $mux["/profile"] = "src/controllers/profile.php";
 $mux["/register"] = "src/controllers/register.php";
 $mux["/webhook"] = "src/controllers/webhook.php";
 $mux["/write"] = "src/controllers/write.php";
+$mux["/twittercallback"] = "src/controllers/write.php";
+$mux["/tos"] = "src/controllers/tos.php";
+$mux["/privacy"] = "src/controllers/privacy.php";
 
 
 $parsedUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
