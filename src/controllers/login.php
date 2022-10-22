@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $pdo = getMysqlPDO();
     if (!userExists($pdo, $email)) {
-        $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a href=\"register.php\">Registre</a>";
+        $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a href=\"register\">Registre</a>";
 
         retornarError($formResult, "src/views/login.vista.php");
         die();

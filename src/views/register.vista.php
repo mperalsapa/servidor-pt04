@@ -12,7 +12,7 @@
 <body>
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
         <div class="bg-white rounded col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-            <form class="h-50 align-middle m-4" action="register.php" method="POST">
+            <form class="h-50 align-middle m-4" action="register" method="POST">
                 <div class="row">
                     <div class="col">
                         <label>Nom
@@ -87,9 +87,9 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <button type="submit" class="btn btn-primary"><i class="bi bi-pen"></i> Registrar</button>
-                            <a class="ms-3" href="login.php">Iniciar Sessió</a>
+                            <a class="ms-3" href="login">Iniciar Sessió</a>
                         </div>
-                        <a href="index.php" class="btn btn-secondary"><i class="bi bi-house"></i> Inici</a>
+                        <a href="index" class="btn btn-secondary"><i class="bi bi-house"></i> Inici</a>
                     </div>
                 </div>
             </form>

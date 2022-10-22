@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         redirectClient("/");
     }
     $formCanDelete = 1;
-    include_once("vistes/write.vista.php");
+    include_once("src/views/write.vista.php");
 }
 
 

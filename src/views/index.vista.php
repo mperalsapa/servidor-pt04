@@ -17,7 +17,7 @@
 			<div class="d-flex align-items-center">
 				<h1 class=>Articles</h1>
 
-				<a class="btn btn-sm btn-primary ms-3 <?php echo checkLogin() ? "" : "visually-hidden" ?>" href="write.php"><i class="bi bi-plus-square"></i> Nou Article</a>
+				<a class="btn btn-sm btn-primary ms-3 <?php echo checkLogin() ? "" : "visually-hidden" ?>" href="write"><i class="bi bi-plus-square"></i> Nou Article</a>
 			</div>
 			<div class="btn-group dropstart">
 				<button type="button" class="btn <?php echo checkLogin() ? "btn-primary" : "btn-secondary" ?> btn-sm rounded-circle m-0 p-0 " style="width: 3rem; height: 3rem;" data-bs-toggle="dropdown" aria-expanded="false">
