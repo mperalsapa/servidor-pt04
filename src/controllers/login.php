@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             githubLogin($githubClientID, $githubClientSecret, $callbackUrl);
             break;
         case 'twitter':
-            twitterLogin($twitterClientId, $twitterClientSecret, $callbackUrl);
+            twitterLogin($twitterClientID, $twitterClientSecret, $callbackUrl);
             break;
     }
 
