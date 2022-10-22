@@ -1,5 +1,5 @@
 <p><strong>Terms of Service</strong></p>
-<p>Our Terms of Service were last updated on [___DATE___].</p>
+<p>Our Terms of Service were last updated on 22/10/2022.</p>
 <p>Please read these terms and conditions carefully before using Our Service.</p>
 <p><strong>Interpretation and Definitions</strong></p>
 <p><strong>Interpretation</strong></p>
@@ -14,10 +14,10 @@
         <p><strong>"Account"</strong> means a unique account created for You to access our Service or parts of our Service.</p>
     </li>
     <li>
-        <p><strong>"Company"</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to [___COMPANY_INFORMATION___].</p>
+        <p><strong>"Company"</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Marc Peral Cajidos.</p>
     </li>
     <li>
-        <p><strong>"Country"</strong> refers to [___COMPANY_COUNTRY___].</p>
+        <p><strong>"Country"</strong> refers to Spain.</p>
     </li>
     <li>
         <p><strong>"Content"</strong> refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content.</p>
@@ -38,7 +38,7 @@
         <p><strong>"Third-party Social Media Service"</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
     </li>
     <li>
-        <p><strong>"Website"</strong> refers to [___WEBSITE_NAME___], accessible from [___WEBSITE_URL___]</p>
+        <p><strong>"Website"</strong> refers to Articles de Pelicules, accessible from https://sp4.mperalsapa.cf</p>
     </li>
     <li>
         <p><strong>"You"</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
@@ -83,7 +83,7 @@
 <p><strong>Copyright Policy</strong></p>
 <p><strong>Intellectual Property Infringement</strong></p>
 <p>We respect the intellectual property rights of others. It is Our policy to respond to any claim that Content posted on the Service infringes a copyright or other intellectual property infringement of any person.</p>
-<p>If You are a copyright owner, or authorized on behalf of one, and You believe that the copyrighted work has been copied in a way that constitutes copyright infringement that is taking place through the Service, You must submit Your notice in writing to the attention of our copyright agent via email ([___COPYRIGHT_AGENT_CONTACT_EMAIL___]) and include in Your notice a detailed description of the alleged infringement.</p>
+<p>If You are a copyright owner, or authorized on behalf of one, and You believe that the copyrighted work has been copied in a way that constitutes copyright infringement that is taking place through the Service, You must submit Your notice in writing to the attention of our copyright agent via email (m.peral@sapalomera.cat) and include in Your notice a detailed description of the alleged infringement.</p>
 <p>You may be held accountable for damages (including costs and attorneys' fees) for misrepresenting that any Content is infringing Your copyright.</p>
 <p><strong>DMCA Notice and DMCA Procedure for Copyright Infringement Claims</strong></p>
 <p>You may submit a notification pursuant to the Digital Millennium Copyright Act (DMCA) by providing our Copyright Agent with the following information in writing (see 17 U.S.C 512(c)(3) for further detail):</p>
@@ -95,7 +95,7 @@
     <li>A statement by You that You have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law.</li>
     <li>A statement by You, made under penalty of perjury, that the above information in Your notice is accurate and that You are the copyright owner or authorized to act on the copyright owner's behalf.</li>
 </ul>
-<p>You can contact our copyright agent via email ([___COPYRIGHT_AGENT_CONTACT_EMAIL___]). Upon receipt of a notification, the Company will take whatever action, in its sole discretion, it deems appropriate, including removal of the challenged content from the Service.</p>
+<p>You can contact our copyright agent via email (m.peral@sapalomera.cat). Upon receipt of a notification, the Company will take whatever action, in its sole discretion, it deems appropriate, including removal of the challenged content from the Service.</p>
 <p><strong>Intellectual Property</strong></p>
 <p>The Service and its original content (excluding Content provided by You or other users), features and functionality are and will remain the exclusive property of the Company and its licensors.</p>
 <p>The Service is protected by copyright, trademark, and other laws of both the Country and foreign countries.</p>
@@ -139,7 +139,6 @@
 <p><strong>Contact Us</strong></p>
 <p>If you have any questions about these Terms of Service, You can contact us:</p>
 <ul>
-    <li>By visiting this page on our website: [___WEBSITE_CONTACT_PAGE_URL___]</li>
-    <li>By sending us an email: [___WEBSITE_CONTACT_EMAIL___]</li>
+    <li>By sending us an email: m.peral@sapalomera.cat</li>
 </ul>
 <p></p>
