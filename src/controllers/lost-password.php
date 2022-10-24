@@ -3,6 +3,14 @@ include_once("src/internal/db/mysql.php");
 include_once("src/internal/viewFunctions/formError.php");
 include_once("src/internal/viewFunctions/browser.php");
 
+function generateLostPasswordUrl(string $baseDomain, string $baseUrl, string $token): string
+{
+
+    $resetPasswordLink = $baseDomain . $baseUrl . "lost-password?resetToken=$token";
+    return $resetPasswordLink;
+}
+
+
 function sendLostPasswordEmail(string $emailTo, string $token)
 {
     include("env.php");
@@ -10,7 +18,7 @@ function sendLostPasswordEmail(string $emailTo, string $token)
 
     $emailSender = "no-reply@mperalsapa.cf";
     $emailSenderName = "Articles de Pel·lícules";
-    $resetPasswordLink = $baseDomain . $baseUrl . "/lost-password?resetToken=$token";
+    $resetPasswordLink = $baseDomain . $baseUrl . "lost-password?resetToken=$token";
     $htmlContent = "<h1>Test de recuperacio</h1><p>Recuperacio de contrasenya. Fes click en aquest enllaç: <a href=\"$resetPasswordLink\">$resetPasswordLink</a> o copia i enganxa en el navegador.</p>";
     // $textContent = "Test de recuperacio";
     $subject = "Recuperacio de Contrasenya";
@@ -99,8 +107,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             retornarError($formResult, "src/views/lost-password.vista.php");
         };
         $token = setPasswordResetToken($pdo, $email);
-        sendLostPasswordEmail($email, $token);
-        retornarError($formResult, "src/views/lost-password.vista.php");
+        include("env.php");
+        echo generateLostPasswordUrl($baseDomain, $baseUrl, $token);
+        // sendLostPasswordEmail($email, $token);
+        // retornarError($formResult, "src/views/lost-password.vista.php");
     }
     if (isset($_POST["password"])) {
         $password = $_POST["password"];
