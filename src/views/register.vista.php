@@ -10,89 +10,89 @@
 </head>
 
 <body>
-    <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
-        <div class="bg-white rounded col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-            <form class="h-50 align-middle m-4" action="register" method="POST">
+    <div class="bg-dark d-flex flex-column align-items-center justify-content-center" style="height:100vh; width:100vw;">
+        <a class="m-4 d-flex align-items-center justify-content-center btn btn-secondary" href="<?= $baseUrl ?>">
+            <h2 class="text-white m-0"><i class="bi bi-house"></i> ARTICLES DE PELICULES</h2>
+        </a>
+        <div class="bg-white rounded col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3">
+            <form class="align-middle m-4" action="register" method="POST">
                 <div class="row">
-                    <div class="col">
-                        <label>Nom
-
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?php echo isset($name) ? $name : '' ?>">
-                        </label>
-                    </div>
-                    <div class="col">
-                        <label>Cognoms
-
-                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognoms" value="<?php echo isset($lastname) ? $lastname : '' ?>">
-                        </label>
-                    </div>
+                    <label style="width:100%;">Nom
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?php echo isset($name) ? $name : '' ?>">
+                    </label>
                 </div>
                 <div class="row mt-2">
-                    <div class="col">
-                        <label>Correu Electronic
+                    <label style="width:100%;">Cognoms
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognoms" value="<?php echo isset($lastname) ? $lastname : '' ?>">
+                    </label>
+                </div>
 
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                </div>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Correu Electronic" value="<?php echo isset($email) ? $email : '' ?>">
+                <div class="row mt-2">
+                    <label style="width:100%;">Correu Electronic
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                             </div>
-                        </label>
-                    </div>
-                    <div class="col">
-                        <label>Verificacio Correu Electronic
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="bi bi-check-all"></i></span>
-                                </div>
-                                <input type="email" class="form-control" id="verify-email" name="verify-email" placeholder="Correu Electronic">
-                            </div>
-                        </label>
-                    </div>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Correu Electronic" value="<?php echo isset($email) ? $email : '' ?>">
+                        </div>
+                    </label>
                 </div>
                 <div class="row mt-2">
-                    <div class="col">
-                        <label>Contrasenya
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="bi bi-key"></i></span>
-                                </div>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya">
+                    <label style="width:100%;">Verificacio Correu Electronic
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-check-all"></i></span>
                             </div>
-                        </label>
-                    </div>
-                    <div class="col">
-                        <label>Verificacio Contrasenya
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="bi bi-check-all"></i></span>
-                                </div>
-                                <input type="password" class="form-control" id="verify-password" name="verify-password" placeholder="Contrasenya">
+                            <input type="email" class="form-control" id="verify-email" name="verify-email" placeholder="Correu Electronic">
+                        </div>
+                    </label>
+                </div>
+                <div class="row mt-2">
+                    <label style="width:100%;">Contrasenya
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-key"></i></span>
                             </div>
-                        </label>
-                    </div>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya">
+                        </div>
+                    </label>
+                </div>
+                <div class="row mt-2">
+
+                    <label style="width:100%;">Verificacio Contrasenya
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-check-all"></i></span>
+                            </div>
+                            <input type="password" class="form-control" id="verify-password" name="verify-password" placeholder="Contrasenya">
+                        </div>
+                    </label>
                 </div>
                 <div class="mt-4">
-                    <div class="d-flex">
-                        <?php if (!empty($formResult)) {
-                            echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
-                            echo $formResult;
-                            echo "</p>";
-                        }
-                        ?>
-                    </div>
+
+                    <?php if (!empty($formResult)) {
+                        echo "<div class=\"d-flex\">";
+                        echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
+                        echo $formResult;
+                        echo "</p>";
+                        echo "</div>";
+                    }
+                    ?>
+
                     <div class="d-flex justify-content-between">
-                        <div>
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-pen"></i> Registrar</button>
-                            <a class="ms-3" href="login">Iniciar Sessió</a>
-                        </div>
-                        <a href="index" class="btn btn-secondary"><i class="bi bi-house"></i> Inici</a>
+                        <button type="submit" class="btn btn-primary col"><i class="bi bi-pen"></i> Registrar</button>
                     </div>
                 </div>
             </form>
+            <hr class="hr m-4" />
+            <div class="m-4">
+
+                <div class="d-flex flex">
+                    <a class="btn btn-secondary col" href="login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                    <a class="btn btn-secondary col ms-2" href="lost-password"><i class="bi bi-question-octagon"></i> Recuperar Contrasenya</a>
+                </div>
+            </div>
         </div>
 
     </div>
