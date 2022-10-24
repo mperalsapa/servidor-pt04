@@ -18,10 +18,16 @@ $mux["/twitterLogin"] = "src/controllers/loginCallback.php";
 
 
 $parsedUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+include_once("env.php");
+
+$pattern = "/" . str_replace("/", "\/", $baseUrl) . "(.*)$/";
+preg_match($pattern, $parsedUri, $match);
+$parsedUri = $match[1];
+
 if (isset($mux[$parsedUri])) {
         $controller = $mux[$parsedUri];
         include_once($controller);
 } else {
         include_once("src/internal/viewFunctions/browser.php");
-        redirectClient("/");
+        redirectClient($baseUrl);
 }
