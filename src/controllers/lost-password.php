@@ -73,16 +73,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $pdo = getMysqlPDO();
     $tokenData = getPasswordResetToken($pdo, $token);
     if (empty($tokenData)) {
-        retornarError("Aquest enllaç de recuperacio ha caducat. Pots demanar un enllaç de recuperacio un altre cop.", "src/views/lost-password.vista.php");
+        $errorMessage = "Aquest enllaç de recuperacio ha caducat. Pots demanar un enllaç de recuperacio un altre cop.";
+        retornarError($errorMessage, "src/views/lost-password.vista.php");
     }
     $tokenTimeStamp = $tokenData["token_caducity"];
     $actualTimestamp = date('Y-m-d H:i:s');
 
     if ($actualTimestamp < $tokenTimeStamp) {
-        $resetPassword = true;
+        include_once("src/views/reset-password.vista.php");
+        die();
     }
-
-    include_once("src/views/reset-password.vista.php");
+    retornarError($errorMessage, "src/views/lost-password.vista.php");
 }
 
 
@@ -97,8 +98,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!userExists($pdo, $email)) {
             retornarError($formResult, "src/views/lost-password.vista.php");
         };
-        $token = setPasswordResetToken($pdo, $email);
-        sendLostPasswordEmail($email, $token);
+
+        $lastTokenTimestamp = getPasswordResetToken($pdo, $email);
+        $actualTimestamp = date('Y-m-d H:i:s', strtotime('now -5 minute'));
+        if ($actualTimestamp < $lastTokenTimestamp) {
+            retornarError("Has d'esperar 5 minuts avans de tornar a intentar-ho.", "src/views/lost-password.vista.php");
+        }
+
+        // $token = setPasswordResetToken($pdo, $email);
+        // sendLostPasswordEmail($email, $token);
         retornarError($formResult, "src/views/lost-password.vista.php");
     }
     if (isset($_POST["password"])) {

@@ -217,6 +217,17 @@ function getPasswordResetToken(PDO $conn, string $token): array
     return $result;
 }
 
+function getLastTokenTimestamp(PDO $conn, string $email): string
+{
+    $pdo = $conn->prepare("SELECT ultima_solicitud_token FROM usuari WHERE usuari.correu = :correu");
+    $pdo->bindParam(":correu", $email);
+    $pdo->execute();
+
+    $row = $pdo->fetch();
+    $result = $row["ultima_solicitud_token"];
+    return $result;
+}
+
 function changeUserPassword(PDO $conn, string $password, string $token)
 {
     $password = hash("sha256", $password, false);
