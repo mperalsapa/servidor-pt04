@@ -69,8 +69,7 @@
                     <a class="btn btn-secondary col d-flex align-items-center justify-content-center ms-2 " href="lost-password"><i class="me-2 bi bi-question-octagon"></i> Recuperar Contrasenya</a>
                 </div>
             </div>
-            <hr class="hr m-4" />
-            <div class="accordion" id="accordionExample">
+            <div class="accordion mt-4" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
