@@ -65,7 +65,7 @@
             <div class="mx-4">
 
                 <div class="d-flex flex">
-                    <a class="btn btn-secondary col" href="registre"><i class="bi bi-clipboard-minus"></i> Registre</a>
+                    <a class="btn btn-secondary col" href="register"><i class="bi bi-clipboard-minus"></i> Registre</a>
                     <a class="btn btn-secondary col ms-2" href="lost-password"><i class="bi bi-question-octagon"></i> Recuperar Contrasenya</a>
                 </div>
             </div>
