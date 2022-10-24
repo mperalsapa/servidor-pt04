@@ -4,7 +4,7 @@
 echo "callback site\n";
 include_once("src/internal/viewFunctions/socialLogin.php");
 include_once("src/internal/viewFunctions/browser.php");
-include("src/env.php");
+include("env.php");
 
 
 $authProvider = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
