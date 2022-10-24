@@ -178,3 +178,50 @@ function getArticleById(PDO $conn, int $articleId): PDOStatement
 
     return $pdo;
 }
+
+
+
+function setPasswordResetToken(PDO $conn, string $email): string
+{
+    $pdo = $conn->prepare("SELECT contrasenya FROM usuari WHERE usuari.correu = :correu");
+    $pdo->bindParam(":correu", $email);
+    $pdo->execute();
+    $row = $pdo->fetch();
+
+    $password = $row["contrasenya"];
+    $token = hash("sha256", $password, false);
+    $timestamp = date('Y-m-d H:i:s', strtotime('now +15 minute'));
+
+    $pdo = $conn->prepare("UPDATE usuari SET reset_token = :token, caducitat_token = :tokenTimeStamp WHERE usuari.correu = :correu");
+    $pdo->bindParam(":token", $token);
+    $pdo->bindParam(":tokenTimeStamp", $timestamp, PDO::PARAM_STR);
+    $pdo->bindParam(":correu", $email);
+    $pdo->execute();
+    return $token;
+}
+
+
+function getPasswordResetToken(PDO $conn, string $token): array
+{
+    $pdo = $conn->prepare("SELECT reset_token, caducitat_token FROM usuari WHERE reset_token = :token");
+    $pdo->bindParam(":token", $token);
+    $pdo->execute();
+
+    $count = $pdo->rowCount();
+    if ($count == 0) {
+        return array();
+    }
+    $row = $pdo->fetch();
+    $result["reset_token"] = $row["reset_token"];
+    $result["token_caducity"] = $row["caducitat_token"];
+    return $result;
+}
+
+function changeUserPassword(PDO $conn, string $password, string $token)
+{
+    $password = hash("sha256", $password, false);
+    $pdo = $conn->prepare("UPDATE usuari SET contrasenya = :contrasenya, reset_token = NULL, caducitat_token = NULL WHERE usuari.reset_token = :token");
+    $pdo->bindParam(":contrasenya", $password);
+    $pdo->bindParam(":token", $token);
+    $pdo->execute();
+}
