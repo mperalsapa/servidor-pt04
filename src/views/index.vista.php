@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
 	<?php include_once("src/internal/viewFunctions/header.php"); ?>
-	<title>Paginació</title>
+	<title>Articles de Pel·lícules</title>
 </head>
 
 <body class="bg-dark">

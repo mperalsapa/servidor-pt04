@@ -38,7 +38,7 @@
         <p><strong>"Third-party Social Media Service"</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
     </li>
     <li>
-        <p><strong>"Website"</strong> refers to Articles de Pelicules, accessible from https://sp4.mperalsapa.cf</p>
+        <p><strong>"Website"</strong> refers to Articles de Pel·lícules, accessible from https://sp4.mperalsapa.cf</p>
     </li>
     <li>
         <p><strong>"You"</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
