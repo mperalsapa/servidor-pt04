@@ -18,16 +18,16 @@ $mux["/googleLogin"] = "src/controllers/loginCallback.php";
 $mux["/githubLogin"] = "src/controllers/loginCallback.php";
 $mux["/twitterLogin"] = "src/controllers/loginCallback.php";
 
-function route(string $url, array $mux, string $baseUrl) {
+function route(string $url, array $mux, string $baseUrl)
+{
         if (isset($mux[$url])) {
                 $controller = $mux[$url];
                 include_once($controller);
                 die();
         } else {
                 include_once("src/internal/viewFunctions/browser.php");
-                redirectClient($baseUrl);
+                redirectClient("/");
         }
-
 }
 
 $parsedUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -42,4 +42,4 @@ if (empty($baseUrl) || $baseUrl == "/") {
 $pattern = "/" . str_replace("/", "\/", $baseUrl) . "(.*)$/";
 preg_match($pattern, $parsedUri, $match);
 $parsedUri = $match[1];
-route($parsedUri,$mux, $baseUrl);
+route($parsedUri, $mux, $baseUrl);
