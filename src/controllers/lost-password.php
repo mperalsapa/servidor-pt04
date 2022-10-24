@@ -11,8 +11,8 @@ function sendLostPasswordEmail(string $emailTo, string $token)
     $emailSender = "no-reply@mperalsapa.cf";
     $emailSenderName = "Articles de Pel·lícules";
     $resetPasswordLink = $baseDomain . $baseUrl . "lost-password?resetToken=$token";
-    $htmlContent = "<h1>Test de recuperacio</h1><p>Recuperacio de contrasenya. Fes click en aquest enllaç: <a href=\"$resetPasswordLink\">$resetPasswordLink</a> o copia i enganxa en el navegador.</p>";
-    $subject = "Recuperacio de Contrasenya";
+    $htmlContent = "<h1>Sol·licitut de recuperació de contrasenya</h1><p>Recuperacio de contrasenya. Fes click en aquest enllaç: <a href=\"$resetPasswordLink\">$resetPasswordLink</a> o copia i enganxa en el navegador.</p><p>Si no has sigut tu, pots ignorar aquest missatge.</p><p>Articles de Pel·licules</p>";
+    $subject = "Recuperació de Contrasenya";
 
     $postContent = json_encode(
         array(

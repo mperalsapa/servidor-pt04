@@ -51,14 +51,6 @@
                     </div>
                 </div>
             </form>
-            <hr class="hr m-4" />
-            <div class="m-4">
-
-                <div class="d-flex flex">
-                    <a class="btn btn-secondary col d-flex align-items-center justify-content-center" href="login"><i class="me-2 bi bi-box-arrow-in-right"></i> Iniciar Sessió</a>
-                    <a class="btn btn-secondary col d-flex align-items-center justify-content-center ms-2" href="register"><i class="me-2 bi bi-clipboard-minus"></i> Registre</a>
-                </div>
-            </div>
 
         </div>
 
