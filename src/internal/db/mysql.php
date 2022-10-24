@@ -189,7 +189,7 @@ function setPasswordResetToken(PDO $conn, string $email): string
     $row = $pdo->fetch();
 
     $password = $row["contrasenya"];
-    $token = hash("sha256", $password, false);
+    $token = hash("sha256", $password . date('Y-m-d H:i:s'), false);
     $timestamp = date('Y-m-d H:i:s', strtotime('now +15 minute'));
 
     $pdo = $conn->prepare("UPDATE usuari SET reset_token = :token, caducitat_token = :tokenTimeStamp WHERE usuari.correu = :correu");
