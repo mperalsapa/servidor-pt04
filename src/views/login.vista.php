@@ -15,7 +15,7 @@
         <a class="m-4 d-flex align-items-center justify-content-center btn btn-secondary" href="<?= $baseUrl ?>">
             <h2 class="text-white m-0"><i class="bi bi-house"></i> ARTICLES DE PELICULES</h2>
         </a>
-        <div class="bg-white rounded col-8 col-md-6 col-lg-5  col-xxl-3">
+        <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3">
             <form class="align-middle m-4" action="login" method="POST">
                 <h2>Iniciar Sessió</h2>
                 <div class="form-group">
@@ -65,8 +65,8 @@
             <div class="mx-4">
 
                 <div class="d-flex flex">
-                    <a class="btn btn-secondary col" href="index"><i class="bi bi-house"></i> Registre</a>
-                    <a class="btn btn-secondary col ms-2" href="index"><i class="bi bi-house"></i> Recuperar Contrasenya</a>
+                    <a class="btn btn-secondary col" href="registre"><i class="bi bi-clipboard-minus"></i> Registre</a>
+                    <a class="btn btn-secondary col ms-2" href="lost-password"><i class="bi bi-question-octagon"></i> Recuperar Contrasenya</a>
                 </div>
             </div>
             <hr class="hr m-4" />
