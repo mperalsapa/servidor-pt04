@@ -1,3 +1,3 @@
 <?php
 
-include_once("vistes/profile.vista.php");
+include_once("src/views/profile.vista.php");

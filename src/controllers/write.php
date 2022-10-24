@@ -47,11 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (empty($_POST["article"])) {
         $formResult = "L'article es buit, si el vols esborrar, fes clic a esborrar.";
-        retornarError($formResult, "vistes/write.vista.php");
+        retornarError($formResult, "src/views/write.vista.php");
     }
     if (empty($_POST["article-date"])) {
         $formResult = "La data de l'article es buida.";
-        retornarError($formResult, "vistes/write.vista.php");
+        retornarError($formResult, "src/views/write.vista.php");
     }
 
     $article = $_POST["article"];
