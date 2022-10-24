@@ -11,9 +11,13 @@
 </head>
 
 <body>
-    <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
+    <div class="bg-dark d-flex flex-column align-items-center justify-content-center" style="height:100vh;">
+        <a class="m-4 d-flex align-items-center justify-content-center btn btn-secondary" href="<?= $baseUrl ?>">
+            <h2 class="text-white m-0"><i class="bi bi-house"></i> ARTICLES DE PELICULES</h2>
+        </a>
         <div class="bg-white rounded col-8 col-md-6 col-lg-5  col-xxl-3">
-            <form class="h-50 align-middle m-4" action="login" method="POST">
+            <form class="align-middle m-4" action="login" method="POST">
+                <h2>Iniciar Sessió</h2>
                 <div class="form-group">
                     <label for="email">Correu Electronic</label>
                     <div class="input-group">
@@ -57,36 +61,43 @@
                     </div>
                 </div>
             </form>
+            <hr class="hr m-4" />
             <div class="mx-4">
-                <hr class="hr" />
-                
-                <div class="row">
-                    
-                        <a class="btn btn-secondary col " href="index"><i class="bi bi-house"></i> Registre</a>
-                    
-                    
-                        <a class="btn btn-secondary col " href="index"><i class="bi bi-house"></i> Recuperar Contrasenya</a>
-                    
-                    
-                        <a class="btn btn-secondary col " href="index"><i class="bi bi-house"></i> Inici</a>
-                    
+
+                <div class="d-flex flex">
+                    <a class="btn btn-secondary col" href="index"><i class="bi bi-house"></i> Registre</a>
+                    <a class="btn btn-secondary col ms-2" href="index"><i class="bi bi-house"></i> Recuperar Contrasenya</a>
                 </div>
             </div>
-            <hr class="hr mx-4" />
-            <div class=" m-4 d-grid gap-3">
-                <a class="d-flex justify-content-center align-items-center border btn btn-primary py-3 " href="login?socialLogin=google">
-                    <i class="bi bi-google"></i>
-                    <p class="m-0 ms-3">Google</p>
-                </a>
-                <a class="d-flex justify-content-center align-items-center border btn btn-dark py-3 " href="login?socialLogin=github">
-                    <i class="bi bi-github"></i>
-                    <p class="m-0 ms-3">Github</p>
-                </a>
-                <a class="d-flex justify-content-center align-items-center border btn btn-info py-3 " href="login?socialLogin=twitter">
-                    <i class="bi bi-twitter"></i>
-                    <p class="m-0 ms-3">Twitter</p>
-                </a>
+            <hr class="hr m-4" />
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            Social
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body p-0">
+                            <div class=" m-4 d-grid gap-3">
+                                <a class="d-flex justify-content-center align-items-center border btn btn-primary py-3 " href="login?socialLogin=google">
+                                    <i class="bi bi-google"></i>
+                                    <p class="m-0 ms-3">Google</p>
+                                </a>
+                                <a class="d-flex justify-content-center align-items-center border btn btn-dark py-3 " href="login?socialLogin=github">
+                                    <i class="bi bi-github"></i>
+                                    <p class="m-0 ms-3">Github</p>
+                                </a>
+                                <a class="d-flex justify-content-center align-items-center border btn btn-info py-3 " href="login?socialLogin=twitter">
+                                    <i class="bi bi-twitter"></i>
+                                    <p class="m-0 ms-3">Twitter</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
     </div>
