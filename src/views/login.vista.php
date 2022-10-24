@@ -10,10 +10,10 @@
     <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
 </head>
 
-<body>
-    <div class="bg-dark d-flex flex-column align-items-center justify-content-center" style="height:100vh;">
-        <a class="m-4 d-flex align-items-center justify-content-center btn btn-secondary" href="<?= $baseUrl ?>">
-            <h2 class="text-white m-0"><i class="bi bi-house"></i> ARTICLES DE PELICULES</h2>
+<body class="m-0 p-0 bg-dark">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3" href="<?= $baseUrl ?>">
+            <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PELICULES</span>
         </a>
         <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3">
             <form class="align-middle m-4" action="login" method="POST">
@@ -39,14 +39,14 @@
                     <div class="invalid-feedback">Introdueix una contrasenya</div>
                 </div>
                 <div class="mt-3">
-                    <div class="d-flex">
-                        <?php if (!empty($formResult)) {
-                            echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
-                            echo $formResult;
-                            echo "</p>";
-                        }
-                        ?>
-                    </div>
+                    <?php if (!empty($formResult)) {
+                        echo "<div class=\"d-flex\">";
+                        echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
+                        echo $formResult;
+                        echo "</p>";
+                        echo "</div>";
+                    }
+                    ?>
                     <?php
                     if (isset($_SESSION["login-attempts"])) {
                         if ($_SESSION["login-attempts"] > 2) {
@@ -64,9 +64,9 @@
             <hr class="hr m-4" />
             <div class="mx-4">
 
-                <div class="d-flex flex">
-                    <a class="btn btn-secondary col" href="register"><i class="bi bi-clipboard-minus"></i> Registre</a>
-                    <a class="btn btn-secondary col ms-2" href="lost-password"><i class="bi bi-question-octagon"></i> Recuperar Contrasenya</a>
+                <div class="d-flex">
+                    <a class="btn btn-secondary col d-flex align-items-center justify-content-center " href="register"><i class="me-2 bi bi-clipboard-minus"></i> Registre</a>
+                    <a class="btn btn-secondary col d-flex align-items-center justify-content-center ms-2 " href="lost-password"><i class="me-2 bi bi-question-octagon"></i> Recuperar Contrasenya</a>
                 </div>
             </div>
             <hr class="hr m-4" />

@@ -9,10 +9,10 @@
     <title>Registre</title>
 </head>
 
-<body>
-    <div class="bg-dark d-flex flex-column align-items-center justify-content-center" style="height:100vh; width:100vw;">
-        <a class="m-4 d-flex align-items-center justify-content-center btn btn-secondary" href="<?= $baseUrl ?>">
-            <h2 class="text-white m-0"><i class="bi bi-house"></i> ARTICLES DE PELICULES</h2>
+<body class="m-0 p-0 bg-dark">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3" href="<?= $baseUrl ?>">
+            <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PELICULES</span>
         </a>
         <div class="bg-white rounded col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3">
             <form class="align-middle m-4" action="register" method="POST">
@@ -89,8 +89,8 @@
             <div class="m-4">
 
                 <div class="d-flex flex">
-                    <a class="btn btn-secondary col" href="login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-                    <a class="btn btn-secondary col ms-2" href="lost-password"><i class="bi bi-question-octagon"></i> Recuperar Contrasenya</a>
+                    <a class="btn btn-secondary col d-flex align-items-center justify-content-center" href="login"><i class="me-2 bi bi-box-arrow-in-right"></i> Iniciar Sessió</a>
+                    <a class="btn btn-secondary col d-flex align-items-center justify-content-center ms-2" href="lost-password"><i class="me-2 bi bi-question-octagon"></i> Recuperar Contrasenya</a>
                 </div>
             </div>
         </div>
