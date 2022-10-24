@@ -11,7 +11,7 @@
 
 <body class="m-0 p-0 bg-dark">
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3" href="<?= $baseUrl ?>">
+        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3" href="index">
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
         <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3">
