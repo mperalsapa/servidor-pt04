@@ -15,7 +15,7 @@
 	<div class="contenidor container bg-white border border-dark rounded">
 		<div class="d-flex justify-content-between px-4 pt-4">
 			<div class="d-flex align-items-center">
-				<h1 class=>Articles</h1>
+				<h1 class=>Articles de Pel·lícules</h1>
 
 				<a class="btn btn-sm btn-primary ms-3 <?php echo checkLogin() ? "" : "visually-hidden" ?>" href="write"><i class="bi bi-plus-square"></i> Nou Article</a>
 			</div>
