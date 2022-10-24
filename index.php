@@ -18,7 +18,7 @@ $mux["/googleLogin"] = "src/controllers/loginCallback.php";
 $mux["/githubLogin"] = "src/controllers/loginCallback.php";
 $mux["/twitterLogin"] = "src/controllers/loginCallback.php";
 
-function route(string $url, array $mux, string $baseUrl)
+function route(string $url, array $mux)
 {
         if (isset($mux[$url])) {
                 $controller = $mux[$url];
@@ -39,7 +39,5 @@ if (empty($baseUrl) || $baseUrl == "/") {
         route($parsedUri, $mux, $baseUrl);
 }
 
-$pattern = "/" . str_replace("/", "\/", $baseUrl) . "(.*)$/";
-preg_match($pattern, $parsedUri, $match);
-$parsedUri = $match[1];
-route($parsedUri, $mux, $baseUrl);
+$parsedUri = "/" . str_replace($baseUrl, "", $parsedUri);
+route($parsedUri, $mux);
