@@ -11,7 +11,7 @@
 
 <body>
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
-        <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3">
+        <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3 my-4">
             <div class="row col-12 d-flex justify-content-center m-0">
                 <div class="col-3 m-5 bg-dark d-flex rounded-circle justify-content-center align-items-center" style="aspect-ratio: 1;">
                     <p class="m-0 text-white display-4">MP</p>

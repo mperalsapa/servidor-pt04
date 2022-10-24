@@ -15,7 +15,7 @@
         <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3" href="index">
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
-        <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3">
+        <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3 my-4 my-4">
             <form class="align-middle m-4" action="login" method="POST">
                 <h2>Iniciar Sessió</h2>
                 <div class="form-group">
@@ -73,7 +73,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                            Social
+                            Social - <i class="ms-2 bi bi-google"></i> <i class="ms-1 bi bi-github"></i> <i class="ms-1 bi bi-twitter"></i>
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">

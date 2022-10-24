@@ -65,6 +65,7 @@ function sendLostPasswordEmail(string $emailTo, string $token)
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (!isset($_GET["resetToken"])) {
         include_once("src/views/lost-password.vista.php");
+        die();
     }
     $token = $_GET["resetToken"];
     echo "Token: $token <br>";
