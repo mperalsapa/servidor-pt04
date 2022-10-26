@@ -59,16 +59,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $pdo = getMysqlPDO();
     if (!userExists($pdo, $email)) {
-        $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a href=\"register\">Registre</a>";
+        $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a class=\"alert-link\" href=\"register\">Registre</a>";
 
-        retornarError($formResult, "src/views/login.vista.php");
+        returnAlert($formResult, "danger", "src/views/login.vista.php");
         die();
     }
 
+    $viewData["email"] = $email;
+
     if (!checkUserPassword($pdo, $password, $email)) {
-        $formResult = "La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"link-light\" href=\"lost-password.php\">Recuperació de contrasenya</a>";
+        $formResult = "La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password.php\">Recuperació de contrasenya</a>";
         setLoginAttempt(getLoginAttempts() + 1);
-        retornarError($formResult, "src/views/login.vista.php");
+        returnAlert($formResult, "danger", "src/views/login.vista.php", $viewData);
         die();
     }
 
@@ -76,15 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!isset($_POST['h-captcha-response'])) {
             $formResult = "S'ha produit un error validant el captcha. Torna a probar.";
-            retornarError($formResult, "src/views/login.vista.php");
-            die();
+            returnAlert($formResult, "danger", "src/views/login.vista.php", $viewData);
         }
 
         $validCaptcha = checkCaptcha($_POST['h-captcha-response']);
         if (!$validCaptcha) {
             $formResult = "No has omplert el captcha correctament. Torna a probar.";
-            retornarError($formResult, "src/views/login.vista.php");
-            die();
+            returnAlert($formResult, "danger", "src/views/login.vista.php", $viewData);
         }
     }
 

@@ -24,12 +24,12 @@
                 </nav>
                 <div class="row">
                     <label>Nom
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?php echo isset($name) ? $name : '' ?>">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?php echo isset($viewData["name"]) ? $viewData["name"] : '' ?>">
                     </label>
                 </div>
                 <div class="row mt-2">
                     <label>Cognoms
-                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognoms" value="<?php echo isset($lastname) ? $lastname : '' ?>">
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognoms" value="<?php echo isset($viewData["lastname"]) ? $viewData["lastname"] : '' ?>">
                     </label>
                 </div>
 
@@ -39,7 +39,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                             </div>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Correu Electronic" value="<?php echo isset($email) ? $email : '' ?>">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Correu Electronic" value="<?php echo isset($viewData["email"]) ? $viewData["email"] : '' ?>">
                         </div>
                     </label>
                 </div>
@@ -64,9 +64,7 @@
                     </label>
                 </div>
                 <div class="row mt-2">
-
                     <label>Verificacio Contrasenya
-
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="bi bi-check-all"></i></span>
@@ -76,16 +74,11 @@
                     </label>
                 </div>
                 <div class="mt-4">
-
-                    <?php if (!empty($formResult)) {
-                        echo "<div class=\"d-flex\">";
-                        echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
-                        echo $formResult;
-                        echo "</p>";
-                        echo "</div>";
+                    <?php
+                    if (!empty($alertMessage)) {
+                        echo "<div class=\"alert alert-$alertType\" role=\"alert\">$alertIcon $alertMessage</div>";
                     }
                     ?>
-
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary col"><i class="bi bi-pen"></i> Registrar</button>
                     </div>

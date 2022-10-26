@@ -45,15 +45,10 @@
                     <div class="invalid-feedback">Introdueix una contrasenya</div>
                 </div>
                 <div class="mt-3">
-                    <?php if (!empty($formResult)) {
-                        echo "<div class=\"d-flex\">";
-                        echo "<p class=\"bg-danger py-2 px-3 border rounded text-white\">";
-                        echo $formResult;
-                        echo "</p>";
-                        echo "</div>";
-                    }
-                    ?>
                     <?php
+                    if (!empty($alertMessage)) {
+                        echo "<div class=\"alert alert-$alertType\" role=\"alert\">$alertIcon $alertMessage</div>";
+                    }
                     if (isset($_SESSION["login-attempts"])) {
                         if ($_SESSION["login-attempts"] > 2) {
                             echo "<label>Captcha</label>";

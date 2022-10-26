@@ -22,44 +22,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = isset($_POST["password"]) ? $_POST["password"] : '';
     $password2 = isset($_POST["verify-password"]) ? $_POST["verify-password"] : '';
 
+    $viewData["name"] = $name;
+    $viewData["lastname"] = $lastname;
+    $viewData["email"] = $email;
+
     if (empty($name)) {
         $formResult = "El camp Nom es buit";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($lastname)) {
         $formResult = "El camp Cognom es buit";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($email)) {
         $formResult = "El camp Email es buit";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($email2)) {
         $formResult = "La verificacio de correu es buida";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($password)) {
         $formResult = "El camp Contrassenya es buit";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($password2)) {
         $formResult = "La verificacio de contrasenya es buida";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
 
     if ($email != $email2) {
         $formResult = "El correu i la verificacio no coincideixen";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if ($password != $password2) {
         $formResult = "La contrasenya i la verificacio no coincideixen";
-        retornarError($formResult, "src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
 
     $pdo = getMysqlPDO();
     if (userExists($pdo, $email)) {
-        $formResult = "Aquest correu ja pertany a un compte. Si no recordes la contrasenya, fes una recuperació aqui: <a href=\"lost-password.php\">Recuperació de contrasenya</a>";
-        retornarError($formResult, "src/views/register.vista.php");
+        $viewData["email"] = "";
+        $formResult = "Aquest correu ja pertany a un compte. Si no recordes la contrasenya, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password\">Recuperació de contrasenya</a>";
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     };
 
     $insertsuccess = addUser($pdo, $name, $lastname, $email, $password);
@@ -68,6 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirectClient("/");
     } else {
         $formResult = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
-        include_once("src/views/register.vista.php");
+        returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
 }
