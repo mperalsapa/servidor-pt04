@@ -14,9 +14,9 @@ $mux["/write-article"] = "src/controllers/write-article.php";
 $mux["/delete-article"] = "src/controllers/delete-article.php";
 $mux["/tos"] = "src/controllers/tos.php";
 $mux["/privacy"] = "src/controllers/privacy.php";
-$mux["/googleLogin"] = "src/controllers/login-callback.php";
-$mux["/githubLogin"] = "src/controllers/login-callback.php";
-$mux["/twitterLogin"] = "src/controllers/login-callback.php";
+$mux["/google-login"] = "src/controllers/login-callback.php";
+$mux["/github-login"] = "src/controllers/login-callback.php";
+$mux["/twitter-login"] = "src/controllers/login-callback.php";
 
 function route(string $url, array $mux)
 {

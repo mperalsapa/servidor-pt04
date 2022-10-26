@@ -11,15 +11,15 @@ $authProvider = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 echo "<br>" . $authProvider . "<br>";
 echo "Login method:";
 switch ($authProvider) {
-    case '/googleLogin':
+    case '/google-login':
         echo "google";
         $userInfo = getGoogleProfile($googleClientID, $googleClientSecret, $callbackUrl);
         break;
-    case '/githubLogin':
+    case '/github-login':
         echo "github";
         $userInfo = getGithubProfile($githubClientID, $githubClientSecret, $callbackUrl);
         break;
-    case '/twitterLogin':
+    case '/twitter-login':
         echo "twitter";
         $userInfo = getTwitterProfile($twitterClientID, $twitterClientSecret, $callbackUrl);
         break;
