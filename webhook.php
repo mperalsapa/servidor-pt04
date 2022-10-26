@@ -8,6 +8,5 @@ if ($_GET["token"] == $webhookToken) {
     echo $cmd;
     echo 'Deployment sucess';
 } else {
-    echo 'Error';
-    echo $cmd;
+    echo 'Invalid Token';
 }
