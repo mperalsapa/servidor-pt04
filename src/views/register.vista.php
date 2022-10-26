@@ -37,7 +37,7 @@
                     <label>Correu Electronic
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <span class="input-group-text h-100"><i class="bi bi-envelope"></i></span>
                             </div>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Correu Electronic" value="<?php echo isset($viewData["email"]) ? $viewData["email"] : '' ?>">
                         </div>
@@ -47,7 +47,7 @@
                     <label>Verificacio Correu Electronic
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="bi bi-check-all"></i></span>
+                                <span class="input-group-text h-100"><i class="bi bi-check-all"></i></span>
                             </div>
                             <input type="email" class="form-control" id="verify-email" name="verify-email" placeholder="Correu Electronic">
                         </div>
@@ -57,7 +57,7 @@
                     <label>Contrasenya
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="bi bi-key"></i></span>
+                                <span class="input-group-text h-100"><i class="bi bi-key"></i></span>
                             </div>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya">
                         </div>
@@ -67,7 +67,7 @@
                     <label>Verificacio Contrasenya
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="bi bi-check-all"></i></span>
+                                <span class="input-group-text h-100"><i class="bi bi-check-all"></i></span>
                             </div>
                             <input type="password" class="form-control" id="verify-password" name="verify-password" placeholder="Contrasenya">
                         </div>

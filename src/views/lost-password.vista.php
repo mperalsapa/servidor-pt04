@@ -28,7 +28,7 @@
                     <label for="email">Correu Electronic</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <span class="input-group-text h-100"><i class="bi bi-envelope"></i></span>
                         </div>
                         <input type="email" class="form-control" name="email" placeholder="Correu Electronic" id="email" required value="<?php echo isset($email) ? $email : '' ?>">
                     </div>
