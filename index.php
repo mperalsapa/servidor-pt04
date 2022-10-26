@@ -39,5 +39,9 @@ if (empty($baseUrl) || $baseUrl == "/") {
         route($parsedUri, $mux, $baseUrl);
 }
 
+include_once("src/internal/viewFunctions/git.php");
+$version = getCurrentGitCommit("main");
+printGitInfo($version);
+
 $parsedUri = "/" . str_replace($baseUrl, "", $parsedUri);
 route($parsedUri, $mux);
