@@ -190,11 +190,13 @@ function setPasswordResetToken(PDO $conn, string $email): string
 
     $password = $row["contrasenya"];
     $token = hash("sha256", $password . date('Y-m-d H:i:s'), false);
-    $timestamp = date('Y-m-d H:i:s', strtotime('now +15 minute'));
+    $expiryTimestamp = date('Y-m-d H:i:s', strtotime('now +15 minute'));
+    $actualTimestamp = date('Y-m-d H:i:s');
 
-    $pdo = $conn->prepare("UPDATE usuari SET reset_token = :token, caducitat_token = :tokenTimeStamp WHERE usuari.correu = :correu");
+    $pdo = $conn->prepare("UPDATE usuari SET reset_token = :token, caducitat_token = :tokenTimeStamp, ultima_solicitud_token = :lastTry WHERE usuari.correu = :correu");
     $pdo->bindParam(":token", $token);
-    $pdo->bindParam(":tokenTimeStamp", $timestamp, PDO::PARAM_STR);
+    $pdo->bindParam(":tokenTimeStamp", $expiryTimestamp, PDO::PARAM_STR);
+    $pdo->bindParam(":lastTry", $actualTimestamp, PDO::PARAM_STR);
     $pdo->bindParam(":correu", $email);
     $pdo->execute();
     return $token;
@@ -217,7 +219,7 @@ function getPasswordResetToken(PDO $conn, string $token): array
     return $result;
 }
 
-function getLastTokenTimestamp(PDO $conn, string $email): string
+function getLastTokenTimestamp(PDO $conn, string $email): ?string
 {
     $pdo = $conn->prepare("SELECT ultima_solicitud_token FROM usuari WHERE usuari.correu = :correu");
     $pdo->bindParam(":correu", $email);
