@@ -15,6 +15,6 @@ function printGitInfo(string $commit)
     $version = mb_substr($commit, 0, 5);
 
     echo "<footer class=\"fixed-bottom\">";
-    echo "<span class=\"text-muted bg-white py-1 px-1\">v-$version</span>";
+    echo "<span class=\"text-muted text-white py-1 px-1\">v-$version</span>";
     echo "</footer>";
 }
