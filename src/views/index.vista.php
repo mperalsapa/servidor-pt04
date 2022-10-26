@@ -15,9 +15,9 @@
 	<div class="contenidor container bg-white border border-dark rounded">
 		<div class="d-flex justify-content-between px-4 pt-4">
 			<div class="d-flex align-items-center">
-				<h1 class=>Articles de Pel·lícules</h1>
+				<h1 class="bg-primary rounded text-white py-2 px-3 m-0">Articles de Pel·lícules</h1>
 
-				<a class="btn btn-sm btn-primary ms-3 <?php echo checkLogin() ? "" : "visually-hidden" ?>" href="write"><i class="bi bi-plus-square"></i> Nou Article</a>
+				<a class="btn btn-sm btn-primary ms-3 <?php echo checkLogin() ? "" : "visually-hidden" ?>" href="write-article"><i class="bi bi-plus-square"></i> Nou Article</a>
 			</div>
 			<div class="btn-group dropstart">
 				<button type="button" class="btn <?php echo checkLogin() ? "btn-primary" : "btn-secondary" ?> btn-sm rounded-circle m-0 p-0 " style="width: 3rem; height: 3rem;" data-bs-toggle="dropdown" aria-expanded="false">
