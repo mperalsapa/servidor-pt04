@@ -96,7 +96,7 @@
 
     </div>
 
-    <?php include_once("src/internal/viewFunctions/bodyEnd.php"); ?>
+    <?php include_once("src/internal/viewFunctions/body-end.php"); ?>
 </body>
 
 </html>

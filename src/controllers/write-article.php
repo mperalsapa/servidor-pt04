@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once("src/internal/viewFunctions/formError.php");
+    include_once("src/internal/viewFunctions/form-error.php");
     if (!empty($_GET["id"])) {
         $id = intval($_GET["id"]);
         $viewData = getArticleData($id);

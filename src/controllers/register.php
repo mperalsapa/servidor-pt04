@@ -2,7 +2,7 @@
 include_once("src/internal/db/mysql.php");
 include_once("src/internal/db/session_manager.php");
 include_once("src/internal/viewFunctions/browser.php");
-include_once("src/internal/viewFunctions/formError.php");
+include_once("src/internal/viewFunctions/form-error.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

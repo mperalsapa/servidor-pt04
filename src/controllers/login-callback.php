@@ -2,7 +2,7 @@
 
 
 echo "callback site\n";
-include_once("src/internal/viewFunctions/socialLogin.php");
+include_once("src/internal/viewFunctions/social-login.php");
 include_once("src/internal/viewFunctions/browser.php");
 include("env.php");
 

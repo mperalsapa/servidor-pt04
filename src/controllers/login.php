@@ -2,7 +2,7 @@
 include_once("src/internal/db/mysql.php");
 include_once("src/internal/db/session_manager.php");
 include_once("src/internal/viewFunctions/browser.php");
-include_once("src/internal/viewFunctions/formError.php");
+include_once("src/internal/viewFunctions/form-error.php");
 
 function checkCaptcha(string $captchaResponse): bool
 {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     include("env.php");
-    include_once("src/internal/viewFunctions/socialLogin.php");
+    include_once("src/internal/viewFunctions/social-login.php");
     switch ($_GET["socialLogin"]) {
         case 'google':
             googleLogin($googleClientID, $googleClientSecret, $callbackUrl);

@@ -7,16 +7,16 @@ $mux["/login"] = "src/controllers/login.php";
 $mux["/register"] = "src/controllers/register.php";
 $mux["/logout"] = "src/controllers/logout.php";
 $mux["/lost-password"] = "src/controllers/lost-password.php";
-$mux["/loginCallback"] = "src/controllers/loginCallback.php";
+$mux["/login-callback"] = "src/controllers/login-callback.php";
 $mux["/profile"] = "src/controllers/profile.php";
 $mux["/webhook"] = "src/controllers/webhook.php";
 $mux["/write-article"] = "src/controllers/write-article.php";
 $mux["/delete-article"] = "src/controllers/delete-article.php";
 $mux["/tos"] = "src/controllers/tos.php";
 $mux["/privacy"] = "src/controllers/privacy.php";
-$mux["/googleLogin"] = "src/controllers/loginCallback.php";
-$mux["/githubLogin"] = "src/controllers/loginCallback.php";
-$mux["/twitterLogin"] = "src/controllers/loginCallback.php";
+$mux["/googleLogin"] = "src/controllers/login-callback.php";
+$mux["/githubLogin"] = "src/controllers/login-callback.php";
+$mux["/twitterLogin"] = "src/controllers/login-callback.php";
 
 function route(string $url, array $mux)
 {

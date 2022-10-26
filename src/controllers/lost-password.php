@@ -1,6 +1,6 @@
 <?php
 include_once("src/internal/db/mysql.php");
-include_once("src/internal/viewFunctions/formError.php");
+include_once("src/internal/viewFunctions/form-error.php");
 include_once("src/internal/viewFunctions/browser.php");
 
 function sendLostPasswordEmail(string $emailTo, string $token): bool
