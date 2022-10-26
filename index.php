@@ -30,6 +30,9 @@ $mux["/google-login"] = "src/controllers/login-callback.php";
 $mux["/github-login"] = "src/controllers/login-callback.php";
 $mux["/twitter-login"] = "src/controllers/login-callback.php";
 
+include_once("src/internal/viewFunctions/git.php");
+$version = getCurrentGitCommit("main");
+printGitInfo($version);
 
 $parsedUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
@@ -39,10 +42,6 @@ if (!isset($baseUrl)) {
 if (empty($baseUrl) || $baseUrl == "/") {
         route($parsedUri, $mux, $baseUrl);
 }
-
-include_once("src/internal/viewFunctions/git.php");
-$version = getCurrentGitCommit("main");
-printGitInfo($version);
 
 $parsedUri = "/" . str_replace($baseUrl, "", $parsedUri);
 route($parsedUri, $mux);
