@@ -11,24 +11,30 @@
 
 <body class="m-0 p-0 bg-dark" style="background-color:#212529">
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3" href="index">
+        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-10 col-md-8 col-lg-6 col-xxl-4" href="index">
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
-        <div class="bg-white rounded col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3">
+        <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
             <form class="align-middle m-4" action="register" method="POST">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index">Inici</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Registrar-se</li>
+                    </ol>
+                </nav>
                 <div class="row">
-                    <label style="width:100%;">Nom
+                    <label>Nom
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?php echo isset($name) ? $name : '' ?>">
                     </label>
                 </div>
                 <div class="row mt-2">
-                    <label style="width:100%;">Cognoms
+                    <label>Cognoms
                         <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognoms" value="<?php echo isset($lastname) ? $lastname : '' ?>">
                     </label>
                 </div>
 
                 <div class="row mt-2">
-                    <label style="width:100%;">Correu Electronic
+                    <label>Correu Electronic
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
@@ -38,7 +44,7 @@
                     </label>
                 </div>
                 <div class="row mt-2">
-                    <label style="width:100%;">Verificacio Correu Electronic
+                    <label>Verificacio Correu Electronic
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="bi bi-check-all"></i></span>
@@ -48,7 +54,7 @@
                     </label>
                 </div>
                 <div class="row mt-2">
-                    <label style="width:100%;">Contrasenya
+                    <label>Contrasenya
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="bi bi-key"></i></span>
@@ -59,7 +65,7 @@
                 </div>
                 <div class="row mt-2">
 
-                    <label style="width:100%;">Verificacio Contrasenya
+                    <label>Verificacio Contrasenya
 
                         <div class="input-group">
                             <div class="input-group-prepend">

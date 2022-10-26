@@ -12,11 +12,17 @@
 
 <body class="m-0 p-0 bg-dark" style="background-color:#212529">
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-12 col-sm-8 col-md-6 col-lg-5 col-xxl-3" href="index">
+        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-10 col-md-8 col-lg-6 col-xxl-4" href="index">
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
-        <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3 my-4 my-4">
+        <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
             <form class="align-middle m-4" action="login" method="POST">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index">Inici</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Iniciar Sessió</li>
+                    </ol>
+                </nav>
                 <h2>Iniciar Sessió</h2>
                 <div class="form-group">
                     <label for="email">Correu Electronic</label>
