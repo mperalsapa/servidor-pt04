@@ -1,6 +1,18 @@
 <?php
 include_once("env.php");
 
+function route(string $url, array $mux)
+{
+        if (isset($mux[$url])) {
+                $controller = $mux[$url];
+                include_once($controller);
+                die();
+        } else {
+                include_once("src/internal/viewFunctions/browser.php");
+                redirectClient("/");
+        }
+}
+
 $mux["/"] = "src/controllers/index.php";
 $mux["/index"] = "src/controllers/index.php";
 $mux["/login"] = "src/controllers/login.php";
@@ -18,17 +30,6 @@ $mux["/google-login"] = "src/controllers/login-callback.php";
 $mux["/github-login"] = "src/controllers/login-callback.php";
 $mux["/twitter-login"] = "src/controllers/login-callback.php";
 
-function route(string $url, array $mux)
-{
-        if (isset($mux[$url])) {
-                $controller = $mux[$url];
-                include_once($controller);
-                die();
-        } else {
-                include_once("src/internal/viewFunctions/browser.php");
-                redirectClient("/");
-        }
-}
 
 $parsedUri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
