@@ -9,4 +9,5 @@ if ($_GET["token"] == $webhookToken) {
     echo 'Deployment sucess';
 } else {
     echo 'Error';
+    echo $cmd;
 }
