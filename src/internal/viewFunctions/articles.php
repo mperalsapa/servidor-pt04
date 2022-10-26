@@ -14,8 +14,8 @@ function printArticlesbyUserId($articles)
             if (isset($userId)) {
                 if ($userId == $row["autor"]) {
                     echo "<div class=\"mt-3\">";
-                    echo "<a class=\"btn btn-sm btn-outline-primary me-3\" href=\"write?id=" . $row["id"] . "\"><i class=\"bi bi-pencil\"></i> Editar</a>";
-                    echo "<a class=\"btn btn-sm btn-outline-danger \" href=\"delete?id=" . $row["id"] . "\"><i class=\"bi bi-trash\"></i> Esborrar</a>";
+                    echo "<a class=\"btn btn-sm btn-outline-primary me-3\" href=\"write-article?id=" . $row["id"] . "\"><i class=\"bi bi-pencil\"></i> Editar</a>";
+                    echo "<a class=\"btn btn-sm btn-outline-danger \" href=\"delete-article?id=" . $row["id"] . "\"><i class=\"bi bi-trash\"></i> Esborrar</a>";
                     echo "</div>";
                 }
             }
