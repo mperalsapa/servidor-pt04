@@ -3,7 +3,7 @@ include_once("src/internal/db/mysql.php");
 include_once("src/internal/viewFunctions/formError.php");
 include_once("src/internal/viewFunctions/browser.php");
 
-function sendLostPasswordEmail(string $emailTo, string $token)
+function sendLostPasswordEmail(string $emailTo, string $token): bool
 {
     include("env.php");
     $curl = curl_init();
@@ -56,9 +56,9 @@ function sendLostPasswordEmail(string $emailTo, string $token)
     curl_close($curl);
 
     if ($err) {
-        echo "cURL Error #:" . $err;
+        return false;
     } else {
-        echo $response;
+        return true;
     }
 }
 
@@ -68,22 +68,35 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         die();
     }
     $token = $_GET["resetToken"];
-    echo "Token: $token <br>";
 
     $pdo = getMysqlPDO();
     $tokenData = getPasswordResetToken($pdo, $token);
+
+    $errorMessage = "Aquest enllaç de recuperacio ha caducat. Pots demanar un enllaç de recuperacio un altre cop.";
     if (empty($tokenData)) {
-        $errorMessage = "Aquest enllaç de recuperacio ha caducat. Pots demanar un enllaç de recuperacio un altre cop.";
-        retornarError($errorMessage, "src/views/lost-password.vista.php");
+        returnAlert($errorMessage, "danger", "src/views/lost-password.vista.php");
     }
-    $tokenTimeStamp = $tokenData["token_caducity"];
-    $actualTimestamp = date('Y-m-d H:i:s');
+
+    $tokenTimeStamp = strtotime($tokenData["token_caducity"]);
+    $actualTimestamp = strtotime(date('Y-m-d H:i:s'));
 
     if ($actualTimestamp < $tokenTimeStamp) {
         include_once("src/views/reset-password.vista.php");
         die();
     }
-    retornarError($errorMessage, "src/views/lost-password.vista.php");
+    returnAlert($errorMessage, "danger", "src/views/lost-password.vista.php");
+
+
+
+    $timeSinceLastTry = $actualTimestamp - $lastTokenTimestamp;
+    $minWaitTimeMinute = 1;
+
+    if ($timeSinceLastTry < $minWaitTimeMinute * 60) {
+        $formResult = "Has d'esperar $minWaitTimeMinut minut avans de tornar a intentar-ho.";
+        returnAlert($formResult, "danger", "src/views/lost-password.vista.php");
+    }
+
+    returnAlert($errorMessage, "danger", "src/views/lost-password.vista.php");
 }
 
 
@@ -96,18 +109,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include_once("src/internal/db/mysql.php");
         $pdo = getMysqlPDO();
         if (!userExists($pdo, $email)) {
-            retornarError($formResult, "src/views/lost-password.vista.php");
+            returnAlert($formResult, "primary", "src/views/lost-password.vista.php");
         };
 
-        $lastTokenTimestamp = getPasswordResetToken($pdo, $email);
-        $actualTimestamp = date('Y-m-d H:i:s', strtotime('now -5 minute'));
-        if ($actualTimestamp < $lastTokenTimestamp) {
-            retornarError("Has d'esperar 5 minuts avans de tornar a intentar-ho.", "src/views/lost-password.vista.php");
+        $lastTokenTimestamp = strtotime(getLastTokenTimestamp($pdo, $email));
+        $actualTimestamp = strtotime(date('Y-m-d H:i:s'));
+
+        $timeSinceLastTry = $actualTimestamp - $lastTokenTimestamp;
+        $minWaitTimeMinute = 1;
+
+        if ($timeSinceLastTry < $minWaitTimeMinute * 60) {
+            $formResult = "Has d'esperar $minWaitTimeMinut minut avans de tornar a intentar-ho.";
+            returnAlert($formResult, "danger", "src/views/lost-password.vista.php");
         }
 
-        // $token = setPasswordResetToken($pdo, $email);
-        // sendLostPasswordEmail($email, $token);
-        retornarError($formResult, "src/views/lost-password.vista.php");
+        $token = setPasswordResetToken($pdo, $email);
+        if (!sendLostPasswordEmail($email, $token)) {
+            $formResult = "S'ha produit un error a l'hora d'enviar el missatge. Si el problema persisteix, contacta amb un administrador";
+            returnAlert($formResult, "danger", "src/views/lost-password.vista.php");
+        };
+        returnAlert($formResult, "primary", "src/views/lost-password.vista.php");
     }
     if (isset($_POST["password"])) {
         $password = $_POST["password"];
