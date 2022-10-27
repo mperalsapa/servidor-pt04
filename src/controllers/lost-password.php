@@ -84,17 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         include_once("src/views/reset-password.vista.php");
         die();
     }
-    returnAlert($errorMessage, "danger", "src/views/lost-password.vista.php");
-
-
-
-    $timeSinceLastTry = $actualTimestamp - $lastTokenTimestamp;
-    $minWaitTimeMinute = 1;
-
-    if ($timeSinceLastTry < $minWaitTimeMinute * 60) {
-        $formResult = "Has d'esperar $minWaitTimeMinut minut avans de tornar a intentar-ho.";
-        returnAlert($formResult, "danger", "src/views/lost-password.vista.php");
-    }
 
     returnAlert($errorMessage, "danger", "src/views/lost-password.vista.php");
 }
@@ -103,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
+        $viewData["email"] = $email;
 
         $formResult = "Si aquest correu existeix, s'enviara un missatge amb un enllaç de recuperacio.";
 
@@ -120,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($timeSinceLastTry < $minWaitTimeMinute * 60) {
             $formResult = "Has d'esperar $minWaitTimeMinut minut avans de tornar a intentar-ho.";
-            returnAlert($formResult, "danger", "src/views/lost-password.vista.php");
+            returnAlert($formResult, "danger", "src/views/lost-password.vista.php", $viewData);
         }
 
         $token = setPasswordResetToken($pdo, $email);
