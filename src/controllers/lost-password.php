@@ -106,10 +106,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $actualTimestamp = strtotime(date('Y-m-d H:i:s'));
 
         $timeSinceLastTry = $actualTimestamp - $lastTokenTimestamp;
-        $minWaitTimeMinute = 1;
+        $minWaitTimeMinute = 5;
 
         if ($timeSinceLastTry < $minWaitTimeMinute * 60) {
-            $formResult = "Has d'esperar $minWaitTimeMinut minut avans de tornar a intentar-ho.";
+            $formResult = "Has d'esperar $minWaitTimeMinute minuts avans de tornar a intentar-ho.";
             returnAlert($formResult, "danger", "src/views/lost-password.vista.php", $viewData);
         }
 
