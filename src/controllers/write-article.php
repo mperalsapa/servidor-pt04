@@ -80,6 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $articleId = $_GET["id"];
-    updateArticle($pdo, $articleId, $$viewData["article"], $articleData["date"]);
+    updateArticle($pdo, $articleId, $viewData["article"], $articleData["date"]);
     redirectClient("/");
 }
