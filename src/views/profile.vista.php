@@ -9,33 +9,48 @@
     <?php include_once("src/internal/viewFunctions/header.php"); ?>
 </head>
 
-<body>
-    <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
-        <div class="bg-white rounded col-8 col-md-6 col-lg-5 col-xxl-3 my-4">
-            <div class="row col-12 d-flex justify-content-center m-0">
-                <div class="col-3 m-5 bg-dark d-flex rounded-circle justify-content-center align-items-center" style="aspect-ratio: 1;">
-                    <p class="m-0 text-white display-4">MP</p>
+<body class="m-0 p-0 bg-dark" style="background-color:#212529">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-10 col-md-8 col-lg-6 col-xxl-4" href="index">
+            <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
+        </a>
+        <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
+            <div class="align-middle m-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index">Inici</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+                    </ol>
+                </nav>
+                <div class="row col-12 d-flex justify-content-center m-0">
+                    <div class="col-3 m-5 bg-dark d-flex rounded-circle justify-content-center align-items-center" style="aspect-ratio: 1;">
+                        <p class="m-0 text-white display-4">MP</p>
+                    </div>
+                </div>
+                <div class="row col-11 d-flex justify-content-center p-0 my-0 mx-auto">
+                    <p class="p-0 m-0 text-center display-6">Marc Jesús Peral Cajidos</p>
+                </div>
+
+                <div class="row col-8 d-flex justify-content-center align-items-center mx-auto my-5">
+                    <div class="row d-flex p-0 m-0">
+                        <a class="btn btn-primary" href="changeEmail">Actualitzar Correu electronic</a>
+                    </div>
+                    <div class="row d-flex p-0 m-0 mt-3">
+                        <a class="btn btn-primary" href="changePassword">Actualitzar Contrasenya</a>
+                    </div>
+                    <div class="row d-flex p-0 m-0 mt-3">
+                        <a class="btn btn-warning" href="logout">Tancar Sessio</a>
+                    </div>
+                    <div class="row d-flex p-0 m-0 mt-5">
+                        <a class="btn btn-danger" href="deleteAccount">Esborrar Compte</a>
+                    </div>
                 </div>
             </div>
-            <div class="row col-11 d-flex justify-content-center p-0 my-0 mx-auto">
-                <p class="p-0 m-0 text-center display-6">Marc Jesús Peral Cajidos</p>
-            </div>
-            <div class="row col-8 d-flex justify-content-center align-items-center mx-auto mt-3 mb-5">
-                <div class="row d-flex p-0 m-0">
-                    <a class="btn btn-primary" href="changeEmail">Actualitzar Correu electronic</a>
-                </div>
-                <div class="row d-flex p-0 m-0 mt-3">
-                    <a class="btn btn-primary" href="changePassword">Actualitzar Contrasenya</a>
-                </div>
-                <div class="row d-flex p-0 m-0 mt-3">
-                    <a class="btn btn-warning" href="logout">Tancar Sessio</a>
-                </div>
-                <div class="row d-flex p-0 m-0 mt-5">
-                    <a class="btn btn-danger" href="deleteAccount">Esborrar Compte</a>
-                </div>
-            </div>
+
         </div>
+
     </div>
+
     <?php include_once("src/internal/viewFunctions/body-end.php"); ?>
 </body>
 
