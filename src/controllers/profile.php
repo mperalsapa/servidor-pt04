@@ -13,6 +13,4 @@ $userId = getUserIDSession();
 $pdo = getMysqlPDO();
 $userName = getUserName($pdo, $userId);
 
-// $viewData["userName"] = $userName;
-
 include_once("src/views/profile.vista.php");
