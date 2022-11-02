@@ -30,6 +30,11 @@ function setUserID(string $userID)
 {
     $_SESSION["id"] = $userID;
 }
+function getUserIDSession(): int
+{
+    return $_SESSION["id"];
+}
+
 
 function getLoginAttempts(): int
 {

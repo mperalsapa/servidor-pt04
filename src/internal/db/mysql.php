@@ -230,11 +230,21 @@ function getLastTokenTimestamp(PDO $conn, string $email): ?string
     return $result;
 }
 
-function changeUserPassword(PDO $conn, string $password, string $token)
+function changeUserPassword(PDO $conn, string $password, string $token): void
 {
     $password = hash("sha256", $password, false);
     $pdo = $conn->prepare("UPDATE usuari SET contrasenya = :contrasenya, reset_token = NULL, caducitat_token = NULL WHERE usuari.reset_token = :token");
     $pdo->bindParam(":contrasenya", $password);
     $pdo->bindParam(":token", $token);
     $pdo->execute();
+}
+
+function getUserName(PDO $conn, int $userId): string
+{
+    $pdo = $conn->prepare("SELECT usuari.nom, usuari.cognoms FROM usuari WHERE usuari.id = :usuariId");
+    $pdo->bindParam(":usuariId", $userId, PDO::PARAM_INT);
+    $pdo->execute();
+    $row = $pdo->fetch();
+    $userName = $row["nom"] . " " . $row["cognoms"];
+    return $userName;
 }

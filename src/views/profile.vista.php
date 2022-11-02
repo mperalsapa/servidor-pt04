@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="row col-11 d-flex justify-content-center p-0 my-0 mx-auto">
-                    <p class="p-0 m-0 text-center display-6">Marc Jesús Peral Cajidos</p>
+                    <p class="p-0 m-0 text-center display-6"><?= $userName ?></p>
                 </div>
 
                 <div class="row col-8 d-flex justify-content-center align-items-center mx-auto my-5">
