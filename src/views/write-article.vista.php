@@ -13,7 +13,7 @@
 
     <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
         <div class="bg-white rounded col-10 col-md-8 col-lg-8 col-xxl-8">
-            <form class="h-50 align-middle m-4" action="write-article<?php echo $viewData["id"] ? "?id=" . $viewData["id"] : "" ?>" method="POST">
+            <form class="align-middle m-4" action="write-article<?php echo $viewData["id"] ? "?id=" . $viewData["id"] : "" ?>" method="POST">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index">Inici</a></li>
