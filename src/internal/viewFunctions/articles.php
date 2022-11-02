@@ -44,7 +44,7 @@ function printArticlesbyUserId($articles)
     } else {
         echo "<div class=\" border border-dark m-4 p-4 rounded  \">";
         echo "<p>";
-        echo "No hi ha articles disponibles. Pots afegir un article aqui: <a href=write> Afegir article</a>";
+        echo "No hi ha articles disponibles. Pots afegir un article aqui: <a href=write-article> Afegir article</a>";
         echo "</p>";
         echo "</div>";
     }
