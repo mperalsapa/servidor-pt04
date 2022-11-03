@@ -11,6 +11,11 @@ if (!checkLogin()) {
 $userId = getUserIDSession();
 
 $pdo = getMysqlPDO();
-$userName = getUserName($pdo, $userId);
+
+
+
+$userData = getUserName($pdo, $userId);
+$name = $userData["nom"] . " " . $userData["cognoms"];
+$email = $userData["correu"];
 
 include_once("src/views/profile.vista.php");

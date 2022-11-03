@@ -258,14 +258,13 @@ function setUserPassword(PDO $conn, string $password, string $token): void
     $pdo->execute();
 }
 
-function getUserName(PDO $conn, int $userId): string
+function getUserName(PDO $conn, int $userId): array
 {
-    $pdo = $conn->prepare("SELECT usuari.nom, usuari.cognoms FROM usuari WHERE usuari.id = :usuariId");
+    $pdo = $conn->prepare("SELECT usuari.id, usuari.nom, usuari.cognoms, usuari.correu FROM usuari WHERE usuari.id = :usuariId");
     $pdo->bindParam(":usuariId", $userId, PDO::PARAM_INT);
     $pdo->execute();
     $row = $pdo->fetch();
-    $userName = $row["nom"] . " " . $row["cognoms"];
-    return $userName;
+    return $row;
 }
 
 function setUserEmail(PDO $conn, string $email, int $userId): void
