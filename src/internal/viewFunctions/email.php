@@ -49,6 +49,7 @@ function sendLostPasswordEmail(string $emailTo, string $token): bool
         ],
     ]);
 
+    $response = curl_exec($curl);
     $err = curl_error($curl);
 
     curl_close($curl);
@@ -107,6 +108,7 @@ function sendChangeEmailToken(string $emailTo, string $token): bool
         ],
     ]);
 
+    $response = curl_exec($curl);
     $err = curl_error($curl);
 
     curl_close($curl);
