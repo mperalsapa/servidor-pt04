@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $pdo = getMysqlPDO();
     if ($url != "/change-email") {
         $viewData["resetPassword"] = false;
+        $viewData["success"] = false;
+
         $viewData["postUrl"] = "/change-password";
 
         include_once("src/views/reset-password.vista.php");
@@ -60,14 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $viewData["token"] = $token;
     $viewData["success"] = false;
+    include_once("src/views/change-email.vista.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $pdo = getMysqlPDO();
 
     if ($url != "/change-email") {
-        $pdo = getMysqlPDO();
 
         $viewData["resetPassword"] = false;
+        $viewData["success"] = false;
         if (empty($_POST["password"])) {
             returnAlert("La contrasenya es buida, introdueix una contrasenya valida", "danger", "src/views/reset-password.vista.php", $viewData);
         }
@@ -83,7 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         setUserPasswordById($pdo, $password, $_SESSION["id"]);
-        redirectClient("profile");
+        $viewData["success"] = true;
+        returnAlert("S'ha canviat la contrasenya correctament.", "success", "src/views/reset-password.vista.php", $viewData);
     }
 
 
@@ -120,5 +125,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $viewData["token"] = "";
     $viewData["success"] = true;
-    returnAlert("S'ha realitzat el canvi de correu electronic.", "success", "src/views/change-email.vista.php", $viewData);
+    returnAlert("S'ha realitzat el canvi de correu electronic correctament.", "success", "src/views/change-email.vista.php", $viewData);
 }
