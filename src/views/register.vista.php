@@ -49,7 +49,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text h-100"><i class="bi bi-check-all"></i></span>
                             </div>
-                            <input type="email" class="form-control" id="verify-email" name="verify-email" placeholder="Correu Electronic">
+                            <input type="email" class="form-control" id="verify-email" name="verify-email" placeholder="Correu Electronic" autocomplete="off">
                         </div>
                     </label>
                 </div>
