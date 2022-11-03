@@ -2,6 +2,7 @@
 include("env.php");
 include_once("src/internal/viewFunctions/browser.php");
 include_once("src/internal/viewFunctions/form-error.php");
+include_once("src/internal/viewFunctions/email.php");
 include_once("src/internal/db/mysql.php");
 include_once("src/internal/db/session_manager.php");
 
@@ -10,15 +11,47 @@ if (!checkLogin()) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $pdo = getMysqlPDO();
 
     if (!isset($_GET["token"])) {
-        $pdo = getMysqlPDO();
         $userId = $_SESSION["id"];
-        $token = setResetTokenById($pdo, $userId);
+        $email = getUserEmail($pdo, $userId);
+
+        $lastTokenTimestamp = strtotime(getLastTokenTimestamp($pdo, $email));
+        $actualTimestamp = strtotime(date('Y-m-d H:i:s'));
+
+        $timeSinceLastTry = $actualTimestamp - $lastTokenTimestamp;
+        $minWaitTimeMinute = 5;
+
+        if ($timeSinceLastTry < $minWaitTimeMinute * 60) {
+            $message = "Has d'esperar $minWaitTimeMinute minuts avans de tornar a intentar-ho.";
+            returnAlert($message, "danger", "src/views/ask-profile-token.vista.php");
+        }
+
+        $token = setResetTokenByEmail($pdo, $email);
+        if (!sendChangeEmailToken($email, $token)) {
+            returnAlert("S'ha produit un error a l'hora d'enviar el missatge. Si el problema persisteix, contacta amb un administrador", "danger", "src/views/ask-profile-token.vista.php");
+        };
+
         returnAlert("S'ha enviat un enllaç al teu correu electronic. Segueix aquest enllaç per realitzar els canvis.", "primary", "src/views/ask-profile-token.vista.php");
     }
 
-    $viewData["token"] = $_GET["token"];
+    $token = $_GET["token"];
+    $tokenData = getResetToken($pdo, $token);
+
+    $errorMessage = "Aquest enllaç de recuperacio ha caducat. Pots demanar un enllaç de recuperacio un altre cop.";
+    if (empty($tokenData)) {
+        returnAlert($errorMessage, "danger", "src/views/ask-profile-token.vista.php");
+    }
+    $tokenTimeStamp = strtotime($tokenData["token_caducity"]);
+    $actualTimestamp = strtotime(date('Y-m-d H:i:s'));
+
+    if ($actualTimestamp > $tokenTimeStamp) {
+        returnAlert($errorMessage, "danger", "src/views/ask-profile-token.vista.php");
+    }
+
+    $viewData["token"] = $token;
+    $viewData["success"] = false;
     $url = getPathOverBase();
     switch ($url) {
         case '/change-email':
@@ -36,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirectClient("/change-email");
     }
     $viewData["token"] = $_GET["token"];
+    $viewData["success"] = false;
 
     if (!isset($_POST["email"])) {
         returnAlert("No has introduit un correu electronic.", "danger", "src/views/change-email.vista.php", $viewData);
@@ -66,5 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $viewData["token"] = "";
+    $viewData["success"] = true;
     returnAlert("S'ha realitzat el canvi de correu electronic.", "success", "src/views/change-email.vista.php", $viewData);
 }
