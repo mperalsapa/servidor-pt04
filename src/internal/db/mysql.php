@@ -203,7 +203,7 @@ function setResetTokenByEmail(PDO $conn, string $email): string
 
 function setResetTokenById(PDO $conn, int $id): string
 {
-    $pdo = $conn->prepare("SELECT contrasenya FROM usuari WHERE usuari.correu = :id");
+    $pdo = $conn->prepare("SELECT contrasenya FROM usuari WHERE usuari.id = :id");
     $pdo->bindParam(":id", $id);
     $pdo->execute();
     $row = $pdo->fetch();
@@ -217,7 +217,7 @@ function setResetTokenById(PDO $conn, int $id): string
     $pdo->bindParam(":token", $token);
     $pdo->bindParam(":tokenTimeStamp", $expiryTimestamp, PDO::PARAM_STR);
     $pdo->bindParam(":lastTry", $actualTimestamp, PDO::PARAM_STR);
-    $pdo->bindParam(":correu", $id);
+    $pdo->bindParam(":id", $id);
     $pdo->execute();
     return $token;
 }
