@@ -15,7 +15,7 @@
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
         <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
-            <form class="align-middle m-4" action="change-email" method="POST">
+            <form class="align-middle m-4 <?php echo $viewData["success"] ? "d-none" : ""; ?>" action="change-email?token=<?= $viewData["token"] ?>" method="POST">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index">Inici</a></li>
@@ -54,6 +54,12 @@
                     </div>
                 </div>
             </form>
+            <?php
+            if ($viewData["success"]) {
+                echo "<div class=\"m-4 alert alert-$alertType\" role=\"alert\">$alertIcon $alertMessage</div>";
+            }
+            ?>
+
 
         </div>
 
