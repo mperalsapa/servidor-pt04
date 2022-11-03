@@ -43,8 +43,57 @@
                         <a class="btn btn-warning" href="logout">Tancar Sessio</a>
                     </div>
                     <div class="row d-flex p-0 m-0 mt-5">
-                        <a class="btn btn-danger" href="deleteAccount">Esborrar Compte</a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountToggle"><i class="bi bi-trash"></i> Esborrar Compte</button>
                     </div>
+
+
+
+
+
+                    <div class="modal fade" id="deleteAccountToggle" aria-hidden="true" aria-labelledby="deleteAccountLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteAccountLabel">Esborrar Compte</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Estas segur que vols esborrar el teu compte? Aquesta accio es irreversible. S'esborraran els teus articles per sempre.
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-bs-target="#deleteAccountConfirmationToggle2" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="bi bi-trash"></i> Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="deleteAccountConfirmationToggle2" aria-hidden="true" aria-labelledby="deleteAccountConfirmationToggleLabel2" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteAccountConfirmationToggleLabel2">Confirmacio Definitiva</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Segurisim que vols continuar?
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-danger" href="deleteAccount"><i class="bi bi-trash"></i> Estic segur</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
 
