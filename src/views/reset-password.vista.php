@@ -15,38 +15,60 @@
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
         <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
-            <form class="align-middle m-4" action="lost-password?resetToken=<?= $token ?>" method="POST">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index">Inici</a></li>
-                        <li class="breadcrumb-item"><a href="lost-password">Recuperar Contrasenya</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Canviar Contrasenya</li>
-                    </ol>
-                </nav>
-                <h2>Restablir Contrasenya</h2>
-                <div class="row mt-2">
-                    <label>Contrasenya
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text h-100"><i class="bi bi-key"></i></span>
-                            </div>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya">
+            <?php
+            if ($viewData["resetPassword"]) {
+                echo "<form class=\"align-middle m-4\" action=\"lost-password?resetToken=$token\" method=\"POST\">";
+            } else {
+                echo "<form class=\"align-middle m-4\" action=\"change-password\" method=\"POST\">";
+            }
+            ?>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index">Inici</a></li>
+                    <?php if ($viewData["resetPassword"]) {
+                        echo "<li class=\"breadcrumb-item\"><a href=\"lost-password\">Recuperar Contrasenya</a></li>";
+                    } else {
+                        echo "<li class=\"breadcrumb-item\"><a href=\"profile\">Perfil</a></li>";
+                        echo "<li class=\"breadcrumb-item active\" aria-current=\"page\">Canviar Contrasenya</li>";
+                    }
+                    ?>
+                </ol>
+            </nav>
+            <h2>
+                <?php if ($viewData["resetPassword"]) {
+                    echo "Restablir contrasenya";
+                } else {
+                    echo "Canviar contrasenya";
+                } ?>
+            </h2>
+            <div class="row mt-2">
+                <label>Contrasenya
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text h-100"><i class="bi bi-key"></i></span>
                         </div>
-                    </label>
-                </div>
-                <div class="row mt-2">
-                    <label>Verificacio Contrasenya
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text h-100"><i class="bi bi-check-all"></i></span>
-                            </div>
-                            <input type="password" class="form-control" id="verify-password" name="verify-password" placeholder="Contrasenya">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Contrasenya">
+                    </div>
+                </label>
+            </div>
+            <div class="row mt-2">
+                <label>Verificacio Contrasenya
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text h-100"><i class="bi bi-check-all"></i></span>
                         </div>
-                    </label>
-                </div>
-                <div class="mt-3">
-                    <button type="submit" class="btn btn-primary col-12"><i class="bi bi-send"></i> Enviar</button>
-                </div>
+                        <input type="password" class="form-control" id="verify-password" name="verify-password" placeholder="Contrasenya">
+                    </div>
+                </label>
+            </div>
+            <div class="mt-3">
+                <?php
+                if (!empty($alertMessage)) {
+                    echo "<div class=\"alert alert-$alertType\" role=\"alert\">$alertIcon $alertMessage</div>";
+                }
+                ?>
+                <button type="submit" class="btn btn-primary col-12"><i class="bi bi-send"></i> Enviar</button>
+            </div>
             </form>
         </div>
 

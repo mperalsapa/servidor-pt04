@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $actualTimestamp = strtotime(date('Y-m-d H:i:s'));
 
     if ($actualTimestamp < $tokenTimeStamp) {
+        $viewData["resetPassword"] = true;
         include_once("src/views/reset-password.vista.php");
         die();
     }
