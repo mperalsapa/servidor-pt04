@@ -274,3 +274,13 @@ function setUserEmail(PDO $conn, string $email, int $userId): void
     $pdo->bindParam(":correu", $email);
     $pdo->execute();
 }
+
+function getUserEmail(PDO $conn, int $userId): string
+{
+    $pdo = $conn->prepare("SELECT correu FROM usuari WHERE usuari.id = :id");
+    $pdo->bindParam(":id", $userId);
+    $pdo->execute();
+    $row = $pdo->fetch();
+
+    return $row["correu"];
+}
