@@ -222,7 +222,7 @@ function setResetTokenById(PDO $conn, int $id): string
     return $token;
 }
 
-function getPasswordResetToken(PDO $conn, string $token): array
+function getResetToken(PDO $conn, string $token): array
 {
     $pdo = $conn->prepare("SELECT reset_token, caducitat_token FROM usuari WHERE reset_token = :token");
     $pdo->bindParam(":token", $token);

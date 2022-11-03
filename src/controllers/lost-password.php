@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $token = $_GET["resetToken"];
 
     $pdo = getMysqlPDO();
-    $tokenData = getPasswordResetToken($pdo, $token);
+    $tokenData = getResetToken($pdo, $token);
 
     $errorMessage = "Aquest enllaç de recuperacio ha caducat. Pots demanar un enllaç de recuperacio un altre cop.";
     if (empty($tokenData)) {
