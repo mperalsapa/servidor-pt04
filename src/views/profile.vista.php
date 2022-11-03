@@ -33,10 +33,10 @@
 
                 <div class="row col-8 d-flex justify-content-center align-items-center mx-auto my-5">
                     <div class="row d-flex p-0 m-0">
-                        <a class="btn btn-primary" href="changeEmail">Actualitzar Correu electronic</a>
+                        <a class="btn btn-primary" href="change-email">Actualitzar Correu electronic</a>
                     </div>
                     <div class="row d-flex p-0 m-0 mt-3">
-                        <a class="btn btn-primary" href="changePassword">Actualitzar Contrasenya</a>
+                        <a class="btn btn-primary" href="change-password">Actualitzar Contrasenya</a>
                     </div>
                     <div class="row d-flex p-0 m-0 mt-3">
                         <a class="btn btn-warning" href="logout">Tancar Sessio</a>
