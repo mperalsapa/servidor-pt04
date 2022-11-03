@@ -10,9 +10,17 @@ if (!checkLogin()) {
     redirectClient("/login");
 }
 
+$url = getPathOverBase();
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $pdo = getMysqlPDO();
+    if ($url != "/change-email") {
+        $viewData["resetPassword"] = false;
+        $viewData["postUrl"] = "/change-password";
 
+        include_once("src/views/reset-password.vista.php");
+        die();
+    }
     if (!isset($_GET["token"])) {
         $userId = $_SESSION["id"];
         $email = getUserEmail($pdo, $userId);
@@ -52,18 +60,32 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $viewData["token"] = $token;
     $viewData["success"] = false;
-    $url = getPathOverBase();
-    switch ($url) {
-        case '/change-email':
-            include_once("src/views/change-email.vista.php");
-            break;
-        case '/change-password':
-            echo "change password";
-            break;
-    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if ($url != "/change-email") {
+        $pdo = getMysqlPDO();
+
+        $viewData["resetPassword"] = false;
+        if (empty($_POST["password"])) {
+            returnAlert("La contrasenya es buida, introdueix una contrasenya valida", "danger", "src/views/reset-password.vista.php", $viewData);
+        }
+        $password = $_POST["password"];
+
+        if (empty($_POST["verify-password"])) {
+            returnAlert("La verificacio de la contrasenya es buida, introdueix una contrasenya valida", "danger", "src/views/reset-password.vista.php", $viewData);
+        }
+        $password2 = $_POST["verify-password"];
+
+        if ($password != $password2) {
+            returnAlert("La verificacio de la contrasenya i la contrasenya no coincideixen. Prova un altre cop", "danger", "src/views/reset-password.vista.php", $viewData);
+        }
+
+        setUserPasswordById($pdo, $password, $_SESSION["id"]);
+        redirectClient("profile");
+    }
+
 
     if (!isset($_GET["token"])) {
         redirectClient("/change-email");
@@ -85,7 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         returnAlert("El correu electronic i la verificacio no coincideixen.", "danger", "src/views/change-email.vista.php", $viewData);
     }
 
-    $pdo = getMysqlPDO();
     if (userExists($pdo, $email)) {
         returnAlert("Aquest correu ja s'esta fent servir en un altre compte.", "danger", "src/views/change-email.vista.php", $viewData);
     }
@@ -95,8 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!userExists($pdo, $email)) {
         returnAlert("S'ha produit un error canviant el correu electronic. Si el problema persiteix contacta amb l'administrador", "danger", "src/views/change-email.vista.php", $viewData);
     }
-
-
 
 
     $viewData["token"] = "";
