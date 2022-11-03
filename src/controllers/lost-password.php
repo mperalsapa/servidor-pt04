@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $token = $_GET["resetToken"];
 
         $pdo = getMysqlPDO();
-        changeUserPassword($pdo, $password, $token);
+        setUserPassword($pdo, $password, $token);
         redirectClient("/login");
     }
 }

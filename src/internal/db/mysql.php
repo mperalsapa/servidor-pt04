@@ -249,7 +249,7 @@ function getLastTokenTimestamp(PDO $conn, string $email): ?string
     return $result;
 }
 
-function changeUserPassword(PDO $conn, string $password, string $token): void
+function setUserPassword(PDO $conn, string $password, string $token): void
 {
     $password = hash("sha256", $password, false);
     $pdo = $conn->prepare("UPDATE usuari SET contrasenya = :contrasenya, reset_token = NULL, caducitat_token = NULL WHERE usuari.reset_token = :token");
@@ -266,4 +266,12 @@ function getUserName(PDO $conn, int $userId): string
     $row = $pdo->fetch();
     $userName = $row["nom"] . " " . $row["cognoms"];
     return $userName;
+}
+
+function setUserEmail(PDO $conn, string $email, int $userId): void
+{
+    $pdo = $conn->prepare("UPDATE usuari SET correu = :correu WHERE usuari.id = :id");
+    $pdo->bindParam(":id", $userId);
+    $pdo->bindParam(":correu", $email);
+    $pdo->execute();
 }
