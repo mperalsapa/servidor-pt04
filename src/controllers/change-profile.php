@@ -6,7 +6,7 @@ $url = getPathOverBase();
 
 switch ($url) {
     case '/change-email':
-        echo "change email";
+        include_once("src/views/change-email.vista.php");
         break;
     case '/change-password':
         echo "change password";
