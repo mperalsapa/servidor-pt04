@@ -180,7 +180,7 @@ function getArticleById(PDO $conn, int $articleId): PDOStatement
 }
 
 
-function setPasswordResetToken(PDO $conn, string $email): string
+function setResetTokenByEmail(PDO $conn, string $email): string
 {
     $pdo = $conn->prepare("SELECT contrasenya FROM usuari WHERE usuari.correu = :correu");
     $pdo->bindParam(":correu", $email);

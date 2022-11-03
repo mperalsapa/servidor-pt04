@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             returnAlert($formResult, "danger", "src/views/lost-password.vista.php", $viewData);
         }
 
-        $token = setPasswordResetToken($pdo, $email);
+        $token = setResetTokenByEmail($pdo, $email);
         if (!sendLostPasswordEmail($email, $token)) {
             $formResult = "S'ha produit un error a l'hora d'enviar el missatge. Si el problema persisteix, contacta amb un administrador";
             returnAlert($formResult, "danger", "src/views/lost-password.vista.php");
