@@ -9,8 +9,8 @@ function sendLostPasswordEmail(string $emailTo, string $token): bool
 
     $emailSender = "no-reply@mperalsapa.cf";
     $emailSenderName = "Articles de Pel·lícules";
-    $resetPasswordLink = $baseDomain . $baseUrl . "lost-password?resetToken=$token";
-    $htmlContent = "<h1>Sol·licitut de recuperació de contrasenya</h1><p>Recuperacio de contrasenya. Fes click en aquest enllaç: <a href=\"$resetPasswordLink\">$resetPasswordLink</a> o copia i enganxa en el navegador.</p><p>Si no has sigut tu, pots ignorar aquest missatge.</p><p>Articles de Pel·licules</p>";
+    $changeEmailLink = $baseDomain . $baseUrl . "lost-password?resetToken=$token";
+    $htmlContent = "<h1>Sol·licitut de recuperació de contrasenya</h1><div><p>Fes click en aquest enllaç: <a href=\"$changeEmailLink\">$changeEmailLink</a> o copia i enganxa en el navegador.</p><p>Si no has sigut tu, pots ignorar aquest missatge.</p></div><p>Articles de Pel·licules</p>";
     $subject = "Recuperació de Contrasenya";
 
     $postContent = json_encode(
@@ -49,7 +49,6 @@ function sendLostPasswordEmail(string $emailTo, string $token): bool
         ],
     ]);
 
-    $response = curl_exec($curl);
     $err = curl_error($curl);
 
     curl_close($curl);
@@ -68,8 +67,8 @@ function sendChangeEmailToken(string $emailTo, string $token): bool
 
     $emailSender = "no-reply@mperalsapa.cf";
     $emailSenderName = "Articles de Pel·lícules";
-    $resetPasswordLink = $baseDomain . $baseUrl . "change-email?token=$token";
-    $htmlContent = "<h1>Sol·licitut de Canvi de Correu Electrónic</h1><p>Canvi de correu electronic. Fes click en aquest enllaç: <a href=\"$resetPasswordLink\">$resetPasswordLink</a> o copia i enganxa en el navegador.</p><p>Si no has sigut tu, pots ignorar aquest missatge.</p><p>Articles de Pel·licules</p>";
+    $changeEmailLink = $baseDomain . $baseUrl . "change-email?token=$token";
+    $htmlContent = "<h1>Sol·licitut de Canvi de Correu Electrónic</h1><div><p>Fes click en aquest enllaç: <a href=\"$changeEmailLink\">$changeEmailLink</a> o copia i enganxa en el navegador.</p><p>Si no has sigut tu, pots ignorar aquest missatge.</p></div><p>Articles de Pel·licules</p>";
     $subject = "Canvi de Correu Electrónic";
 
     $postContent = json_encode(
@@ -108,7 +107,6 @@ function sendChangeEmailToken(string $emailTo, string $token): bool
         ],
     ]);
 
-    $response = curl_exec($curl);
     $err = curl_error($curl);
 
     curl_close($curl);
