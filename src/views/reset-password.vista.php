@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Contrasenya</title>
+    <title>
+        <?php if ($viewData["resetPassword"]) {
+            echo "Restablir contrasenya";
+        } else {
+            echo "Canviar contrasenya";
+        } ?>
+    </title>
     <?php include_once("src/internal/viewFunctions/header.php"); ?>
 </head>
 
@@ -15,11 +21,18 @@
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
         <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
+
             <?php
-            if ($viewData["resetPassword"]) {
-                echo "<form class=\"align-middle m-4\" action=\"lost-password?resetToken=$token\" method=\"POST\">";
+            if (isset($viewData["success"])) {
+                $display = $viewData["success"] ? "d-none" : "";
             } else {
-                echo "<form class=\"align-middle m-4\" action=\"change-password\" method=\"POST\">";
+                $display = "";
+            }
+            if ($viewData["resetPassword"]) {
+
+                echo "<form class=\"align-middle m-4 $display\" action=\"lost-password?resetToken=$token\" method=\"POST\">";
+            } else {
+                echo "<form class=\"align-middle m-4 $display\" action=\"change-password\" method=\"POST\">";
             }
             ?>
             <nav aria-label="breadcrumb">
@@ -70,6 +83,18 @@
                 <button type="submit" class="btn btn-primary col-12"><i class="bi bi-send"></i> Enviar</button>
             </div>
             </form>
+
+            <div></div>
+            <?php
+            if (!$viewData["resetPassword"]) {
+                if ($viewData["success"]) {
+                    echo "<div class=\"my-4\">";
+                    echo "<div class=\"mx-4 alert alert-$alertType\" role=\"alert\">$alertIcon $alertMessage</div>";
+                    echo "<a class=\"mx-4 btn btn-primary\" href=\"index\"><i class=\"bi bi-house\"></i> Tornar a l'inici</a>";
+                    echo "</div>";
+                }
+            }
+            ?>
         </div>
 
     </div>
