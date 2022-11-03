@@ -15,7 +15,7 @@
             <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
         </a>
         <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
-            <form class="align-middle m-4" action="lost-password" method="POST">
+            <form class="align-middle m-4" action="change-email" method="POST">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index">Inici</a></li>
@@ -30,6 +30,16 @@
                             <span class="input-group-text h-100"><i class="bi bi-envelope"></i></span>
                         </div>
                         <input type="email" class="form-control" name="email" placeholder="Correu Electronic" id="email" required value="<?php echo isset($viewData["email"]) ? $viewData["email"] : '' ?>">
+                    </div>
+                    <div class="invalid-feedback">Introdueix un correu electronic valid</div>
+                </div>
+                <div class="form-group">
+                    <label for="verify-email">Verificació de Correu Electronic</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text h-100"><i class="bi bi-envelope"></i></span>
+                        </div>
+                        <input type="email" autocomplete="off" class="form-control" name="verify-email" placeholder="Verificació de Correu Electronic" id="verify-email" required>
                     </div>
                     <div class="invalid-feedback">Introdueix un correu electronic valid</div>
                 </div>
