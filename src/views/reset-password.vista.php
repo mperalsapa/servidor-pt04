@@ -78,7 +78,7 @@
             <div class="mt-3">
                 <?php
                 if (!empty($alertMessage)) {
-                    echo "<div class=\"alert alert-$alertType\" role=\"alert\">$alertIcon $alertMessage</div>";
+                    echo "<div class=\"d-flex justify-content align-items-center alert alert-$alertType alert-dismissible\" role=\"alert\"><span class=\"me-3\">$alertIcon</span> $alertMessage <button type=\"button\" class=\"btn-close\" aria-label=\"Close\" data-bs-dismiss=\"alert\" ></button></div>";
                 }
                 ?>
                 <button type="submit" class="btn btn-primary col-12"><i class="bi bi-send"></i> Enviar</button>
