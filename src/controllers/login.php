@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $viewData["email"] = $email;
 
     if (!checkUserPassword($pdo, $password, $email)) {
-        $formResult = "La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password.php\">Recuperació de contrasenya</a>";
+        $formResult = "La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password\">Recuperació de contrasenya</a>";
         setLoginAttempt(getLoginAttempts() + 1);
         returnAlert($formResult, "danger", "src/views/login.vista.php", $viewData);
         die();
