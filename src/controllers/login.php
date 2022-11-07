@@ -4,27 +4,6 @@ include_once("src/internal/db/session_manager.php");
 include_once("src/internal/viewFunctions/browser.php");
 include_once("src/internal/viewFunctions/form-error.php");
 
-function checkCaptcha(string $captchaResponse): bool
-{
-
-    $data = array(
-        'secret' => "0x6A8238ab6E15bE018e4f6d43DaA1888C30443e0F",
-        'response' => $captchaResponse
-    );
-    $verify = curl_init();
-    curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
-    curl_setopt($verify, CURLOPT_POST, true);
-    curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($verify);
-    $responseData = json_decode($response);
-    if ($responseData->success) {
-        return true;
-        // your success code goes here
-    }
-    return false;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (checkLogin()) {
         redirectClient("/");
