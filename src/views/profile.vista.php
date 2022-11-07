@@ -77,7 +77,7 @@
                                     Segurisim que vols continuar?
                                 </div>
                                 <div class="modal-footer">
-                                    <a class="btn btn-danger" href="deleteAccount"><i class="bi bi-trash"></i> Estic segur</a>
+                                    <a class="btn btn-danger" href="delete-account"><i class="bi bi-trash"></i> Estic segur</a>
                                 </div>
                             </div>
                         </div>

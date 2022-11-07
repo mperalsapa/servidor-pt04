@@ -293,3 +293,10 @@ function getUserEmail(PDO $conn, int $userId): string
 
     return $row["correu"];
 }
+
+function removeUserAccount(PDO $conn, int $userId): void
+{
+    $pdo = $conn->prepare("DELETE FROM usuari WHERE usuari.id = :id");
+    $pdo->bindParam(":id", $userId);
+    $pdo->execute();
+}

@@ -23,6 +23,7 @@ $mux["/login-callback"] = "src/controllers/login-callback.php";
 $mux["/profile"] = "src/controllers/profile.php";
 $mux["/change-email"] = "src/controllers/change-profile.php";
 $mux["/change-password"] = "src/controllers/change-profile.php";
+$mux["/delete-account"] = "src/controllers/delete-profile.php";
 $mux["/webhook"] = "src/controllers/webhook.php";
 $mux["/write-article"] = "src/controllers/write-article.php";
 $mux["/delete-article"] = "src/controllers/delete-article.php";
