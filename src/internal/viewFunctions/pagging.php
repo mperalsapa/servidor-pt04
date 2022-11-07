@@ -26,7 +26,7 @@ function checkMaxPage(PDO $conn, int $itemsPerPage): int
 function getPagNumber(int $maxPage): int
 {
     if (empty($_GET["p"])) {
-        redirectClient("?p=1");
+        return 1;
     }
 
     $pag = intval($_GET["p"]);
@@ -104,10 +104,11 @@ function printDynamicPagination(int $page, int $maxPagination, int $maxPage, int
 
 function printPaginationButton(int $actualPage, int $page)
 {
+    $visibility = getPaginationVisibility();
     if ($actualPage == $page) {
         echo "<li class=\"page-item active user-select-none\"><a class=\"page-link\" >$actualPage</a></li>";
     } else {
-        echo "<li class=\"page-item \"><a class=\"page-link\" href=\"?p=$actualPage\">$actualPage</a></li>";
+        echo "<li class=\"page-item \"><a class=\"page-link\" href=\"?p=$actualPage" . $visibility . "\">$actualPage</a></li>";
     }
 }
 
@@ -120,7 +121,8 @@ function printFirstPage($page, $minPage)
     } else {
         echo "<li class=\"page-item\">";
     }
-    echo "<a class=\"page-link\" href=\"?p=$minPage\" aria-label=\"Next\">";
+    $visibility = getPaginationVisibility();
+    echo "<a class=\"page-link\" href=\"?p=$minPage" . $visibility . "\" aria-label=\"Next\">";
     echo "      <i class=\"bi bi-chevron-double-left\"></i>
                 <span class=\"sr-only\">Primera</span>
 			</a>
@@ -134,7 +136,8 @@ function printLastPage($page, $maxPage)
     } else {
         echo "<li class=\"page-item\">";
     }
-    echo "<a class=\"page-link\" href=\"?p=$maxPage\" aria-label=\"Next\">";
+    $visibility = getPaginationVisibility();
+    echo "<a class=\"page-link\" href=\"?p=$maxPage" . $visibility . "\" aria-label=\"Next\">";
     echo "      <span class=\"sr-only\">Ultima</span>
                 <i class=\"bi bi-chevron-double-right\"></i>
 			</a>
@@ -152,4 +155,16 @@ function printPagination($page, $minPage, $maxPage, $maxPagination)
     }
     printLastPage($page, $maxPage);
     echo "</ul></nav>";
+}
+
+function getPaginationVisibility(): string
+{
+    if (!isset($_GET["art"])) {
+        return "";
+    }
+    if ($_GET["art"] == "all") {
+        return "&art=all";
+    } else {
+        return "&art=me";
+    }
 }

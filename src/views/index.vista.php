@@ -13,38 +13,32 @@
 <body class="bg-dark">
 
 	<div class="contenidor container bg-white border border-dark rounded">
-		<div class="d-flex justify-content-between px-4 pt-4">
-			<div class="d-flex align-items-center">
-				<h1 class="bg-primary rounded text-white user-select-none py-2 px-3 m-0">Articles de Pel·lícules</h1>
-				<a class="btn btn-sm btn-primary ms-3 <?php echo checkLogin() ? "" : "visually-hidden" ?>" href="write-article"><i class="bi bi-plus-square"></i> Nou Article</a>
-			</div>
-			<div class="btn-group dropstart">
-				<button type="button" class="btn <?php echo checkLogin() ? "btn-primary" : "btn-secondary" ?> btn-sm rounded-circle m-0 p-0 " style="width: 3rem; height: 3rem;" data-bs-toggle="dropdown" aria-expanded="false">
-					<?php
-					if (checkLogin()) {
-						$nameInitial = $_SESSION['name-initial'];
-						$surnameInitial = $_SESSION['surname-initial'];
-
-						echo "<span class=\"my-0\">$nameInitial$surnameInitial</span>";
-					} else {
-						echo "<i class=\"bi bi-person-fill\"></i>";
-					}
+		<?php
+		include_once("src/internal/viewFunctions/navbar.php");
 
 
-					?>
-				</button>
-				<ul class="dropdown-menu">
-					<?php if (!checkLogin()) {
-						echo "<li><a class=\"dropdown-item\" href=\"login\"><i class=\"bi bi-box-arrow-in-right\"></i> Iniciar Sessió</a></li>";
-						echo "<li><a class=\"dropdown-item\" href=\"register\"><i class=\"bi bi-clipboard-minus\"></i> Registrarse</a></li>";
-					} else {
-						echo "<li><a class=\"dropdown-item\" href=\"profile\"><i class=\"bi bi-person-fill\"></i> Perfil</a></li>";
-						echo "<li><a class=\"dropdown-item\" href=\"logout\"><i class=\"bi bi-box-arrow-right\"></i> Tancar sesió</a></li>";
-					} ?>
+		$displayArticleSelection = checkLogin() ? "" : "d-none";
+		$meActive = "";
+		$allActive = "";
 
-				</ul>
-			</div>
-		</div>
+		if (empty($displayArticleSelection)) {
+			if (isset($_GET["art"])) {
+				if ($_GET["art"] == "all") {
+					$allActive = "active";
+				} else {
+					$meActive = "active";
+				}
+			} else {
+				$meActive = "active";
+			}
+
+			echo "<div class=\"btn-group mx-4 $displayArticleSelection\" role=\"group\" aria-label=\"Basic example\">";
+			echo "<a class=\"btn btn-primary $allActive\" href=\"index?p=$page&art=all\">Tots</a>";
+			echo "<a class=\"btn btn-primary $meActive\" href=\"index?p=$page&art=me\">Meus</a>";
+			echo "</div>";
+		}
+
+		?>
 		<section class="articles">
 			<?php
 			include_once('src/internal/viewFunctions/articles.php');

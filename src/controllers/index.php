@@ -11,7 +11,13 @@ require_once("src/internal/viewFunctions/browser.php");
 $pdo = getMysqlPDO();
 
 $itemsPerPage = 5;
-if (checkLogin()) {
+if (isset($_GET["art"])) {
+  $meArticles = $_GET["art"] == "me" ? true : false;
+} else {
+  $meArticles = true;
+}
+
+if (checkLogin() && $meArticles) {
   $userid = $_SESSION["id"];
   $artCount = getArticleCountByUser($pdo, $userid);
   if (!$artCount == 0) {
