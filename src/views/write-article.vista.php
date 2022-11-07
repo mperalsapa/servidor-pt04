@@ -9,9 +9,11 @@
     <?php include_once("src/internal/viewFunctions/header.php"); ?>
 </head>
 
-<body>
-
-    <div class="bg-dark d-flex align-items-center justify-content-center" style="height:100vh; width:100vw;">
+<body class="m-0 p-0 bg-dark">
+    <?php
+    include_once("src/internal/viewFunctions/navbar.php");
+    ?>
+    <div class="d-flex align-items-center justify-content-center">
         <div class="bg-white rounded col-10 col-md-8 col-lg-8 col-xxl-8">
             <form class="align-middle m-4" action="write-article<?php echo $viewData["id"] ? "?id=" . $viewData["id"] : "" ?>" method="POST">
                 <nav aria-label="breadcrumb">

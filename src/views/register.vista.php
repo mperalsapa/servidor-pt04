@@ -10,10 +10,10 @@
 </head>
 
 <body class="m-0 p-0 bg-dark" style="background-color:#212529">
+    <?php
+    include_once("src/internal/viewFunctions/navbar.php");
+    ?>
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <a class="my-4 d-flex align-items-center justify-content-center btn btn-secondary col-10 col-md-8 col-lg-6 col-xxl-4" href="index">
-            <span class="text-white m-0 fs-5"><i class="bi bi-house"></i> ARTICLES DE PEL·LÍCULES</span>
-        </a>
         <div class="bg-white rounded col-10 col-md-8 col-lg-6 col-xxl-4 mb-4">
             <form class="align-middle m-4" action="register" method="POST">
                 <nav aria-label="breadcrumb">
