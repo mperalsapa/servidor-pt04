@@ -11,6 +11,7 @@
 
 <body class="m-0 p-0 bg-dark">
     <?php
+    // mostrem navbar
     include_once("src/internal/viewFunctions/navbar.php");
     ?>
 

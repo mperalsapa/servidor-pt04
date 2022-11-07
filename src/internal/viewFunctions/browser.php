@@ -13,6 +13,8 @@ function redirectClient(string $url)
     die();
 }
 
+// aquesta funcio retorna el contingut que hi ha despres de la url base. Per exemple, si la url base es /blog/ i estem 
+// visitant /blog/canviar-email ens retornara /canviar-email
 function getPathOverBase(): string
 {
     include("env.php");
