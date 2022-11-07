@@ -1,8 +1,9 @@
 <?php
+// Marc Peral
+// script que s'encarrega de l'index del lloc
 
+// importem les funcions que farem servir
 require_once("src/internal/db/session_manager.php");
-
-// importem les dependencies internes
 require_once("src/internal/db/mysql.php");
 require_once("src/internal/viewFunctions/pagging.php");
 require_once("src/internal/viewFunctions/browser.php");
@@ -10,7 +11,12 @@ require_once("src/internal/viewFunctions/browser.php");
 // Ens connectem a la base de dades	
 $pdo = getMysqlPDO();
 
+// configurem el numero d'items per pagina, es a dir, quantitat d'articles per pagina
 $itemsPerPage = 5;
+// si la url no conté "art" configurem $meArticles a true.
+// aquest atribut fa que es mostrin els articles de l'usuari que conte sessio iniciada
+// o que es mostrin tots els articles
+
 if (isset($_GET["art"])) {
   $meArticles = $_GET["art"] == "me" ? true : false;
 } else {
