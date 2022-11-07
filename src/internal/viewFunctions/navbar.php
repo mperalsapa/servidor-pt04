@@ -13,6 +13,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="tos">Terms de servei</a></li>
                         <li><a class="dropdown-item" href="privacy">Privacitat</a></li>
+                        <li><a class="dropdown-item" href="contact">Contacte</a></li>
                     </ul>
                 </li>
                 <li>
