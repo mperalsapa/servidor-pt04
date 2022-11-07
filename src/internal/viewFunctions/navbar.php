@@ -27,7 +27,7 @@
 
 
 
-            <ul class="nav-item dropdown m-0 p-0">
+            <ul class="nav-item dropstart m-0 p-0">
                 <a class="nav-link dropdown-toggle text-white bg-primary rounded" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?php
                     if (checkLogin()) {
