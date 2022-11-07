@@ -19,7 +19,10 @@
                     <?php
                     include_once("src/internal/db/session_manager.php");
                     if (checkLogin()) {
-                        echo "<a class=\"ms-3 nav-link bg-primary rounded text-white\" href=\"write-article\"><i class=\"bi bi-plus-square\"></i> Nou Article</a>";
+                        include_once("src/internal/db/mysql.php");
+                        $pdo = getMysqlPDO();
+                        $badgeCount = getArticleCountByUser($pdo, $_SESSION["id"]);
+                        echo "<a class=\"ms-3 nav-link bg-primary rounded text-white\" href=\"write-article\"><i class=\"bi bi-plus-square\"></i> Nou Article <span class=\"badge bg-secondary\">$badgeCount</span></a>";
                     }
                     ?>
                 </li>
