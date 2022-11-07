@@ -11,7 +11,7 @@
                         Legal
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="privacy">Terms de servei</a></li>
+                        <li><a class="dropdown-item" href="tos">Terms de servei</a></li>
                         <li><a class="dropdown-item" href="privacy">Privacitat</a></li>
                     </ul>
                 </li>
@@ -19,7 +19,7 @@
                     <?php
                     include_once("src/internal/db/session_manager.php");
                     if (checkLogin()) {
-                        echo "<a class=\"nav-link bg-primary rounded text-white\" href=\"write-article\"><i class=\"bi bi-plus-square\"></i> Nou Article</a>";
+                        echo "<a class=\"ms-3 nav-link bg-primary rounded text-white\" href=\"write-article\"><i class=\"bi bi-plus-square\"></i> Nou Article</a>";
                     }
                     ?>
                 </li>
