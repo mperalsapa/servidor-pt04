@@ -37,6 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
         $viewData["email"] = $email;
 
+        if (!isset($_POST['h-captcha-response'])) {
+            $formResult = "S'ha produit un error validant el captcha. Torna a probar.";
+            returnAlert($formResult, "danger", "src/views/lost-password.vista.php", $viewData);
+        }
+
+        $validCaptcha = checkCaptcha($_POST['h-captcha-response']);
+        if (!$validCaptcha) {
+            $formResult = "No has omplert el captcha correctament. Torna a probar.";
+            returnAlert($formResult, "danger", "src/views/lost-password.vista.php", $viewData);
+        }
+
         $formResult = "Si aquest correu existeix, s'enviara un missatge amb un enllaç de recuperacio.";
 
         include_once("src/internal/db/mysql.php");
