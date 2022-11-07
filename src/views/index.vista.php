@@ -12,11 +12,12 @@
 
 <body class="bg-dark">
 
-	<div class="contenidor container bg-white border border-dark rounded">
+	<?php
+	include_once("src/internal/viewFunctions/navbar.php");
+	?>
+
+	<div class="contenidor container bg-white rounded p-4">
 		<?php
-		include_once("src/internal/viewFunctions/navbar.php");
-
-
 		$displayArticleSelection = checkLogin() ? "" : "d-none";
 		$meActive = "";
 		$allActive = "";
@@ -39,12 +40,12 @@
 		}
 
 		?>
-		<section class="articles">
+		<div class="articles">
 			<?php
 			include_once('src/internal/viewFunctions/articles.php');
 			printArticlesbyUserId($articles);
 			?>
-		</section>
+		</div>
 
 		<?php
 		printPagination($page, 1, $maxPage, 6)
