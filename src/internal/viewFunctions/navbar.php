@@ -17,6 +17,7 @@
                 </li>
                 <li>
                     <?php
+                    include_once("src/internal/db/session_manager.php");
                     if (checkLogin()) {
                         echo "<a class=\"nav-link bg-primary rounded text-white\" href=\"write-article\"><i class=\"bi bi-plus-square\"></i> Nou Article</a>";
                     }
