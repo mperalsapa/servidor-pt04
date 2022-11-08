@@ -1,15 +1,19 @@
 <?php
+// Marc Peral
+// script que s'encarrega de la crida del callback de login social
 
-
-echo "callback site\n";
+// importem les funcions necessaries
 include_once("src/internal/viewFunctions/social-login.php");
 include_once("src/internal/viewFunctions/browser.php");
 include("env.php");
 
-
-$authProvider = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+// agafem la url per seleccionar el tipus d'autenticacio
+$authProvider = getPathOverBase();
+//debug
 echo "<br>" . $authProvider . "<br>";
 echo "Login method:";
+
+//
 switch ($authProvider) {
     case '/google-login':
         echo "google";
@@ -26,9 +30,9 @@ switch ($authProvider) {
 }
 
 
-print_r($userInfo);
 
 if (!empty($userInfo)) {
+    print_r($userInfo);
     socialLoginUser($userInfo);
 }
 
