@@ -1,4 +1,7 @@
 <?php
+// Marc Peral
+// script que s'encarrega del proces de tancar sessio
+
 // importem les funcions necessaries
 include_once("src/internal/db/session_manager.php");
 include_once("src/internal/viewFunctions/browser.php");
