@@ -1,16 +1,26 @@
 <?php
+// Marc Peral
+// script que s'encarrega de mostrar els articles en la pagina principal
+
+
+// aquesta funcio mostra els articles que es passen
 function printArticlesbyUserId($articles)
 {
+    // comprovem si els articles no son buits
     if (isset($articles) && $articles != '') {
+        // comprovem si l'id de l'usuari esta a la sessio
         if (isset($_SESSION["id"])) {
             $userId = $_SESSION["id"];
         }
+        // iterem sobre cada article que hi tenim per mostrar-lo
         while ($row = $articles->fetch()) {
             echo "<div class=\" border border-dark m-4 p-4 rounded  \">";
             echo "<p>";
             echo $row["article"];
             echo "</p>";
             echo "<div>" . $row["nom"] . " " . $row["cognoms"] . " - " . $row["data"] . "</div>";
+            // si tenim un id d'usuari, vol dir que pot modificar i/o esborrar un article, per lo que li mostrem els botons
+            // per poder realitzar aquestes accions
             if (isset($userId)) {
                 if ($userId == $row["autor"]) {
                     echo "<div class=\"mt-3\">";
@@ -42,6 +52,7 @@ function printArticlesbyUserId($articles)
             echo "</div>";
         }
     } else {
+        // en cas de tenir articles buits, mostrem que no hi ha
         echo "<div class=\" border border-dark m-4 p-4 rounded  \">";
         echo "<p>";
         echo "No hi ha articles disponibles. Pots afegir un article aqui: <a href=write-article> Afegir article</a>";

@@ -1,3 +1,4 @@
+<!-- navbar del lloc -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 pb-3">
     <div class="container-fluid">
         <a class="navbar-brand" href="index">Articles de Pel·licules</a>

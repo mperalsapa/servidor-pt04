@@ -1,5 +1,6 @@
 <?php
-// Marc Peral 2 DAW
+// Marc Peral
+// script que s'encarrega de mostrar la paginacio a l'hora de mostrar els articles
 
 // aquesta funcio, agafa de la base de dades el numero d'articles que hi ha a la base de dades
 // fa un calcul en base a un parametre, i retorna el numero maxim de pagines segons el numero d'articles
@@ -44,7 +45,7 @@ function getPagNumber(int $maxPage): int
     return $pag;
 }
 
-
+// aquesta funcio mostra els botons de paginacio sense ningun calcul
 function printStaticPagination(int $page, int $maxPage)
 {
     for ($actualPage = 1; $actualPage <= $maxPage; $actualPage++) {
@@ -52,6 +53,8 @@ function printStaticPagination(int $page, int $maxPage)
     }
 }
 
+// aquesta funcio mostra els botons de paginacio calculant si s'ha de "moure" per que la pagina actual sigui al mi
+// per exemple, si com a la pagina 6, hauria de ser aixi (tenin en compte que volem 5 botons de paginacio) 4 5 6 7 8 
 function printDynamicPagination(int $page, int $maxPagination, int $maxPage, int $minPage)
 {
 
@@ -102,6 +105,7 @@ function printDynamicPagination(int $page, int $maxPagination, int $maxPage, int
     }
 }
 
+// aquesta funcio mostra un boto de paginacio, i si es la pagina actual, el mostra inhabilitat
 function printPaginationButton(int $actualPage, int $page)
 {
     $visibility = getPaginationVisibility();
@@ -112,7 +116,7 @@ function printPaginationButton(int $actualPage, int $page)
     }
 }
 
-
+// aquesta funcio mostra el primer boto de paginacio, (<< Primera)
 function printFirstPage($page, $minPage)
 {
     echo "<li class=\"page-item\">";
@@ -124,10 +128,12 @@ function printFirstPage($page, $minPage)
     $visibility = getPaginationVisibility();
     echo "<a class=\"page-link\" href=\"?p=$minPage" . $visibility . "\" aria-label=\"Next\">";
     echo "      <i class=\"bi bi-chevron-double-left\"></i>
-                <span class=\"sr-only\">Primera</span>
-			</a>
-		</li>";
+    <span class=\"sr-only\">Primera</span>
+    </a>
+    </li>";
 }
+
+// aquesta funcio mostra el ultim boto de paginacio, (Ultima >>)
 function printLastPage($page, $maxPage)
 {
     echo "<li class=\"page-item\">";
@@ -144,6 +150,7 @@ function printLastPage($page, $maxPage)
 		</li>";
 }
 
+// aquesta funcio mostra el primer i ultim boto de paginacio, i decideix si mostrar paginacio dinamica o estatica
 function printPagination($page, $minPage, $maxPage, $maxPagination)
 {
     echo "<nav><ul class=\"pagination justify-content-center p-5 mt-5\">";
@@ -157,6 +164,8 @@ function printPagination($page, $minPage, $maxPage, $maxPagination)
     echo "</ul></nav>";
 }
 
+// aquesta funcio decideix si la paginacio es publica o privada
+// ja que un usuari amb sessio iniciada, pot decidir si veure els seus articles o el de tots
 function getPaginationVisibility(): string
 {
     if (!isset($_GET["art"])) {

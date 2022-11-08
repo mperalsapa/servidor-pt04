@@ -1,7 +1,11 @@
 <?php
+// Marc Peral
+// script que s'encarrega de enviar plantilles de correu electronic
 
 
 
+
+// funcio que envia un token per correu per recuperar contrasenya fent servir la plantilla de recuperacio de contrasenya
 function sendLostPasswordEmail(string $emailTo, string $token): bool
 {
     include("env.php");
@@ -61,6 +65,7 @@ function sendLostPasswordEmail(string $emailTo, string $token): bool
     }
 }
 
+// funcio que envia un token per correu per canviar el correu electronic del compte
 function sendChangeEmailToken(string $emailTo, string $token): bool
 {
     include("env.php");
@@ -120,6 +125,7 @@ function sendChangeEmailToken(string $emailTo, string $token): bool
     }
 }
 
+// funcio que envia un token per correu per esborrar el compte de l'usuari que ho demana
 function sendDeleteAccountToken(string $emailTo, string $token): bool
 {
     include("env.php");

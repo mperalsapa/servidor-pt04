@@ -1,4 +1,7 @@
 <?php
+// Marc Peral
+// script que s'encarrega del proces de recuperacio de contrasenya
+
 include_once("src/internal/db/mysql.php");
 include_once("src/internal/viewFunctions/form-error.php");
 include_once("src/internal/viewFunctions/browser.php");

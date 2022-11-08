@@ -1,13 +1,11 @@
 <?php
+// Marc Peral
+// script que s'encarrega dels possibles errors (entrada d'usuari) a l'hora de tractar amb formularis
 
 
-function retornarError(string $error, string $vista)
-{
-    $formResult = $error;
-    include_once($vista);
-    die();
-}
 
+// funcio que permet mostrar una alerta dels tipus admesos per bootstrap, 
+// mostra la vista desitjada i agafa les dades necessaries per mostrar la vista
 function returnAlert(string $message, string $type, string $vista, ?array $viewData = array())
 {
     $alertMessage = $message;
@@ -33,6 +31,7 @@ function returnAlert(string $message, string $type, string $vista, ?array $viewD
     die();
 }
 
+// funcio que comprova el si el captcha introduit es correcte (en aquest cas, el captcha es hcaptcha)
 function checkCaptcha(string $captchaResponse): bool
 {
 

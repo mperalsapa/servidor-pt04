@@ -1,8 +1,12 @@
 <?php
+// Marc Peral
+// script que s'encarrega de fer que l'usuari inici sessio amb social login (google, github...), i si ja ha iniciat
+// sessio, s'encarrega de agafar les dades com el nom i el correu electronic
 
+// importem la llibreria de hybridAuth
 include_once("src/internal/hybridAuth/autoload.php");
 
-
+// aquesta funcio inicia sessio amb google. En cas de que no tinguem el token de login, realitzara una redireccio al client
 function googleLogin(string $googleClientID, string $googleClientSecret, string $callbackUrl): \Hybridauth\Provider\Google
 {
     $config = [
@@ -15,6 +19,8 @@ function googleLogin(string $googleClientID, string $googleClientSecret, string 
     return $googleAuth;
 }
 
+// si el client ha iniciat sesio a google, aquesta funcio ens permet agafar el seu nom, cognom i correu electronic
+// i retornem aquestes dades
 function getGoogleProfile(string $googleClientID, string $googleClientSecret, string $callbackUrl): array
 {
     $googleAuth = googleLogin($googleClientID, $googleClientSecret, $callbackUrl);
@@ -41,6 +47,7 @@ function getGoogleProfile(string $googleClientID, string $googleClientSecret, st
     return $userInfo;
 }
 
+// aquesta funcio inicia sessio amb github. En cas de que no tinguem el token de login, realitzara una redireccio al client
 function githubLogin(string $githubClientID, string $githubClientSecret, string $callbackUrl): \Hybridauth\Provider\GitHub
 {
     $config = [
@@ -55,6 +62,8 @@ function githubLogin(string $githubClientID, string $githubClientSecret, string 
     return $github;
 }
 
+// si el client ha iniciat sesio a github, aquesta funcio ens permet agafar el seu nom, cognom i correu electronic
+// i retornem aquestes dades
 function getGithubProfile(string $githubClientID, string $githubClientSecret, string $callbackUrl): array
 {
     $github = githubLogin($githubClientID, $githubClientSecret, $callbackUrl);
@@ -80,6 +89,7 @@ function getGithubProfile(string $githubClientID, string $githubClientSecret, st
     return $userInfo;
 }
 
+// aquesta funcio inicia sessio amb twitter. En cas de que no tinguem el token de login, realitzara una redireccio al client
 function twitterLogin(string $twitterClientID, string $twitterClientSecret, string $callbackUrl): \Hybridauth\Provider\Twitter
 {
     $config = [
@@ -92,6 +102,8 @@ function twitterLogin(string $twitterClientID, string $twitterClientSecret, stri
     return $twitter;
 }
 
+// si el client ha iniciat sesio a twitter, aquesta funcio ens permet agafar el seu nom, cognom i correu electronic
+// i retornem aquestes dades
 function getTwitterProfile(string $twitterClientID, string $twitterClientSecret, string $callbackUrl): array
 {
     $twitter = twitterLogin($twitterClientID, $twitterClientSecret, $callbackUrl);
@@ -117,6 +129,9 @@ function getTwitterProfile(string $twitterClientID, string $twitterClientSecret,
     return $userInfo;
 }
 
+// aquesta funcio agafa informacio d'usuari com el correu, nom i cognom i comprova 
+// si aquest usuari ja existeix en la base de dades. En cas de ja existir, guardem les dades en la sessio
+// en cas de no existir, registrem l'usuari i guardem les dades en la sessio
 function socialLoginUser(array $userInfo)
 {
     include_once("src/internal/db/mysql.php");
@@ -126,13 +141,11 @@ function socialLoginUser(array $userInfo)
     if (userExists($pdo, $userInfo["email"])) {
         setUserLoggedinData($pdo, $userInfo["email"]);
         redirectClient("/");
-        die();
     }
 
     $register = addUser($pdo, $userInfo["name"], $userInfo["surname"], $userInfo["email"], "");
     if ($register) {
         setUserLoggedinData($pdo, $userInfo["email"]);
         redirectClient("/");
-        die();
     }
 }
