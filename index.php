@@ -8,7 +8,7 @@
 // d'aquesta manera podem associar mes d'una ruta al mateix script
 
 // importem les variables d'entorn i funcions necessaries
-include_once("env.php");
+require("env.php");
 include_once("src/internal/viewFunctions/git.php");
 
 // funcio que s'encarrega de mostrar la ruta demanada si existeix. Si no existeix, fa una redireccio a l'arrel.
