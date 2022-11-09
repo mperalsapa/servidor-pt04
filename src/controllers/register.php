@@ -37,36 +37,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // fem les comprovacions dels camps del registre per veure si son buits o valids
     if (empty($name)) {
-        $formResult = "El camp Nom es buit";
+        $formResult = "<span>El camp Nom es buit</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($lastname)) {
-        $formResult = "El camp Cognom es buit";
+        $formResult = "<span>El camp Cognom es buit</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($email)) {
-        $formResult = "El camp Email es buit";
+        $formResult = "<span>El camp Email es buit</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($email2)) {
-        $formResult = "La verificacio de correu es buida";
+        $formResult = "<span>La verificacio de correu es buida</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($password)) {
-        $formResult = "El camp Contrassenya es buit";
+        $formResult = "<span>El camp Contrassenya es buit</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if (empty($password2)) {
-        $formResult = "La verificacio de contrasenya es buida";
+        $formResult = "<span>La verificacio de contrasenya es buida</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
 
     if ($email != $email2) {
-        $formResult = "El correu i la verificacio no coincideixen";
+        $formResult = "<span>El correu i la verificacio no coincideixen</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
     if ($password != $password2) {
-        $formResult = "La contrasenya i la verificacio no coincideixen";
+        $formResult = "<span>La contrasenya i la verificacio no coincideixen</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
 
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // comprovem si l'usuari ja esta registrat. En aquest cas, retornarem un error, i esborrarem el correu de la vista
     if (userExists($pdo, $email)) {
         $viewData["email"] = "";
-        $formResult = "Aquest correu ja pertany a un compte. Si no recordes la contrasenya, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password\">Recuperació de contrasenya</a>";
+        $formResult = "<span>Aquest correu ja pertany a un compte. Si no recordes la contrasenya, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password\">Recuperació de contrasenya</a></span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     };
 
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         redirectClient("/");
     } else {
         // en cas de que l'usuari no s'hagues pogut registrar correctament, mostrem un missatge d'error
-        $formResult = "S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.";
+        $formResult = "<span>S'ha produit un error a l'hora de realitzar el register. Intenta-ho un altre cop.</span>";
         returnAlert($formResult, "danger", "src/views/register.vista.php", $viewData);
     }
 }

@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 // comprovem si la sol·licitut es POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // comprovem si les dades d'inici de sessio son omplertes, en cas de no ser-ho les guardem buides
-    // TODO consistencia if ?
     $email = isset($_POST["email"]) ? $_POST["email"] : '';
     $password = isset($_POST["password"]) ? $_POST["password"] : '';
 
@@ -55,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // si l'usuari demanat no existeix mostrem una alerta que ho indica
     if (!userExists($pdo, $email)) {
-        $formResult = "El compte introduit no existeix. Si vols, et pots registrar aqui: <a class=\"alert-link\" href=\"register\">Registre</a>";
+        $formResult = "<span>El compte introduit no existeix. Si vols, et pots registrar aqui: <a class=\"alert-link\" href=\"register\">Registre</a></span>";
         returnAlert($formResult, "danger", "src/views/login.vista.php");
     }
     // si l'usuari existeix, guardem el correu en una variable
@@ -63,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // comprovem si la contrasenya es valida amb la que tenim guardada a la base de dades
     if (!checkUserPassword($pdo, $password, $email)) {
-        $formResult = "La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password\">Recuperació de contrasenya</a>";
+        $formResult = "<span>La contrasenya introduida no es correcte. Si no la recordes, fes una recuperació aqui: <a class=\"alert-link\" href=\"lost-password\">Recuperació de contrasenya</a></span>";
         setLoginAttempt(getLoginAttempts() + 1);
         returnAlert($formResult, "danger", "src/views/login.vista.php", $viewData);
     }
@@ -72,14 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (getLoginAttempts() > 2) {
         // si es major de 2, comprovem si el camp del captcha es buit
         if (!isset($_POST['h-captcha-response'])) {
-            $formResult = "S'ha produit un error validant el captcha. Torna a probar.";
+            $formResult = "<span>S'ha produit un error validant el captcha. Torna a probar</span>";
             returnAlert($formResult, "danger", "src/views/login.vista.php", $viewData);
         }
 
         // preguntem al servei de captcha si el formulari es valid, en cas de no ser-ho mostre una alerta
         $validCaptcha = checkCaptcha($_POST['h-captcha-response']);
         if (!$validCaptcha) {
-            $formResult = "No has omplert el captcha correctament. Torna a probar.";
+            $formResult = "<span>No has omplert el captcha correctament. Torna a probar.</span>";
             returnAlert($formResult, "danger", "src/views/login.vista.php", $viewData);
         }
     }
