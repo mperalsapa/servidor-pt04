@@ -48,6 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 // comprovem si la sol·licitut es POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    // comprovem si les dades d'inici de sessio son omplertes, en cas de no ser-ho les guardem buides
+    $email = isset($_POST["email"]) ? $_POST["email"] : '';
+    $password = isset($_POST["password"]) ? $_POST["password"] : '';
+
+    // guardem el correu introduit per l'usuari en cas de que l'inici de sessio surti malament
+    $viewData["email"] = $email;
+
     // comprovem si els intents d'inici de sessio son mes de 2
     if (getLoginAttempts() > 2) {
         // si es major de 2, comprovem si el camp del captcha es buit
@@ -64,10 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // comprovem si les dades d'inici de sessio son omplertes, en cas de no ser-ho les guardem buides
-    $email = isset($_POST["email"]) ? $_POST["email"] : '';
-    $password = isset($_POST["password"]) ? $_POST["password"] : '';
-
     // iniciem la conexio amb la base de dades
     $pdo = getMysqlPDO();
 
@@ -76,8 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $formResult = "<span>El compte introduit no existeix. Si vols, et pots registrar aqui: <a class=\"alert-link\" href=\"register\">Registre</a></span>";
         returnAlert($formResult, "danger", "src/views/login.vista.php");
     }
-    // si l'usuari existeix, guardem el correu en una variable
-    $viewData["email"] = $email;
 
     // comprovem si la contrasenya es valida amb la que tenim guardada a la base de dades
     if (!checkUserPassword($pdo, $password, $email)) {
