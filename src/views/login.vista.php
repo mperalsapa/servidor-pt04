@@ -30,7 +30,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text h-100"><i class="bi bi-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="email" placeholder="Correu Electronic" id="email" required value="<?php echo isset($email) ? $email : '' ?>">
+                        <input type="email" class="form-control" name="email" placeholder="Correu Electronic" id="email" required value="<?php echo isset($viewData["email"]) ? $viewData["email"] : '' ?>">
                     </div>
                     <div class="invalid-feedback">Introdueix un correu electronic valid</div>
                 </div>
