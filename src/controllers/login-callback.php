@@ -9,11 +9,10 @@ include("env.php");
 
 // agafem la url per seleccionar el tipus d'autenticacio
 $authProvider = getPathOverBase();
-//debug
-echo "<br>" . $authProvider . "<br>";
-echo "Login method:";
 
-//
+// definim la url del callback, juntant el domini base i la url base
+$callbackUrl = $baseDomain . $baseUrl;
+// seleccionem la funcio corresponent en base a la url que s'ha introduit
 switch ($authProvider) {
     case '/google-login':
         echo "google";
@@ -29,11 +28,11 @@ switch ($authProvider) {
         break;
 }
 
-
-
+// finalment, si la informacio d'usuari NO es buida, cridem la funcio de social login
 if (!empty($userInfo)) {
-    print_r($userInfo);
     socialLoginUser($userInfo);
 }
 
-// redirectClient("login");
+// en cas de no tenir dades d'usuari, redireccionem al login, ja que ha donat algun error
+// no informem d'aquest error
+redirectClient("login");
