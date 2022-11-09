@@ -35,19 +35,15 @@
                     </div>
                     <div class="invalid-feedback">Introdueix un correu electronic valid</div>
                 </div>
-                <div class="mt-3">
-                    <?php
-                    if (!empty($alertMessage)) {
-                        echo "<div class=\"d-flex justify-content align-items-center alert alert-$alertType alert-dismissible\" role=\"alert\"><span class=\"me-3\">$alertIcon</span> $alertMessage <button type=\"button\" class=\"btn-close\" aria-label=\"Close\" data-bs-dismiss=\"alert\" ></button></div>";
-                    }
-                    ?>
+                <?php
+                if (!empty($alertMessage)) {
+                    echo "<div class=\" mt-3 mb-0 d-flex justify-content align-items-center alert alert-$alertType alert-dismissible\" role=\"alert\"><span class=\"me-3\">$alertIcon</span> $alertMessage <button type=\"button\" class=\"btn-close\" aria-label=\"Close\" data-bs-dismiss=\"alert\" ></button></div>";
+                }
+                ?>
 
-                    <label>Captcha</label>
-                    <div class="h-captcha" data-sitekey="4d7d3404-e41b-4616-8035-8fd9b72cca7b"></div>
-                    <div class="mt-3">
-                        <button type="submit" class="btn btn-primary col-12"><i class="bi bi-send"></i> Enviar</button>
-                    </div>
-                </div>
+                <label class="mt-3">Captcha</label>
+                <div class="h-captcha" data-sitekey="4d7d3404-e41b-4616-8035-8fd9b72cca7b"></div>
+                <button type="submit" class="btn btn-primary col-12 mt-3"><i class="bi bi-send"></i> Enviar</button>
             </form>
             <hr class="hr m-4" />
             <div class="m-4">
