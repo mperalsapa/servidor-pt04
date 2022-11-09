@@ -145,7 +145,7 @@ function getUserID(PDO $conn, string $email): int
 }
 
 
-function addArticle(PDO $conn, int $userId, string $article, string $date)
+function addArticle(PDO $conn, int $userId, string $article, string $date): void
 {
     $pdo = $conn->prepare("INSERT INTO article (article, autor, data) VALUES (:article, :userId, :articleDate)");
     $pdo->bindParam(":userId", $userId);
@@ -154,7 +154,7 @@ function addArticle(PDO $conn, int $userId, string $article, string $date)
     $pdo->execute();
 }
 
-function updateArticle(PDO $conn, int $articleId, string $article, string $date)
+function updateArticle(PDO $conn, int $articleId, string $article, string $date): void
 {
     $pdo = $conn->prepare("UPDATE article SET article = :article, data = :articleDate WHERE article.id = :articleId");
     $pdo->bindParam(":article", $article);
@@ -162,7 +162,7 @@ function updateArticle(PDO $conn, int $articleId, string $article, string $date)
     $pdo->bindParam(":articleId", $articleId);
     $pdo->execute();
 }
-function deleteAricle(PDO $conn, int $articleId)
+function deleteAricle(PDO $conn, int $articleId): void
 {
     $pdo = $conn->prepare("DELETE FROM article WHERE article.id = :articleId");
     $pdo->bindParam(":articleId", $articleId);

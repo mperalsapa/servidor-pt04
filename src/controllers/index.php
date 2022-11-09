@@ -35,7 +35,7 @@ if (checkLogin() && $meArticles) {
     $articles = getArticlePageByUser($pdo, $page, $itemsPerPage, $userid);
   } else {
     // si te 0 articles, definim les variables minimes per funcionar
-    $articles = '';
+    $articles = NULL;
     $page = 1;
     $maxPage = 1;
   }

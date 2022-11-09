@@ -3,7 +3,7 @@
 // script que s'encarrega de simples funcions relacionades amb el explorador web
 
 // funcio basica per redirigir el client a una URL especificada sobre la url base del lloc
-function redirectClient(string $url)
+function redirectClient(string $url): void
 {
     include("env.php");
 

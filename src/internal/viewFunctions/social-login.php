@@ -132,7 +132,7 @@ function getTwitterProfile(string $twitterClientID, string $twitterClientSecret,
 // aquesta funcio agafa informacio d'usuari com el correu, nom i cognom i comprova 
 // si aquest usuari ja existeix en la base de dades. En cas de ja existir, guardem les dades en la sessio
 // en cas de no existir, registrem l'usuari i guardem les dades en la sessio
-function socialLoginUser(array $userInfo)
+function socialLoginUser(array $userInfo): void
 {
     include_once("src/internal/db/mysql.php");
     include_once("src/internal/db/session_manager.php");

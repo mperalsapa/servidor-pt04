@@ -4,17 +4,17 @@
 
 
 // funcio que llegeix el nom del fitxer de l'ultim commit
-function getCurrentGitCommit(string $branch = 'master')
+function getCurrentGitCommit(string $branch = 'master'): string
 {
     if ($hash = file_get_contents(sprintf('.git/refs/heads/%s', $branch))) {
         return $hash;
     } else {
-        return false;
+        return "";
     }
 }
 
 // funcio que mostra una versio curta del hash del ultim commit a git
-function printGitInfo(string $commit)
+function printGitInfo(string $commit): void
 {
     $version = mb_substr($commit, 0, 5);
 

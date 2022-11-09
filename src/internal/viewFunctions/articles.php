@@ -4,7 +4,7 @@
 
 
 // aquesta funcio mostra els articles que es passen
-function printArticlesbyUserId($articles)
+function printArticlesbyUserId(PDOStatement $articles): void
 {
     // comprovem si els articles no son buits
     if (isset($articles) && $articles != '') {

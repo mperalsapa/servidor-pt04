@@ -6,7 +6,7 @@
 
 // funcio que permet mostrar una alerta dels tipus admesos per bootstrap, 
 // mostra la vista desitjada i agafa les dades necessaries per mostrar la vista
-function returnAlert(string $message, string $type, string $vista, ?array $viewData = array())
+function returnAlert(string $message, string $type, string $vista, ?array $viewData = array()): void
 {
     $alertMessage = $message;
     $alertType = $type;

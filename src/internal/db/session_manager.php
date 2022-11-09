@@ -26,20 +26,20 @@ function checkLogin(): bool
 }
 
 // funcio que guarda l'estat de sessio iniciada
-function setLoggedin(bool $loggedin)
+function setLoggedin(bool $loggedin): void
 {
     $_SESSION["loggedin"] = $loggedin;
 }
 
 // funcio que guarda les inicials de l'usuari en la sessio
-function setInitials(array $initials)
+function setInitials(array $initials): void
 {
     $_SESSION["name-initial"] = $initials[0];
     $_SESSION["surname-initial"] = $initials[1];
 }
 
 // funcio que guarda l'id de l'usuari en la sessio
-function setUserID(string $userID)
+function setUserID(string $userID): void
 {
     $_SESSION["id"] = $userID;
 }
@@ -60,13 +60,13 @@ function getLoginAttempts(): int
 }
 
 // funcio que guarda el numero d'intents que s'han fet per iniciar sessio
-function setLoginAttempt(int $attempt)
+function setLoginAttempt(int $attempt): void
 {
     $_SESSION["login-attempts"] = $attempt;
 }
 
 // funcio que guarda el la sessio, les dades de l'usuari, com les inicials, el id o si ha iniciat sessio
-function setUserLoggedinData(PDO $pdo, string $email)
+function setUserLoggedinData(PDO $pdo, string $email): void
 {
     setLoginAttempt(0);
     $initials = getUserInitials($pdo, $email);

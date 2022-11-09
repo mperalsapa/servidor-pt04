@@ -7,7 +7,7 @@
 include("env.php");
 
 // funcio que retorna un missatge i codi de reponsta 400(error)
-function returnError(string $msg)
+function returnError(string $msg): void
 {
     echo $msg;
     http_response_code(400);

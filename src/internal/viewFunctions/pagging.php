@@ -46,7 +46,7 @@ function getPagNumber(int $maxPage): int
 }
 
 // aquesta funcio mostra els botons de paginacio sense ningun calcul
-function printStaticPagination(int $page, int $maxPage)
+function printStaticPagination(int $page, int $maxPage): void
 {
     for ($actualPage = 1; $actualPage <= $maxPage; $actualPage++) {
         printPaginationButton($actualPage, $page);
@@ -55,7 +55,7 @@ function printStaticPagination(int $page, int $maxPage)
 
 // aquesta funcio mostra els botons de paginacio calculant si s'ha de "moure" per que la pagina actual sigui al mi
 // per exemple, si com a la pagina 6, hauria de ser aixi (tenin en compte que volem 5 botons de paginacio) 4 5 6 7 8 
-function printDynamicPagination(int $page, int $maxPagination, int $maxPage, int $minPage)
+function printDynamicPagination(int $page, int $maxPagination, int $maxPage, int $minPage): void
 {
 
     // fem una comprovacio de si es parell. En cas de ser parell, li sumarem un per que no sigui parell
@@ -106,7 +106,7 @@ function printDynamicPagination(int $page, int $maxPagination, int $maxPage, int
 }
 
 // aquesta funcio mostra un boto de paginacio, i si es la pagina actual, el mostra inhabilitat
-function printPaginationButton(int $actualPage, int $page)
+function printPaginationButton(int $actualPage, int $page): void
 {
     $visibility = getPaginationVisibility();
     if ($actualPage == $page) {
@@ -117,7 +117,7 @@ function printPaginationButton(int $actualPage, int $page)
 }
 
 // aquesta funcio mostra el primer boto de paginacio, (<< Primera)
-function printFirstPage($page, $minPage)
+function printFirstPage(int $page, int $minPage): void
 {
     echo "<li class=\"page-item\">";
     if ($page == $minPage) {
@@ -134,7 +134,7 @@ function printFirstPage($page, $minPage)
 }
 
 // aquesta funcio mostra el ultim boto de paginacio, (Ultima >>)
-function printLastPage($page, $maxPage)
+function printLastPage(int $page, int $maxPage): void
 {
     echo "<li class=\"page-item\">";
     if ($page == $maxPage) {
@@ -151,7 +151,7 @@ function printLastPage($page, $maxPage)
 }
 
 // aquesta funcio mostra el primer i ultim boto de paginacio, i decideix si mostrar paginacio dinamica o estatica
-function printPagination($page, $minPage, $maxPage, $maxPagination)
+function printPagination(int $page, int $minPage, int $maxPage, int $maxPagination): void
 {
     echo "<nav><ul class=\"pagination justify-content-center p-5 mt-5\">";
     printFirstPage($page, $minPage);
