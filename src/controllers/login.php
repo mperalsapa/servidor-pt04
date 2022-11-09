@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     include("env.php");
     include_once("src/internal/viewFunctions/social-login.php");
 
+    // definim la url del callback, juntant el domini base i la url base
+    $callbackUrl = $baseDomain . $baseUrl;
     // comprovem el login social demanat, i cridem la funcio correspondent per iniciar sessio (hybridAuth)
     switch ($_GET["socialLogin"]) {
         case 'google':
