@@ -13,7 +13,7 @@ include_once("src/internal/viewFunctions/git.php");
 
 // funcio que s'encarrega de mostrar la ruta demanada si existeix. Si no existeix, fa una redireccio a l'arrel.
 // per exemple si un bot o algu que no sap el que fa introdueix una ruta com wp-admin, li redireccionara a l'arrel.
-function route(string $url, array $mux)
+function route(string $url, array $mux): void
 {
         if (isset($mux[$url])) {
                 $controller = $mux[$url];

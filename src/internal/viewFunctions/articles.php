@@ -7,7 +7,7 @@
 function printArticlesbyUserId(PDOStatement $articles): void
 {
     // comprovem si els articles no son buits
-    if (isset($articles) && $articles != '') {
+    if (isset($articles) && $articles != NULL) {
         // comprovem si l'id de l'usuari esta a la sessio
         if (isset($_SESSION["id"])) {
             $userId = $_SESSION["id"];
