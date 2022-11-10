@@ -47,7 +47,7 @@ if ($branch != "main") {
 }
 
 // si tot es correcte, vol dir que hem de fer un pull del repositori per actualitzar el que tenim al servidor web
-$cmd = shell_exec("git pull");
+$cmd = shell_exec("git pull --rebase");
 // mostrem el log del pull i retornem "deploy success"
 echo $cmd;
 echo 'Deployment sucess';
