@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canviar Correu Electrónic</title>
+    <title>Codi d'autoritzacio</title>
     <?php include_once("src/internal/viewFunctions/header.php"); ?>
 </head>
 
@@ -20,7 +20,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index">Inici</a></li>
                         <li class="breadcrumb-item"><a href="profile">Perfil</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Canviar Correu Electrónic</li>
+                        <li class="breadcrumb-item active" aria-current="page">Codi d'autoritzacio</li>
                     </ol>
                 </nav>
                 <?php
