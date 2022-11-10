@@ -76,9 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 // comprovem si la sol·licitut es POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // preparem la conexio amb  la base de dades
-    $pdo = getMysqlPDO();
-
     // preparem les dades de la vista
     $viewData["token"] = "";
     $viewData["success"] = true;
@@ -87,6 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST["submit"]) || $_POST["submit"] != "delete") {
         returnAlert("S'ha produit un error a l'hora d'esborrar el compte, prova un altre cop. Si el problema persisteix, contacta amb un administrador.", "danger", "src/views/change-email.vista.php", $viewData);
     }
+
+    // preparem la conexio amb  la base de dades
+    $pdo = getMysqlPDO();
 
     // si tot es correcte, esborrem l'usuari, esborrem la sessio, i finalment mostrem missatge de que s'ha esborrat l'usuari correctament
     removeUserAccount($pdo, getUserIDSession());
